@@ -7,6 +7,6 @@ import commision.Vo.Customer;
 @Mapper
 public interface UserMapper
 {
-	public int UserAdd(Customer ui);
-	public Customer dologin(Customer ui);
+//	public int UserAdd(Customer ui);
+//	public Customer dologin(Customer ui);
 }
