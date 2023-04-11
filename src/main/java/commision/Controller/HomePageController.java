@@ -19,4 +19,10 @@ public class HomePageController
 	{
 		return "thymeleaf/Home/HomePage";
 	}
+	
+	@GetMapping("/login")
+	public String login()
+	{
+		return "thymeleaf/User/LoginForm";
+	}
 }
