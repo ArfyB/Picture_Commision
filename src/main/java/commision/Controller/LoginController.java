@@ -13,4 +13,10 @@ public class LoginController
 	{
 		return "thymeleaf/User/LoginForm";
 	}
+	
+	@GetMapping("/join")
+	public String join()
+	{
+		return "thymeleaf/User/JoinForm";
+	}
 }

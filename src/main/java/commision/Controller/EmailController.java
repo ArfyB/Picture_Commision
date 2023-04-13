@@ -1,5 +1,8 @@
 package commision.Controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +24,14 @@ public class EmailController
    
    @GetMapping("/test")
    @ResponseBody
-   public String sendTestMail()
+   public Map<String,Object> sendTestMail()
    {
+	   Map<String,Object> map = new HashMap<>();
       //boolean isSent = svc.sendSimpleText();
-      //boolean isSent = svc.sendAttachMail();
-	  boolean isSent = svc.sendHTMLMessage();
-      return isSent ? "메일 보내기 성공":"메일 보내기 실패";
+      boolean isSent = svc.sendAttachMail();
+	  //boolean isSent = svc.sendHTMLMessage();
+	  map.put("EmailSend",isSent);
+      return map;
    }
    
    @GetMapping("/auth/{code}")  // 보낸 메일에서 이용자가 인증 링크를 클릭했을 때

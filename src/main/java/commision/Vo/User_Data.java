@@ -12,7 +12,11 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer 
+public class User_Data 
 {
-	public String user_id;
+	public String UserId;		// 아이디
+	public String UserPwd;		// 비밀번호
+	public String UserEmail;	// 이메일
+	public String UserCertify;	// 본인인증여부
+	public String UserPhone;	// 전화번호
 }

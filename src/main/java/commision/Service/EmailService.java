@@ -110,7 +110,7 @@ public class EmailService
 
       try {
          InternetAddress[] addressTo = new InternetAddress[1];
-         addressTo[0] = new InternetAddress("bubble5604@naver.com");
+         addressTo[0] = new InternetAddress("fiore053@naver.com");
 
          mimeMessage.setRecipients(Message.RecipientType.TO, addressTo);
 
@@ -125,7 +125,7 @@ public class EmailService
           
          // Part two is attachment
          messageBodyPart = new MimeBodyPart();
-         File file = new File("E:/test/IMG_2879.GIF");
+         File file = new File("E:/test/KakaoTalk_20221025_231724970.jpg");
          FileDataSource fds = new FileDataSource(file);
          messageBodyPart.setDataHandler(new DataHandler(fds));
          

@@ -2,8 +2,6 @@ package commision.Mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import commision.Vo.Customer;
-
 @Mapper
 public interface UserMapper
 {

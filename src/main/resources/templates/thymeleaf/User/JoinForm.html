@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>JoinForm</title>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="../js/JoinForm.js"></script>
 </head>
 <body>
 <div>
@@ -12,30 +14,33 @@
 		</div>
 		
 		<form>
-		<div class='sub_title'>
-		아이디
-		</div>
-		<input type='text' name='UserId'>
-		<br>
+			<div class='sub_title'>
+			아이디
+			</div>
+			<input type='text' name='UserId'>
+			<br>
+			
+			<div class='sub_title'>
+			비밀번호
+			</div>
+			<input type='password' name='UserPwd' id='UserPwd'>
+			
+			<br>
+			
+			<div class='sub_title'>
+			비밀번호 확인
+			</div>
+			<input type='password' id='PwdCheck'>
+			<button type='button' id='PwdCheck'>확인</button>
+			<br>
+			
+			<div class='sub_title'>
+			이메일
+			</div>
+			<input type='email' name='UserEmail'>
+			
 		
-		<div class='sub_title'>
-		비밀번호
-		</div>
-		<input type='password' name='UserPwd'>
-		<br>
-		<div class='sub_title'>
-		비밀번호 확인
-		</div>
-		<input type='password' name=''>
-		<br>
-		
-		<div class='sub_title'>
-		이메일
-		</div>
-		<input type='email' name='UserEmail'>
-		<button>인증</button>
-		
-		<button>가입</button>
+			<button type='button'>가입</button>
 		</form>
 		
 	</div>
