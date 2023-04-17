@@ -13,34 +13,45 @@
 		회원가입
 		</div>
 		
-		<form>
+		<form id='CUser'>
 			<div class='sub_title'>
 			아이디
 			</div>
-			<input type='text' name='UserId'>
+			<input type='text' name='UserId' id='UserId' required>
+			<label id='IdCheck'></label>
+			
 			<br>
 			
 			<div class='sub_title'>
 			비밀번호
 			</div>
-			<input type='password' name='UserPwd' id='UserPwd'>
+			<input type='password' name='UserPwd' id='UserPwd' required>
+			<label id='PwdCheck1'></label>
 			
 			<br>
 			
 			<div class='sub_title'>
 			비밀번호 확인
 			</div>
-			<input type='password' id='PwdCheck'>
-			<button type='button' id='PwdCheck'>확인</button>
+			<input type='password' id='PwdCheck' required>
+			<label id='PwdCheck2'></label>
+			
 			<br>
+			
+			<div class='sub_title'>
+			휴대전화 번호
+			</div>
+			<input type='number' name='UserPhone' required>
+			<div>
+			<button type='button' id='PhoneCertify'></button>
+			</div>
 			
 			<div class='sub_title'>
 			이메일
 			</div>
-			<input type='email' name='UserEmail'>
-			
-		
-			<button type='button'>가입</button>
+			<input type='email' name='UserEmail' required>
+			 
+			<button type='submit' id='join'>가입</button>
 		</form>
 		
 	</div>

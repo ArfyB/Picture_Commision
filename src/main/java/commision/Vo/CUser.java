@@ -14,10 +14,11 @@ import lombok.ToString;
 @NoArgsConstructor
 public class CUser 
 {
-	public String UserId;		// 아이디
-	public String UserPwd;		// 비밀번호
+	public String UserNick;
+	public String UserId;		// 아이디 primary key
+	public String UserPwd;		// 비밀번호 not null
 	public String UserEmail;	// 이메일
-	public String UserPhone;	// 전화번호
-	public String UserCertify;	// 본인인증여부
-	public String UserType;		// 커미션주 or 고객
+	public String UserPhone;	// 전화번호 본인인증 후에 저장
+	public String UserCertify;	// 본인인증여부 default 0
+	public String UserType;		// 커미션주 or 고객 default 0
 }
