@@ -1,7 +1,5 @@
 package commision.Vo;
 
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -14,13 +12,9 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Commision 
+public class CPic 
 {
-	public String title;
-	public List<String> tag;
-	public int price;
-	public String introduce;
-	public String painter;
-	public int slot;
-	public String preview;
+	public int CNum;
+	public String CPic;
+	public int CPicNum;
 }
