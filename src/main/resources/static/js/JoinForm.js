@@ -13,6 +13,7 @@ $(function()
 		var IdCheck = $('#IdCheck');
 		var PwdCheck1 = $('#PwdCheck1');
 		var PwdCheck2 = $('#PwdCheck2');
+		var EmailCheck = $('#EmailCheck');
 		
 		function validateUserId1(uid)
 		{
@@ -56,19 +57,30 @@ $(function()
 		{
 			PwdCheck1.text('');
 			PwdCheck2.text('');
+			EmailCheck.text('');
 		}
 		
 		function textclearIdPwd2()
 		{
 			IdCheck.text('');
 			PwdCheck2.text('');
+			EmailCheck.text('');
 		} 
 		
 		function textclearIdPwd1()
 		{
 			IdCheck.text('');
 			PwdCheck1.text('');
+			EmailCheck.text('');
 		} 
+		
+		function textclearE()
+		{
+			IdCheck.text('');
+			PwdCheck1.text('');
+			PwdCheck2.text('');
+		}
+		
 		
 		if (!validateUserId1(uid)) {
 			IdCheck.text('아이디는 8글자 이상');
@@ -118,6 +130,38 @@ $(function()
 			PwdCheck2.text('');
 		}
 		
-		console.log('사용가능');
+		/*
+		if (!validateEmail(email))
+		{
+			EmailCheck.text('유효하지않은 이메일 형식입니다');
+			textclearE();
+			return;
+		}
+		else
+		{
+			EmailCheck.text('');
+		}
+		*/
+		
+		var form = document.getElementById('CUser');
+		var UserData = new FormData(form);
+		
+		$.ajax
+		({
+			type : 'post',
+			url : '/login/join',
+			data : UserData,
+			processData : false,
+			contentType : false,
+			cache : false,
+			success : function(res)
+			{
+				console.log(res.join? '성공' : '실패');
+			},
+			error : function(e)
+			{
+				console.log(e);
+			}
+		})
 	})
 })
