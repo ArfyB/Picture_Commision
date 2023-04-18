@@ -6,13 +6,11 @@
         <insert id = 'UserAdd'
         parameterType = 'commision.Vo.CUser'>
         
-        INSERT INTO CUser (UserId, UserPwd, UserEmail, UserPhone)
+        INSERT INTO CUser (UserEmail, UserPwd)
         values
         (
-        #{UserId},
-        #{UserPwd},
-        #{UserEmail}, 
-        #{UserPhone}
+        #{UserEmail},
+        #{UserPwd}
 		)
         </insert>
         

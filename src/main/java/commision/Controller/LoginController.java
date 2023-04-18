@@ -36,7 +36,6 @@ public class LoginController
 	@ResponseBody
 	public Map<String, Object> PostJoin(CUser user)
 	{
-		System.out.println(user.UserId);
 		System.out.println(user.UserPwd);
 		Map<String, Object> map = new HashMap<>();
 		map.put("join", ls.UserAdd(user));

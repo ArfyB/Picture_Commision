@@ -6,25 +6,12 @@ $(function()
 	{
 		event.preventDefault();
 		
-		var uid = $('#UserId').val();
 		var pwd = $('#UserPwd').val();
 		var check = $('#PwdCheck').val();
 		var email = $('#UserEmail').val();
-		var IdCheck = $('#IdCheck');
 		var PwdCheck1 = $('#PwdCheck1');
 		var PwdCheck2 = $('#PwdCheck2');
 		var EmailCheck = $('#EmailCheck');
-		
-		function validateUserId1(uid)
-		{
-			return uid.length >=8;
-		}
-		
-		function validateUserId2(uid)
-		{
-			/* indexOf() ()내의 내용이 없을시 -1 반환 */
-			return uid.indexOf(" ") === -1 && uid === uid.trim();
-		}
 		
 		function validateUserPwd1(pwd)
 		{
@@ -53,66 +40,53 @@ $(function()
 			return specialCharPattern.test(pwd);
 		}
 		
+		function textclearPwd2E()
+		{
+			PwdCheck2.text('');
+			EmailCheck.text('');
+		}
+		
+		function textclearPwd1E()
+		{
+			PwdCheck1.text('');
+			EmailCheck.text('');
+		}
+		
 		function textclearPwd12()
 		{
 			PwdCheck1.text('');
 			PwdCheck2.text('');
-			EmailCheck.text('');
-		}
-		
-		function textclearIdPwd2()
-		{
-			IdCheck.text('');
-			PwdCheck2.text('');
-			EmailCheck.text('');
-		} 
-		
-		function textclearIdPwd1()
-		{
-			IdCheck.text('');
-			PwdCheck1.text('');
-			EmailCheck.text('');
-		} 
-		
-		function textclearE()
-		{
-			IdCheck.text('');
-			PwdCheck1.text('');
-			PwdCheck2.text('');
 		}
 		
 		
-		if (!validateUserId1(uid)) {
-			IdCheck.text('아이디는 8글자 이상');
-			textclearPwd12();
-			return;
-		}
 		
-		else if (!validateUserId2(uid)) {
-			IdCheck.text('아이디는 공백포함 불가');
+		if (!validateEmail(email))
+		{
+			console.log(email);
+			EmailCheck.text('유효하지않은 이메일 형식입니다');
 			textclearPwd12();
 			return;
 		}
 		else
 		{
-			IdCheck.text('');
+			EmailCheck.text('');
 		}
-
+		
 		if (!validateUserPwd1(pwd)) {
 			PwdCheck1.text('비밀번호는 12글자 이상');
-			textclearIdPwd2();
+			textclearPwd2E();
 			return;
 		}
 		
 		else if (!validateUserPwd2(pwd)) {
 			PwdCheck1.text('비밀번호는 공백포함 불가');
-			textclearIdPwd2();
+			textclearPwd2E();
 			return;
 		}
 		
 		else if (!validatePwdSpecialChar(pwd)) {
 			PwdCheck1.text('비밀번호는 특수문자가 1개이상 포함');
-			textclearIdPwd2();
+			textclearPwd2E();
 			return;
 		}
 		else
@@ -122,26 +96,13 @@ $(function()
 
 		if (!PwdCheck(pwd, check)) {
 			PwdCheck2.text('비밀번호가 서로 다릅니다');
-			textclearIdPwd1();
+			textclearPwd1E();
 			return;
 		}
 		else
 		{
 			PwdCheck2.text('');
 		}
-		
-		/*
-		if (!validateEmail(email))
-		{
-			EmailCheck.text('유효하지않은 이메일 형식입니다');
-			textclearE();
-			return;
-		}
-		else
-		{
-			EmailCheck.text('');
-		}
-		*/
 		
 		var form = document.getElementById('CUser');
 		var UserData = new FormData(form);
