@@ -6,12 +6,20 @@
         <insert id = 'UserAdd'
         parameterType = 'commision.Vo.CUser'>
         
-        INSERT INTO CUser (UserEmail, UserPwd)
+        INSERT INTO CUser (UserNick, UserEmail, UserPwd)
         values
         (
+        #{UserNick},
         #{UserEmail},
         #{UserPwd}
 		)
         </insert>
         
+        <select id = 'EmailCheck'
+        parameterType = 'commision.Vo.CUser'
+        resultType = 'commision.Vo.CUser'>
+        
+        SELECT UserEmail FROM CUser WHERE UserEmail = #{UserEmail}
+        
+        </select>
 </mapper>

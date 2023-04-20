@@ -8,4 +8,5 @@ import commision.Vo.CUser;
 public interface LoginMapper 
 {
 	public int UserAdd(CUser user);
+	public CUser EmailCheck(CUser user);
 }

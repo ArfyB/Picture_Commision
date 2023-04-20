@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyDnUlprmgp9667t70jaf6-7kqzeXGmjWvE",
-    authDomain: "commision-cdb67.firebaseapp.com",
-    projectId: "commision-cdb67",
-    storageBucket: "commision-cdb67.appspot.com",
-    messagingSenderId: "686375553449",
-    appId: "1:686375553449:web:3945fc7636846cc68adcb8",
-    measurementId: "G-X49SC3VH74"
-  };
+<script>
+//SDK 초기화
+Kakao.init('75757ff9df91a108379a73249d1f4bda');
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+// 카카오 로그인 버튼 클릭 시 실행되는 함수
+function loginWithKakao() {
+  Kakao.Auth.login({
+    success: function(authObj) {
+      // 로그인 성공 시 사용자 정보 가져오기
+      console.log(authObj)
+      Kakao.API.request({
+        url: '/v2/user/me',
+        success: function(res) {
+          var userId = res.id;
+          // 사용자 정보를 서비스에 적용
+          console.log(res);
+        },
+        fail: function(error) {
+          console.log(error);
+        }
+      });
+    },
+    fail: function(error) {
+      console.log(error);
+    }
+  });
+}
+
 </script>
 </head>
 <body>
+<a id="custom-login-btn" href="javascript:loginWithKakao()">
+  <img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"/>
+</a>
+
 
 </body>
 </html>

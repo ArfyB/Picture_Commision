@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JoinForm</title>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="/js/JoinForm2.js"></script>
+</head>
+<body>
+<div>
+	<div>
+		<div class='title'>
+		회원가입
+		</div>
+		
+		<form id='CUser'>
+			<input type='hidden' name='UserEmail' id='UserEmail' th:value = '${session.email}'required>
+			
+			<div class='sub_title'>
+			닉네임
+			</div>
+			<input type='text' name='UserNick' id='UserNick' required>
+			<label id='NickCheck'></label>
+			
+			<div class='sub_title'>
+			비밀번호
+			</div>
+			<input type='password' name='UserPwd' id='UserPwd' required>
+			<label id='PwdCheck1'></label>
+			
+			<div class='sub_title'>
+			비밀번호 확인
+			</div>
+			<input type='password' id='PwdCheck' required>
+			<label id='PwdCheck2'></label>
+			
+			<button type='submit' id='join'>인증</button>
+		</form>
+		
+	</div>
+</div>
+</body>
+</html>

@@ -16,5 +16,18 @@ public class LoginService
 	{
 		return 0 < lp.UserAdd(user);
 	}
+	
+	public boolean EmailCheck(CUser user)
+	{
+		CUser c = lp.EmailCheck(user);
+		if(c == null)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
 
 }

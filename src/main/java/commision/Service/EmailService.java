@@ -3,8 +3,15 @@ package commision.Service;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+import commision.Vo.CUser;
 import jakarta.activation.DataHandler;
 import jakarta.activation.FileDataSource;
 import jakarta.mail.BodyPart;
@@ -15,12 +22,8 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Service;
-
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -29,6 +32,8 @@ public class EmailService
 {
    @Autowired
    private JavaMailSender sender;
+   
+   public HttpServletRequest request; 
    
    public boolean sendSimpleText()
    {
@@ -79,22 +84,29 @@ public class EmailService
       return false;
    }
    
-   public boolean sendHTMLMessage()
+   public boolean sendHTMLMessage(Map<String, Object> map, HttpSession session)
    {
       MimeMessage mimeMessage = sender.createMimeMessage();
-
+      
       try {
+    	  String auth = createRandomStr();
+    	  CUser user = (CUser) map.get("user");
+    	  
+          session.setAttribute("auth", auth);
+          session.setAttribute("email", user.getUserEmail());
+    	  
          InternetAddress[] addressTo = new InternetAddress[1];
-         addressTo[0] = new InternetAddress("fiore053@naver.com");
+         addressTo[0] = new InternetAddress(user.getUserEmail());
 
          mimeMessage.setRecipients(Message.RecipientType.TO, addressTo);
 
          mimeMessage.setSubject("마임 메시지(HTML) 테스트");
          
-         mimeMessage.setContent("<a href='http://localhost/mail/auth/abc123'>메일주소 인증</a>", "text/html;charset=utf-8");
+         mimeMessage.setContent("<a href='http://localhost/login/auth/"+ auth +"'>메일주소 인증1</a>", "text/html;charset=utf-8");
          
          sender.send(mimeMessage);
          return true;
+         
       } catch (MessagingException e) {
          log.error("에러={}", e);
       }
@@ -125,7 +137,7 @@ public class EmailService
           
          // Part two is attachment
          messageBodyPart = new MimeBodyPart();
-         File file = new File("E:/test/KakaoTalk_20221025_231724970.jpg");
+         File file = new File("");
          FileDataSource fds = new FileDataSource(file);
          messageBodyPart.setDataHandler(new DataHandler(fds));
          
