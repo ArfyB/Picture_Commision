@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/sec")
 public class LoginController 
 {
 	@Autowired
@@ -77,14 +77,14 @@ public class LoginController
 		//log.info("인증코드 확인={}", code);
 		
 		boolean same = auth.equals(code);
-		String email = (String) request.getSession().getAttribute("email");
+		// String email = (String) request.getSession().getAttribute("email");
 		if(same)
 		{
 			return "thymeleaf/User/JoinForm2";
 		}
 		else
 		{
-			return "";
+			return "thymeleaf/User/JoinFormError";
 		}
 	}
 	

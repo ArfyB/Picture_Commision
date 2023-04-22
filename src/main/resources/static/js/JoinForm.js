@@ -28,7 +28,7 @@ $(function()
 		$.ajax
 		({
 			type : 'post',
-			url : '/login/email',
+			url : '/sec/email',
 			data : UserData,
 			processData : false,
 			contentType : false,

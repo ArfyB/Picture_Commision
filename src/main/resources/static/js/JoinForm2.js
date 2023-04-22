@@ -92,7 +92,7 @@ $(function()
 		$.ajax
 		({
 			type : 'post',
-			url : '/login/add',
+			url : '/sec/add',
 			data : UserData,
 			processData : false,
 			contentType : false,
