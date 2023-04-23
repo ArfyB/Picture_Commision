@@ -7,7 +7,7 @@
 <link href='/css/LoginForm.css' rel='stylesheet'>
  </head>
 <body>
-<div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
+<div th:replace="/thymeleaf/Nav/Nav.html :: nav"></div>
 
 <div class = 'form'>
 	<div class = 'form_1'>
@@ -18,24 +18,25 @@
 			<hr>
 			
 			<div class='login_form'>
-				<form id=''>
-					<label class = 'login_txt'>ID</label>
+				<form id='login_data' action='/doLogin' method='post'>
+					<label class = 'login_txt'>Email</label>
 					<label class='pil'>*</label>
 					
 					<br>
 					
-					<input type='text' name='UserId'>
+					<input type='email' name='UserEmail'>
 					
 					<br>
 					
-					<label class = 'login_txt'>PWD</label>
+					<label class = 'login_txt'>Pwd</label>
 					<label class='pil'>*</label>
 					
 					<br>
 					
 					<input type='password' name='UserPwd'>
 					
-					<button type='button'>로그인</button>
+					<button type='submit'>hi</button>
+					<button type='button' id='login-btn'>로그인</button>
 					
 				</form>
 				

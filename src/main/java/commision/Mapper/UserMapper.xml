@@ -3,5 +3,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="commision.Mapper.UserMapper">
         
+        <select id='dologin'
+        resultType='commision.Vo.CUser'>
+        
+        select UserEmail, UserPwd, UserRole, UserNick from CUser where UserEmail=#{UserEmail}
+        
+        </select>
         
 </mapper>

@@ -102,7 +102,7 @@ public class EmailService
 
          mimeMessage.setSubject("마임 메시지(HTML) 테스트");
          
-         mimeMessage.setContent("<a href='http://localhost/login/auth/"+ auth +"'>메일주소 인증1</a>", "text/html;charset=utf-8");
+         mimeMessage.setContent("<a href='http://localhost/sec/auth/"+ auth +"'>메일주소 인증1</a>", "text/html;charset=utf-8");
          
          sender.send(mimeMessage);
          return true;

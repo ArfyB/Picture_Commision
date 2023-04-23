@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import commision.Service.EmailService;
 import commision.Service.LoginService;
 import commision.Vo.CUser;
+import commision.security.SimpleSecurityConfig;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -25,15 +25,25 @@ import lombok.extern.slf4j.Slf4j;
 public class LoginController 
 {
 	@Autowired
-	public LoginService ls;
+	private LoginService ls;
 	
 	@Autowired
-	public EmailService es;
+	private EmailService es;
+	
+	@Autowired
+	private SimpleSecurityConfig ssc;
 	
 	@GetMapping("/login")
 	public String GetLogin()
 	{
 		return "thymeleaf/User/LoginForm";
+	}
+	
+	@PostMapping("/login")
+	public Map<String, Object> DoLogin()
+	{
+		
+		return null;
 	}
 	
 	@GetMapping("/join1")
@@ -77,7 +87,7 @@ public class LoginController
 		//log.info("인증코드 확인={}", code);
 		
 		boolean same = auth.equals(code);
-		// String email = (String) request.getSession().getAttribute("email");
+		String email = (String) request.getSession().getAttribute("email");
 		if(same)
 		{
 			return "thymeleaf/User/JoinForm2";
@@ -93,6 +103,7 @@ public class LoginController
 	public Map<String, Object> UserAdd(CUser user)
 	{
 		Map<String, Object> map = new HashMap<>();
+		user.setUserPwd(ssc.pwdencoding(user.getUserPwd()));
 		map.put("added",ls.UserAdd(user));
 		return map;
 	}
