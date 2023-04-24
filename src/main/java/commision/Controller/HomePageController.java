@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import commision.Service.HomePageService;
 import commision.UserDetailService.CustomUserDetails;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/commision")
@@ -23,26 +25,33 @@ public class HomePageController
 	public HomePageService hps;
 	
 	@GetMapping("/loginsuccess")
-	public String logincookie(@AuthenticationPrincipal UserDetails user, HttpServletResponse response)
+	public String logincookie(@AuthenticationPrincipal UserDetails user, HttpServletResponse response, HttpServletRequest request)
 	{
-		String email = user.getUsername();
-		String pwd = user.getPassword();
-		String nick = "";
-		String logined = "";
-		Collection<? extends GrantedAuthority> auth = user.getAuthorities();
-		
+	    String email = user.getUsername();
+	    String pwd = user.getPassword();
+	    String nick = "";
+	    String logined = "";
+	    String CookieValue = "";
+	    
+	    Collection<? extends GrantedAuthority> auth = user.getAuthorities();
+
 	    if(user instanceof CustomUserDetails) {
 	        CustomUserDetails customUser = (CustomUserDetails) user;
 	        nick = customUser.getUsernick();
 	    }
+
+	    for (GrantedAuthority authority : auth) {
+	        logined = authority.getAuthority();
+	    }
+
+	    CookieValue = "true"+"|"+email+"|"+nick+"|"+logined;
+
+	    Cookie loginCookie = new Cookie("login",CookieValue);
+	    loginCookie.setPath("/");
+	    response.addCookie(loginCookie);
+	    System.out.println(CookieValue);
 	    
-		for (GrantedAuthority authority : auth) {
-		    logined = authority.getAuthority();
-		}
-		
-		Cookie loginCookie = new Cookie("login", "true"+"|"+email+"|"+pwd+"|"+nick+"|"+logined);
-		
-		return "redirect:/home";
+	    return "redirect:/commision/home";
 	}
 	
 	@GetMapping("/home")
