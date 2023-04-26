@@ -24,36 +24,6 @@ public class HomePageController
 	@Autowired
 	public HomePageService hps;
 	
-	@GetMapping("/loginsuccess")
-	public String logincookie(@AuthenticationPrincipal UserDetails user, HttpServletResponse response, HttpServletRequest request)
-	{
-	    String email = user.getUsername();
-	    String pwd = user.getPassword();
-	    String nick = "";
-	    String logined = "";
-	    String CookieValue = "";
-	    
-	    Collection<? extends GrantedAuthority> auth = user.getAuthorities();
-
-	    if(user instanceof CustomUserDetails) {
-	        CustomUserDetails customUser = (CustomUserDetails) user;
-	        nick = customUser.getUsernick();
-	    }
-
-	    for (GrantedAuthority authority : auth) {
-	        logined = authority.getAuthority();
-	    }
-
-	    CookieValue = "true"+"|"+email+"|"+nick+"|"+logined;
-
-	    Cookie loginCookie = new Cookie("login",CookieValue);
-	    loginCookie.setPath("/");
-	    response.addCookie(loginCookie);
-	    System.out.println(CookieValue);
-	    
-	    return "redirect:/commision/home";
-	}
-	
 	@GetMapping("/home")
 	public String HomePage(@AuthenticationPrincipal UserDetails user)
 	{

@@ -12,7 +12,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class CPic 
+public class CExplainPic 
 {
 	public int CNum;
 	public String CPic;

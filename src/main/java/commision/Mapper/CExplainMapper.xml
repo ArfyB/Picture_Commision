@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commision.Mapper.CExplainMapper">
+        
+        <insert id = 'GetBoard'
+        parameterType = 'commision.Vo.CUser'>
+        
+        INSERT INTO CUser (UserNick, UserEmail, UserPwd)
+        values
+        (
+        #{UserNick},
+        #{UserEmail},
+        #{UserPwd}
+		)
+        </insert>
+        
+        <select id = 'EmailCheck'
+        parameterType = 'commision.Vo.CUser'
+        resultType = 'commision.Vo.CUser'>
+        
+        SELECT UserEmail FROM CUser WHERE UserEmail = #{UserEmail}
+        
+        </select>
+</mapper>

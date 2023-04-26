@@ -63,16 +63,17 @@ public class SimpleSecurityConfig
                .loginProcessingUrl("/doLogin")            // 컨트롤러 메소드 불필요, 폼 action과 일치해야 함
                .failureUrl("/sec/loginForm?error=T")      // 로그인 실패시 다시 로그인 폼으로
                //.failureForwardUrl("/login?error=Y")  //실패시 다른 곳으로 forward
-               .defaultSuccessUrl("/commision/loginsuccess", true)
+               .defaultSuccessUrl("/sec/loginsuccess", true)
                .usernameParameter("UserEmail")  // 로그인 폼에서 이용자 ID 필드 이름, 디폴트는 username
                .passwordParameter("UserPwd")  // 로그인 폼에서 이용자 암호 필트 이름, 디폴트는 password
                .permitAll()
                
                .and()   // 디폴트 로그아웃 URL = /logout
                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")) //로그아웃 요청시 URL
-             .logoutSuccessUrl("/sec/loginForm?logout=T")
+             .logoutSuccessUrl("/commision/home")
              .invalidateHttpSession(true) 
              .deleteCookies("JSESSIONID")
+             .deleteCookies("login")
              .permitAll()
              
              .and()

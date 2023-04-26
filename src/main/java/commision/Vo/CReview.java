@@ -15,6 +15,7 @@ import lombok.ToString;
 public class CReview 
 {
 	public int CNum;
+	public int CRNum;
 	public String Author;
 	public String Title;
 	public String Preview;

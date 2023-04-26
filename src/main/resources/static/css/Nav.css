@@ -6,22 +6,27 @@ nav {
 
 .back {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   padding: 10px;
   background-color: #f2f2f2;
+  position:relative;
+  width:100%
 }
 
-.left {
-  display: flex;
-  align-items: left;
+.l {
+	position: absolute;
+	left:0;
+	width:200px;	
 }
 
-.right {
-  display: flex;
-  align-items: right;
+.r {
+	position: absolute;
+	right:0;
+	width:200px;
 }
 
 img {
+	
   width: 50px;
 }
 

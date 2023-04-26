@@ -10,17 +10,22 @@
 
 <nav>
 <div class='back'>
-	<div>
-		<div class='child left'>
+	<div class='left'>
+		<div class='img'>
 		<a href='/commision/home'>img</a>
-		</div>
-		<div class='child right'>
-		<a href='/sec/login'>로그인</a>
 		</div>
 	</div>
 	
-	<div id='logined'>
+	<div id='login_status' class='right'>
 	
+		<div class='dologin'>
+		<a href='/sec/login'>로그인</a>
+		</div>
+		
+		<div class='login_user'>
+		유저정보
+		<button type='button' id='logout'>로그아웃</button>
+		</div>
 	</div>
 </div>
 </nav>

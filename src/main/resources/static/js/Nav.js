@@ -15,16 +15,36 @@ const keyValuePairs = arr.map(item => {
 });
 */
 
+$('.login_user').hide();
+$('.dologin').hide();
+
+$(function()
+{
+	$('#logout').on('click', function()
+	{
+	location.href='/logout';	
+	})	
+})
+
+
 var cookiearr = cookie.split('; ');
 
 const cookiemap = cookiearr.map(item => {
 	const [key, value] = item.split('=');
 	return {key, value};
 })
-var a = cookiemap.find(item => item.key === "a");
-if(a === undefined)
+
+var logined = cookiemap.find(item => item.key === "login");
+
+if(logined === undefined)
 {
-	
+	$('.dologin').show();
+	$('.login_user').hide();
+}
+else
+{
+	$('.dologin').hide();
+	$('.login_user').show();
 }
 
 /*
