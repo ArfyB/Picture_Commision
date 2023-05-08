@@ -1,36 +1,68 @@
 $(function()
 {
 	function uploadImage(files) {
-		console.log(files.length);
-		console.log(files);
-		/*
+		
+		var formData = new FormData();
+		
 		for (var i = 0; i < files.length; i++) {
 	    var file = files[i];
-	    var formData = new FormData();
-	    formData.append('file', file);
+	    formData.append('files', file);	// summernote에 추가한 이미지의 파라미터 이름을 설정
+	    }
+	    
 	    $.ajax({
-	      url: '/php/upload', // 파일 업로드 처리를 수행하는 PHP 파일의 URL
-	      type: 'POST',
+	      url: '/img/upload',
+	      enctype : 'multipart/form-data',
+	      type: 'post',
 	      data: formData,
 	      processData: false,
 	      contentType: false,
+	      cache: false,
+	      timeout : 600000,
 	      success: function(response) {
-	        var url = response.url;
-	        var img = $('<img>').attr('src', url);
-	        $('#summernote').summernote('insertNode', img[0]);
+		if(response.added)
+		{
+	        var list = response.list;
+	        for(var i = 0; i < list.length; i++)
+	        {
+				var img = $('<img>').attr('src', '/pics/'+list[i]);
+	        	$('#Commision_Contents').summernote('insertNode', img[0]);		
+			}
+	    }
+	    else
+	    {
+			alert('error');
+		}
 	      },
-	      error: function() {
+	      error: function(e) {
+			console.log(e);
 	        console.log('Failed to upload image');
 	      }
 	    });
-  		}
-  		*/
 	}
 	
-	$('#summernote').summernote({
+	function deleteImage(target) {
+		
+		var imageUrl = $(target).attr("src");
+		console.log(imageUrl);
+		
+	    $.ajax({
+	      url: '/img/delete',
+	      type: 'post',
+	      data: { imageUrl : imageUrl },
+	      cache: false,
+	      timeout : 600000,
+	      success: function(response) {
+	      },
+	      error: function(e) {
+		alert('실패');
+	      }
+	    });
+	}
+	
+	$('#Commision_Contents').summernote({
 	    placeholder: 'Hello stand alone ui',
 	    tabsize: 2,
-	    height: 120,
+	    height: 500,
 	    defaultImageWidth:50,
 	    toolbar: [
 	      ['style', ['style']],
@@ -38,30 +70,48 @@ $(function()
 	      ['color', ['color']],
 	      ['para', ['ul', 'ol', 'paragraph']],
 	      ['table', ['table']],
-	      ['insert', ['link', 'picture', 'video']],
-	      ['view', ['fullscreen', 'codeview', 'help']]
+	      ['insert', ['link', 'picture', 'hr']],
+	      ['view', ['help']]
 	    ],
 	    callbacks: {
       	onImageUpload: function(files) {
         uploadImage(files);
-      }
+		},
+		
+      	onMediaDelete: function(target) {
+		deleteImage(target);
+		}
     }
+	  });
+	  
+	  $('#Commision_Introduce').summernote({
+	    placeholder: 'Hello stand alone ui',
+	    tabsize: 2,
+	    height: 200,
+	    width:500,
+	    toolbar: [
+	      
+	    ]
 	  });
 	  
 	  
 	  $('#a').on('click', function()
 	  {
-		var markupStr1 = $('#summernote').summernote('code');
+		var title = $('#Title').val();
+		var Contents = $('#Commision_Contents').summernote('code');
+		var Introduce = $('#Commision_Introduce').summernote('code');
 		
-		console.log('1'+markupStr1);
+		console.log(title);
+		console.log(Contents);
+		console.log(Introduce);
 		
 		/*
 		var cexplaindata = $('#cexplaindata');
 		var cexplainform = new FormData(cexplaindata);
 		*/
 		
-		
-		var cexplainform = new FormData($('#cexplaindata')[0]); // jQuery 객체에서 HTMLFormElement 객체로 변경
+		/*
+		var cexplainform = new FormData($('#cexplaindata')[0]);
 		
 		$.ajax
 		({
@@ -75,11 +125,9 @@ $(function()
 			{
 				if (!res.check)
 				{
-					alert(res.certify? '메일이 전송 되었습니다' : '메일 전송에 실패 하였습니다');	
 				}
 				else
 				{
-					EmailCheck.text('이미 존재하는 계정입니다');
 				}
 			},
 			error : function(e)
@@ -88,7 +136,7 @@ $(function()
 			}
 		})
 		
-		
+		*/
 	})
 })
       
