@@ -1,3 +1,18 @@
+	function readImg(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		reader.onload = function(e) {
+		$('#preview').attr('src', e.target.result);
+		console.log(e.target.result);
+		};
+		reader.readAsDataURL(input.files[0]);
+		} 
+		else
+		{
+		$('#preview').attr('src', "");
+		}
+	};
+
 $(function()
 {
 	function uploadImage(files) {
@@ -38,7 +53,7 @@ $(function()
 	        console.log('Failed to upload image');
 	      }
 	    });
-	}
+	};
 	
 	function deleteImage(target) {
 		
@@ -57,7 +72,7 @@ $(function()
 		alert('실패');
 	      }
 	    });
-	}
+	};
 	
 	$('#Commision_Contents').summernote({
 	    placeholder: 'Hello stand alone ui',
@@ -138,15 +153,5 @@ $(function()
 		
 		*/
 	})
+	
 })
-      
-      
-/*   
-$('#summernote').summernote();
-$('#summernote').summernote({
-  height: 300,                 // set editor height
-  minHeight: null,             // set minimum height of editor
-  maxHeight: null,             // set maximum height of editor
-  focus: true                  // set focus to editable area after initializing summernote
-});
-*/

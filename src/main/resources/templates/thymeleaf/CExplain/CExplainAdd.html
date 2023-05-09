@@ -11,6 +11,13 @@
 <body>
 <form id='cexplaindata'>
 
+<input type='file' id='Thumbnail' name='Thumbnail' onchange='readImg(this);' style='display:none;' required>
+
+<label for='Thumbnail'>
+<img id='preview' src ='' width='100' height='100' class='preview_img'>
+</label>
+
+
 <input type='text' id='Title' name='Title'></input>
 <textarea id="Commision_Introduce" name='Introduce'></textarea>
 
