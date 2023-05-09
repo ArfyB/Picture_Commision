@@ -55,7 +55,6 @@ public class LoginController
 	    String logined = "";
 	    String CookieValue = "";
 	    
-	    
 	    Collection<? extends GrantedAuthority> auth = user.getAuthorities();
 
 	    if(user instanceof CustomUserDetails) {
@@ -75,6 +74,8 @@ public class LoginController
 	    response.addCookie(loginCookie);
 	    System.out.println(CookieValue);
 	    
+	    
+	    System.out.println((String)request.getSession().getAttribute("nick"));
 	    return "redirect:/commision/home";
 	}
 	

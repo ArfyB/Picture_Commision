@@ -20,10 +20,11 @@ public class CExplain
 	public String Painter;		// 제작자
 	public String Title;		// 커미션 제목
 	public String Introduce;	// 커미션 메인 설명 글
-	public String Preview;
+	public java.sql.Clob Introduce_C;
+	public String Contents;
+	public java.sql.Clob Contents_C;
+	public String Thumbnail;		// 메인 사진 
 	public int Price;
 	public int Slot;
-	public List<String> tag;
-	
-	public String Contents;
+	public List<String> Tags;
 }

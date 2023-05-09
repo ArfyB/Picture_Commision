@@ -1,5 +1,22 @@
 
+/* input type='number'에서 화살표 제거 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+textarea {
+  resize: none;
+}
+
 .preview_img:hover
 {
 	cursor:pointer;
+}
+
+#Tags
+{
+	width:400px;
+	height:60px;
 }

@@ -12,32 +12,41 @@
 <div>
 <form id='cexplaindata'>
 
-<!-- 썸네일 -->
+<!-- 데이터 상단 -->
 <div>
-<input type='file' id='Thumbnail' name='Thumbnail' onchange='readImg(this);' style='display:none;' required>
-<label for='Thumbnail'>
-<img id='preview' src ='' width='100' height='100' class='preview_img'>
-</label>
+	<!-- 썸네일 -->
+	<div>
+	<input type='file' id='Thumbnail' name='Thumbnail' onchange='readImg(this);' style='display:none;' required>
+	<label for='Thumbnail'>
+	<img id='preview' src ='' width='300' height='300' class='preview_img'>
+	</label>
+	</div>
+	
+	<br>
+	
+	<!-- 제목, 가격, 태그, 기본설명 -->
+	<div>
+	<input type='text' id='Title' name='Title' placeholder='Title'>
+	<br>
+	<textarea id="Commision_Introduce" name='Introduce'></textarea>
+	<input type='number' id='Price' name='Price' placeholder='Price' min=0>
+	<input type='number' id='Slot' name='Slot' placeholder='Slot' min=1>
+	<br>
+	<textarea id='Tags' name='Tags'
+	placeholder='각 태그는 #으로 시작하며 공백으로 구분합니다&#10;
+	ex) #예시 #커미션'></textarea>
+	</div>
 </div>
 
-<br>
-
-<!-- 제목, 가격, 태그, 기본설명 -->
+<!-- 데이터 하단 -->
 <div>
-<input type='text' id='Title' name='Title' placeholder='Title'>
-<br>
-<input type='text' id='Tags' name='Tags' placeholder='Tags'>
-<br>
-<input type='number' id='Price' name='Price' placeholder='Price'>
-<textarea id="Commision_Introduce" name='Introduce'></textarea>
-</div>
-
 <!-- 자세한설명. 사진첨부가능 -->
 <textarea id="Commision_Contents" name='Contents'></textarea>
-
+</div>
 
 
 <button id='a' type='button'>a</button>
+<button>b</button>
 </form>
 </div>
 

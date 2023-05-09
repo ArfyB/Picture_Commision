@@ -15,6 +15,6 @@ import lombok.ToString;
 public class CExplainPic 
 {
 	public int CNum;
-	public String CPic;
+	public String CPicName;
 	public int CPicNum;
 }

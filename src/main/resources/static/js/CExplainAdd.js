@@ -13,6 +13,7 @@
 		}
 	};
 
+
 $(function()
 {
 	function uploadImage(files) {
@@ -75,13 +76,13 @@ $(function()
 	};
 	
 	$('#Commision_Contents').summernote({
-	    placeholder: 'Hello stand alone ui',
+	    placeholder: '자신의 커미션에 대한 자세한 설명 및 이미지를 첨부',
 	    tabsize: 2,
 	    height: 500,
 	    defaultImageWidth:50,
 	    toolbar: [
-	      ['style', ['style']],
-	      ['font', ['bold', 'underline', 'clear']],
+	      ['style', ['style', 'fontsize']],
+	      ['font', ['bold', 'underline', 'italic', 'clear']],
 	      ['color', ['color']],
 	      ['para', ['ul', 'ol', 'paragraph']],
 	      ['table', ['table']],
@@ -100,7 +101,7 @@ $(function()
 	  });
 	  
 	  $('#Commision_Introduce').summernote({
-	    placeholder: 'Hello stand alone ui',
+	    placeholder: '커미션 or 본인의 간단한 설명',
 	    tabsize: 2,
 	    height: 200,
 	    width:500,
@@ -116,42 +117,46 @@ $(function()
 		var Contents = $('#Commision_Contents').summernote('code');
 		var Introduce = $('#Commision_Introduce').summernote('code');
 		
-		console.log(title);
-		console.log(Contents);
-		console.log(Introduce);
+		var data = $('#cexplaindata')[0];
 		
-		/*
-		var cexplaindata = $('#cexplaindata');
-		var cexplainform = new FormData(cexplaindata);
-		*/
+		var formData = new FormData(data);
 		
-		/*
-		var cexplainform = new FormData($('#cexplaindata')[0]);
+		var tag = $('#Tags').val();
+		var tags = tag.split('#');
+		for(var i = 0; i<tags.length; i++)
+		{
+			tags[i] = tags[i].trim();
+		}
+		tags.splice(0, 1);
+		
+		formData.set('Tags', tags);		
+		formData.delete('files');
+		formData.set('Introduce', Introduce);
+		formData.set('Contents', Contents);
+		
+		
+		for (let [key, value] of formData.entries()) {
+ 		console.log(key + ': ' + value);
+		}
 		
 		$.ajax
 		({
 			type : 'post',
-			url : '/cexplain/test',
-			data : cexplainform,
+			url : '/cexplain/upload',
+			enctype : 'multipart/form-data',
+			data : formData,
 			processData : false,
 			contentType : false,
 			cache : false,
 			success : function(res)
 			{
-				if (!res.check)
-				{
-				}
-				else
-				{
-				}
+				
 			},
 			error : function(e)
 			{
 				console.log(e);
 			}
 		})
-		
-		*/
 	})
 	
 })
