@@ -12,4 +12,5 @@ public interface CExplainMapper
 {
 	public int AddCExplain(CExplain cex);
 	public int AddCExplainPic(CExplainPic cp);
+	public int AddCTags(CExplain cex);
 }

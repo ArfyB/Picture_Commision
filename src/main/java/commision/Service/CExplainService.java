@@ -40,24 +40,19 @@ public class CExplainService
 	public boolean AddCExplain(Map map)
 	   {
 		  MultipartFile[] mfiles = (MultipartFile[]) map.get("mfiles");
-	      HttpServletRequest request = (HttpServletRequest) map.get("request");
 	      CExplain cex = (CExplain) map.get("CExplain");
 	      CExplainPic cp = new CExplainPic();
 	      
 	      try 
 	      {
-	    	  
 			Clob clob = convert(cex.getContents());
 			cex.setContents_C(clob);
 			
 			clob = convert(cex.getIntroduce());
 			cex.setIntroduce_C(clob);
-			
 	      } catch (SQLException e1) {
 	    	  e1.printStackTrace();
 	      }
-	      
-	      ServletContext context = request.getServletContext();
 	      
 	      List<String> list = new ArrayList<>();
 	      String absolutePath="";
@@ -66,11 +61,12 @@ public class CExplainService
 	      
 	      int cexplain=0;
 	      int cexplainpic=0;
+	      int ctags=0;
 	      try
 	      {
 	    	  absolutePath = resource.getFile().getAbsolutePath();
-	    	  System.out.println(absolutePath);
-	    	  
+
+	    	  // mfiles = 사진들
 	    	  if(mfiles.length != 0)
 	    	  {
 	    		  Date now = new Date();
@@ -89,12 +85,18 @@ public class CExplainService
 	    		  }
 	    		  
 	    		cp.setCPicName(list);
-	    		  
+	    		
 	    		cexplain = cm.AddCExplain(cex);
 	    		cexplainpic = cm.AddCExplainPic(cp);
+	    		
+	    		List<String> tags = cex.getTags();
+	    		System.out.println(tags);
+	    		System.out.println(cp.getCPicName());
+	    		ctags = cm.AddCTags(cex);
+	    		
 	         }
 	            
-	            return cexplain > 0 && cexplainpic>0;
+	            return cexplain > 0 && cexplainpic > 0 && ctags > 0;
 	            
 	         } catch (Exception e) {
 	            e.printStackTrace();

@@ -25,12 +25,17 @@
         parameterType = 'commision.Vo.CExplainPic'>
         
         INSERT INTO CExplainPic (CPicNum, CNum, CPicName)
-        VALUES
-        (
-        	<foreach collection="CPicName" item="pic" index="index" separator="union all">
-                COMMISIONPIC_SEQ.NEXTVAL, (SELECT MAX(CNum) FROM CExplain), #{pic}
+        	<foreach collection="CPicName" item="pic" separator="UNION ALL">
+                COMMISIONPIC_SEQ.NEXTVAL, SELECT MAX(CNum), #{pic} FROM CExplain
            </foreach>
-        ) 
+        </insert>
+        
+        <insert id = 'AddCTags'
+        parameterType = 'commision.Vo.CExplain'>
+        INSERT INTO CTags (CNum, CTag)
+        	<foreach collection="Tags" item="tag" separator="UNION ALL">
+                SELECT MAX(CNum), #{tag} FROM CEXPLAIN
+           </foreach>
         </insert>
         
 </mapper>

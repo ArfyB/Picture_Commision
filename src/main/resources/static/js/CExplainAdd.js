@@ -111,7 +111,7 @@ $(function()
 	  });
 	  
 	  
-	  $('#a').on('click', function()
+	  $('#upload').on('click', function()
 	  {
 		var title = $('#Title').val();
 		var Contents = $('#Commision_Contents').summernote('code');
@@ -121,6 +121,7 @@ $(function()
 		
 		var formData = new FormData(data);
 		
+		
 		var tag = $('#Tags').val();
 		var tags = tag.split('#');
 		for(var i = 0; i<tags.length; i++)
@@ -128,6 +129,7 @@ $(function()
 			tags[i] = tags[i].trim();
 		}
 		tags.splice(0, 1);
+		
 		
 		formData.set('Tags', tags);		
 		formData.delete('files');
