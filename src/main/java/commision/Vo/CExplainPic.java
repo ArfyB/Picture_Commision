@@ -1,5 +1,7 @@
 package commision.Vo;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -15,6 +17,6 @@ import lombok.ToString;
 public class CExplainPic 
 {
 	public int CNum;
-	public String CPicName;
+	public List<String> CPicName;
 	public int CPicNum;
 }

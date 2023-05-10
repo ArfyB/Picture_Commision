@@ -73,7 +73,7 @@ public class LoginController
 	    loginCookie.setPath("/");
 	    response.addCookie(loginCookie);
 	    System.out.println(CookieValue);
-	    
+	    request.getSession().setAttribute("email", email);
 	    
 	    System.out.println((String)request.getSession().getAttribute("nick"));
 	    return "redirect:/commision/home";

@@ -139,18 +139,20 @@ $(function()
  		console.log(key + ': ' + value);
 		}
 		
+		console.log('0');
+		
 		$.ajax
 		({
-			type : 'post',
+			type : 'POST',
 			url : '/cexplain/upload',
-			enctype : 'multipart/form-data',
 			data : formData,
+			enctype : 'multipart/form-data',
 			processData : false,
 			contentType : false,
 			cache : false,
 			success : function(res)
 			{
-				
+				console.log(res.added?'a':'b');
 			},
 			error : function(e)
 			{

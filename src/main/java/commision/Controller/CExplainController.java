@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import commision.Service.CExplainService;
@@ -40,13 +41,20 @@ public class CExplainController
 	}
 	
 	@PostMapping("/upload")
+	@ResponseBody
 	public Map<String, Object> upload(@RequestParam("Thumbnail")MultipartFile[] mfiles, CExplain data, HttpServletRequest request)
 	{
+		data.setPainter((String)request.getSession().getAttribute("nick"));
+		data.setPainterEmail((String)request.getSession().getAttribute("email"));
 		Map<String,Object> map = new HashMap<>();
 		map.put("CExplain", data);
-		map.put("files", mfiles);
-		data.setPainter((String)request.getSession().getAttribute("nick"));
-		return null;
+		map.put("mfiles", mfiles);
+		map.put("request", request);
+		
+		Map<String,Object> added = new HashMap<>();
+		added.put("added", cs.AddCExplain(map));
+		
+		return added;
 	}
 	
 	@PostMapping("/test")

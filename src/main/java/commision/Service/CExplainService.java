@@ -1,11 +1,15 @@
 package commision.Service;
 
 import java.io.File;
+import java.sql.Clob;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import javax.sql.rowset.serial.SerialClob;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -28,30 +32,52 @@ public class CExplainService
 	@Autowired
 	CExplainMapper cm;
 	
+	public static java.sql.Clob convert(String data) throws SQLException {
+        java.sql.Clob clob = new SerialClob(data.toCharArray());
+        return clob;
+    }
+	
 	public boolean AddCExplain(Map map)
 	   {
 		  MultipartFile[] mfiles = (MultipartFile[]) map.get("mfiles");
 	      HttpServletRequest request = (HttpServletRequest) map.get("request");
 	      CExplain cex = (CExplain) map.get("CExplain");
+	      CExplainPic cp = new CExplainPic();
+	      
+	      try 
+	      {
+	    	  
+			Clob clob = convert(cex.getContents());
+			cex.setContents_C(clob);
+			
+			clob = convert(cex.getIntroduce());
+			cex.setIntroduce_C(clob);
+			
+	      } catch (SQLException e1) {
+	    	  e1.printStackTrace();
+	      }
 	      
 	      ServletContext context = request.getServletContext();
-
-	      List<CExplainPic> list = new ArrayList<>();
+	      
+	      List<String> list = new ArrayList<>();
 	      String absolutePath="";
 
 	      Resource resource = resourceLoader.getResource("classpath:/static");
-
+	      
+	      int cexplain=0;
+	      int cexplainpic=0;
 	      try
 	      {
 	    	  absolutePath = resource.getFile().getAbsolutePath();
 	    	  System.out.println(absolutePath);
+	    	  
 	    	  if(mfiles.length != 0)
 	    	  {
 	    		  Date now = new Date();
 	    		  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
 	    		  String nowTime = format.format(now);
 	    		  String filename = nowTime + mfiles[0].getOriginalFilename().replaceAll("[\\s:]+", "_"); 
-	    		  cex.setThumbnail(filename);
+	    		  cex.setPreview(filename);
 	    		  
 	    		  for(int i=0;i<mfiles.length;i++) 
 	    		  {
@@ -59,17 +85,16 @@ public class CExplainService
 	    			  mfiles[i].transferTo(
 	    					  new File(absolutePath+"/pics/"+filename));
 	               
-	    			  CExplainPic cp = new CExplainPic();
-	    			  cp.setCPicName(mfiles[i].getOriginalFilename());
-	               
-	    			  list.add(cp);
+	    			  list.add(filename);
 	    		  }
-	    		//int add = rm.RecipeAdd(rec);
-	            //int b = rm.RecPicAdd(list);
-	            
+	    		  
+	    		cp.setCPicName(list);
+	    		  
+	    		cexplain = cm.AddCExplain(cex);
+	    		cexplainpic = cm.AddCExplainPic(cp);
 	         }
 	            
-	            return true;
+	            return cexplain > 0 && cexplainpic>0;
 	            
 	         } catch (Exception e) {
 	            e.printStackTrace();
