@@ -5,12 +5,15 @@
 <title>a</title>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-<link href="/css/CExplainAdd.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<link href="/css/CExplainAdd.css" rel="stylesheet">
+<link rel='stylesheet' href='/css/Nav.css'>
 </head>
 <body>
 <div>
 <form id='cexplaindata'>
+
+<div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
 
 <!-- 데이터 상단 -->
 <div>
@@ -50,6 +53,7 @@
 </form>
 </div>
 
+<script src="/js/Nav.js"></script>
 <script src='/js/CExplainAdd.js'></script>
 </body>
 </html>

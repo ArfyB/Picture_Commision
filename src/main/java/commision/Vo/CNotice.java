@@ -1,5 +1,7 @@
 package commision.Vo;
 
+import java.sql.Clob;
+
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -16,8 +18,8 @@ public class CNotice
 {
 	public String Title;
 	public String Contents;
+	public Clob Contents_C;
 	public java.sql.Date RecDate;
-	public String Files;
 	public String Author;
 	public int Hits;
 }
