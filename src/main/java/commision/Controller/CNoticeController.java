@@ -13,4 +13,10 @@ public class CNoticeController {
 	{
 		return "thymeleaf/CNotice/CNoticeAdd";
 	}
+	
+	@PostMapping("/upload")
+	public Map<String, Object> CNoticeUpload()
+	{
+		return null;
+	}
 }

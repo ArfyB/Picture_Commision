@@ -117,9 +117,9 @@ $(function()
 		var Contents = $('#Commision_Contents').summernote('code');
 		var Introduce = $('#Commision_Introduce').summernote('code');
 		
-		var data = $('#cexplaindata')[0];
+		var formid = $('#cexplaindata')[0];
 		
-		var formData = new FormData(data);
+		var formData = new FormData(formid);
 		
 		
 		var tag = $('#Tags').val();

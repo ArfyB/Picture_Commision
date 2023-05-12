@@ -83,4 +83,32 @@ $(function()
 		}
     }
 	  });
+	  
+	  $('#upload').on('click', function()
+	  {
+		var title = $('#Title').val();
+		var Contents = $('#CNotice_Contents').summernote('code');
+		
+		var formid = $('#CNoticeData')[0];
+		
+		var formData = new FormData(formid);
+		
+		formData.set('Contents', Contents);
+		
+		$.ajax
+		({
+			type : 'POST',
+			url : '/cnotice/upload',
+			data : formData,
+			cache : false,
+			success : function(res)
+			{
+				console.log(res.added?'a':'b');
+			},
+			error : function(e)
+			{
+				console.log(e);
+			}
+		})
+	})
 })
