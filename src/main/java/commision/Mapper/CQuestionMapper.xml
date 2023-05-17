@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commision.Mapper.CQuestionMapper">
+        
+        <insert id = 'AddCQuestion'
+        parameterType = 'commision.Vo.CQuestion'>
+        
+        INSERT INTO CQuestion (CQNum, Title, Contents_C, RecDate, Author)
+        values
+        (
+        COMMISIONQUESTION_SEQ.NEXTVAL,
+        #{Title},
+        #{Contents, jdbcType=CLOB, typeHandler=org.apache.ibatis.type.ClobTypeHandler},
+        #{RecDate},
+        #{Author}
+		)
+        </insert>
+        
+        <insert id = 'AddCReQuestion'
+        parameterType = 'commision.Vo.CReQuestion'>
+        
+        INSERT INTO CReQuestion (CQNum, CRQNum, Title, Contents_C, RecDate, Author)
+        values
+        (
+        #{CQNum},
+        COMMISIONREQUESTION_SEQ.NEXTVAL,
+        #{Title},
+        #{Contents, jdbcType=CLOB, typeHandler=org.apache.ibatis.type.ClobTypeHandler},
+        #{RecDate},
+        #{Author}
+		)
+        </insert>
+</mapper>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<link rel='stylesheet' href='/css/Nav.css'>
+</head>
+<body>
+
+<div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
+
+<div>
+
+<form id='CQuestionData'>
+
+<input type='text' id='Title' name='Title' placeholder='Title'>
+<textarea id="CQuestion_Contents" name='Contents'></textarea>
+
+<button type='button' id='upload'>업로드</button>
+</form>
+
+</div>
+
+<script src="/js/Nav.js"></script>
+<script src="/js/CQuestionAdd.js"></script>
+</body>
+</html>

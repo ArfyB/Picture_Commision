@@ -50,8 +50,8 @@ public class SimpleSecurityConfig
                .requestMatchers("/sec/addemp").hasAnyRole("ADMIN")
                .requestMatchers("/sec/menu").hasAnyRole("USER","GUEST","ADMIN")
                .requestMatchers("/sec/sample").hasAnyRole("GUEST", "ADMIN")
-            //.anyRequest().authenticated()  // 위의 설정 이외의 모든 요청은 인증을 거쳐야 한다
-               .anyRequest().permitAll()        // 위의 설정 이외의 모든 요청은 인증 요구하지 않음
+             //  .anyRequest().authenticated()  // 위의 설정 이외의 모든 요청은 인증을 거쳐야 한다
+             .anyRequest().permitAll()        // 위의 설정 이외의 모든 요청은 인증 요구하지 않음
                
             .and()
             .csrf().disable()    //csrf 기능을 사용하지 않을 때

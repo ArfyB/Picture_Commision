@@ -3,31 +3,31 @@ package commision.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import commision.Mapper.CNoticeMapper;
-import commision.Vo.CNotice;
+import commision.Mapper.CQuestionMapper;
+import commision.Vo.CQuestion;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Service
-public class CNoticeService 
+public class CQuestionService 
 {
 	@Autowired
-	CNoticeMapper cnm;
+	CQuestionMapper cqm;
 	
-	public boolean CNoticeAdd(CNotice cn, HttpServletRequest request)
+	public boolean CQuestionAdd(CQuestion cq, HttpServletRequest request)
 	{
 		if(request.getSession().getAttribute("nick") != null)
 		{
-		cn.setAuthor((String)request.getSession().getAttribute("nick"));
+		cq.setAuthor((String)request.getSession().getAttribute("nick"));
 		}
 		
 		java.util.Date utilDate = new java.util.Date(); // 현재시간을 java.util.Date 객체로 가져옴
-	    cn.setRecDate(new java.sql.Date(utilDate.getTime())); 
+	    cq.setRecDate(new java.sql.Date(utilDate.getTime())); 
 	    
-	    if(cn.getAuthor() == null)
+	    if(cq.getAuthor() == null)
 	    {
-	    	cn.setAuthor("Admin");
+	    	cq.setAuthor("Admin");
 	    }
 		
-		return cnm.AddCNotice(cn) > 0;
+		return cqm.AddCQuestion(cq) > 0;
 	}
 }

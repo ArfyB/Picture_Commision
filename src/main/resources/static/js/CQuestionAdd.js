@@ -25,7 +25,7 @@ $(function()
 	        for(var i = 0; i < list.length; i++)
 	        {
 				var img = $('<img>').attr('src', '/pics/'+list[i]);
-	        	$('#CNotice_Contents').summernote('insertNode', img[0]);		
+	        	$('#CQuestion_Contents').summernote('insertNode', img[0]);		
 			}
 	    }
 	    else
@@ -87,9 +87,9 @@ $(function()
 	  $('#upload').on('click', function()
 	  {
 		var title = $('#Title').val();
-		var Contents = $('#CNotice_Contents').summernote('code');
+		var Contents = $('#CQuestion_Contents').summernote('code');
 		
-		var formid = $('#CNoticeData')[0];
+		var formid = $('#CQuestionData')[0];
 		
 		var formData = new FormData(formid);
 		
@@ -104,7 +104,7 @@ $(function()
 			processData : false,
 			contentType : false,
 			type : 'POST',
-			url : '/cnotice/upload',
+			url : '/cquestion/upload',
 			data : formData,
 			cache : false,
 			success : function(res)

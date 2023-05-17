@@ -14,13 +14,12 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class CNotice 
+public class CQuestion 
 {
-	public int CNoticeNum;
+	public int CQNum;
 	public String Title;
 	public String Contents;
 	public Clob Contents_C;
 	public java.sql.Date RecDate;
 	public String Author;
-	public int Hits;
 }

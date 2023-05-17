@@ -86,7 +86,7 @@ public class LoginController
 		return "redirect:/";
 	}
 	
-	@GetMapping("/join1")
+	@GetMapping("/join")
 	public String GetJoin1()
 	{
 		return "thymeleaf/User/JoinForm1";
