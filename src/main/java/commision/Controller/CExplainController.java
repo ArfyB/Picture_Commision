@@ -42,14 +42,16 @@ public class CExplainController
 	
 	@PostMapping("/upload")
 	@ResponseBody
-	public Map<String, Object> upload(@RequestParam("Thumbnail")MultipartFile[] mfiles, CExplain data, HttpServletRequest request)
+	public Map<String, Object> upload(@RequestParam("Thumbnail")MultipartFile[] mfiles, CExplain cex, HttpServletRequest request)
 	{
-		data.setPainter((String)request.getSession().getAttribute("nick"));
-		data.setPainterEmail((String)request.getSession().getAttribute("email"));
+		cex.setPainter((String)request.getSession().getAttribute("nick"));
+		cex.setPainterEmail((String)request.getSession().getAttribute("email"));
 		Map<String,Object> map = new HashMap<>();
-		map.put("CExplain", data);
+		map.put("CExplain", cex);
 		map.put("mfiles", mfiles);
 		map.put("request", request);
+		
+		
 		
 		Map<String,Object> added = new HashMap<>();
 		added.put("added", cs.AddCExplain(map));

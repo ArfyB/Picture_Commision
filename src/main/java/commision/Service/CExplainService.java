@@ -87,12 +87,12 @@ public class CExplainService
 	    		cp.setCPicName(list);
 	    		
 	    		cexplain = cm.AddCExplain(cex);
+	    		ctags = cm.AddCTags(cex);
 	    		cexplainpic = cm.AddCExplainPic(cp);
 	    		
 	    		List<String> tags = cex.getTags();
 	    		System.out.println(tags);
 	    		System.out.println(cp.getCPicName());
-	    		ctags = cm.AddCTags(cex);
 	    		
 	         }
 	            

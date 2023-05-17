@@ -59,7 +59,7 @@ $(function()
 	    });
 	};
 	
-	$('#CNotice_Contents').summernote({
+	$('#CQuestion_Contents').summernote({
 	    placeholder: '자신의 커미션에 대한 자세한 설명 및 이미지를 첨부',
 	    tabsize: 2,
 	    height: 500,
@@ -100,11 +100,11 @@ $(function()
 		
 		$.ajax
 		({
+			type : 'POST',
+			url : '/cquestion/upload',
 			enctype : 'multipart/form-data',
 			processData : false,
 			contentType : false,
-			type : 'POST',
-			url : '/cquestion/upload',
 			data : formData,
 			cache : false,
 			success : function(res)

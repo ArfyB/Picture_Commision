@@ -37,7 +37,9 @@ public class CQuestionController
 	public Map<String, Object> CQuestionUpload(CQuestion cq, HttpServletRequest request)
 	{
 		Map<String, Object> map = new HashMap<>();
-		map.put("added", cqs.CQuestionAdd(cq, request));
+		boolean a = cqs.CQuestionAdd(cq, request);
+		System.out.println(a);
+		map.put("added", a);
 		
 		return map;
 	}
@@ -46,7 +48,7 @@ public class CQuestionController
 	public Map<String, Object> CReQuestionUpload(CReQuestion crq, HttpServletRequest request)
 	{
 		Map<String, Object> map = new HashMap<>();
-		map.put("added", cqs.CQuestionAdd(crq, request));
+		//map.put("added", cqs.CReQuestionAdd(crq, request));
 		
 		return map;
 	}
