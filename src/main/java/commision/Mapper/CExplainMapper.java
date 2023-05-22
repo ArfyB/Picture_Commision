@@ -11,6 +11,6 @@ import commision.Vo.CExplainPic;
 public interface CExplainMapper 
 {
 	public int AddCExplain(CExplain cex);
-	public int AddCExplainPic(CExplainPic cp);
+	public int AddCExplainPic(List<String> list);
 	public int AddCTags(CExplain cex);
 }

@@ -10,4 +10,5 @@ public interface CQuestionMapper
 {
 	public int AddCQuestion(CQuestion cq);
 	public int AddCReQuestion(CReQuestion crq);
+	public CQuestion GetCQuestion();
 }

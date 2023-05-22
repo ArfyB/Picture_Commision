@@ -10,17 +10,17 @@ import commision.Vo.CUser;
 public class LoginService 
 {
 	@Autowired
-	public LoginMapper lp;
+	public LoginMapper lm;
 	
 	public boolean UserAdd(CUser user)
 	{
-		return 0 < lp.UserAdd(user);
+		return 0 < lm.UserAdd(user);
 	}
 	
 	public boolean EmailCheck(CUser user)
 	{
-		CUser c = lp.EmailCheck(user);
-		if(c == null)
+		CUser u = lm.EmailCheck(user);
+		if(u == null)
 		{
 			return false;
 		}

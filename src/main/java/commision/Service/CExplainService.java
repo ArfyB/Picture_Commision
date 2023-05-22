@@ -83,12 +83,11 @@ public class CExplainService
 	               
 	    			  list.add(filename);
 	    		  }
-	    		  
 	    		cp.setCPicName(list);
 	    		
 	    		cexplain = cm.AddCExplain(cex);
+	    		cexplainpic = cm.AddCExplainPic(list);
 	    		ctags = cm.AddCTags(cex);
-	    		cexplainpic = cm.AddCExplainPic(cp);
 	    		
 	    		List<String> tags = cex.getTags();
 	    		System.out.println(tags);

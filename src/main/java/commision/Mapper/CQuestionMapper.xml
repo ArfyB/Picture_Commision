@@ -3,24 +3,29 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="commision.Mapper.CQuestionMapper">
         
+        <resultMap id="CQuestionResultMap" type="commision.Vo.CQuestion">
+        	<result property="Contents" column="Contents_C" jdbcType="CLOB" javaType="java.lang.String"/>
+        </resultMap>
+        
         <insert id = 'AddCQuestion'
         parameterType = 'commision.Vo.CQuestion'>
         
-        INSERT INTO CQuestion (CQNum, Title, Contents_C, RecDate, Author)
+        INSERT INTO CQuestion (CQNum, Title, Contents_C, RecDate, Author, AuthorNick)
         values
         (
         COMMISIONQUESTION_SEQ.NEXTVAL,
         #{Title},
         #{Contents, jdbcType=CLOB, typeHandler=org.apache.ibatis.type.ClobTypeHandler},
         #{RecDate},
-        #{Author}
+        #{Author},
+        #{AuthorNick}
 		)
         </insert>
         
         <insert id = 'AddCReQuestion'
         parameterType = 'commision.Vo.CReQuestion'>
         
-        INSERT INTO CReQuestion (CQNum, CRQNum, Title, Contents_C, RecDate, Author)
+        INSERT INTO CReQuestion (CQNum, CRQNum, Title, Contents_C, RecDate, Author, AuthorNick)
         values
         (
         #{CQNum},
@@ -28,7 +33,18 @@
         #{Title},
         #{Contents, jdbcType=CLOB, typeHandler=org.apache.ibatis.type.ClobTypeHandler},
         #{RecDate},
-        #{Author}
+        #{Author},
+        #{AuthorNick}
 		)
         </insert>
+        
+        <select id='GetCQuestion'
+        resultMap = 'CQuestionResultMap'>
+        SELECT CQNum, Title, Contents_C, RecDate, Author, AuthorNick FROM CQuestion WHERE CQNum = 7
+        </select>
+        
+        <select id='AllCQuestion'
+        resultType='commision.Vo.CQuestion'>
+        SELECT * FROM recipe  order by rnum DESC
+        </select>
 </mapper>

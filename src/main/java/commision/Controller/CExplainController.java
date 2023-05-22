@@ -29,17 +29,6 @@ public class CExplainController
 		return "thymeleaf/CExplain/CExplainAdd";
 	}
 	
-	@PostMapping("/imgplus")
-	public Map<String, Object> ImgPlus(@RequestParam("files")MultipartFile[] mfiles, HttpServletRequest request)
-	{
-		for(int i = 0; i<mfiles.length; i++)
-		{
-			
-			System.out.println(mfiles[i].getOriginalFilename());
-		}
-		return null;
-	}
-	
 	@PostMapping("/upload")
 	@ResponseBody
 	public Map<String, Object> upload(@RequestParam("Thumbnail")MultipartFile[] mfiles, CExplain cex, HttpServletRequest request)

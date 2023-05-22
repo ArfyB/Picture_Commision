@@ -23,4 +23,5 @@ public class CReQuestion
 	public Clob Contents_C;
 	public java.sql.Date RecDate;
 	public String Author;
+	public String AuthorNick;
 }

@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import commision.Service.CNoticeService;
 import commision.Vo.CNotice;
+import commision.Vo.CQuestion;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
@@ -27,7 +29,8 @@ public class CNoticeController
 	}
 	
 	@PostMapping("/upload")
-	public Map<String, Object> CNoticeUpload(CNotice cn, HttpServletRequest request)
+	@ResponseBody
+	public Map<String, Object> CQuestionUpload(CNotice cn, HttpServletRequest request)
 	{
 		Map<String, Object> map = new HashMap<>();
 		map.put("added", cns.CNoticeAdd(cn, request));

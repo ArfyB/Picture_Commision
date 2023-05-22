@@ -51,6 +51,7 @@ public class LoginController
 	{
 	    String email = user.getUsername();
 	    String pwd = user.getPassword();
+	    String tag = "";
 	    String nick = "";
 	    String logined = "";
 	    String CookieValue = "";
@@ -60,22 +61,23 @@ public class LoginController
 	    if(user instanceof CustomUserDetails) {
 	        CustomUserDetails customUser = (CustomUserDetails) user;
 	        nick = customUser.getUsernick();
-	        request.getSession().setAttribute("nick", nick);
+	        tag = customUser.getUsertag();
 	    }
 
 	    for (GrantedAuthority authority : auth) {
 	        logined = authority.getAuthority();
 	    }
 
-	    CookieValue = "true"+"|"+email+"|"+nick+"|"+logined;
+	    CookieValue = "true"+"|"+email+"|"+nick+"|"+logined+"|"+tag;
 
 	    Cookie loginCookie = new Cookie("login",CookieValue);
 	    loginCookie.setPath("/");
 	    response.addCookie(loginCookie);
-	    System.out.println(CookieValue);
-	    request.getSession().setAttribute("email", email);
 	    
-	    System.out.println((String)request.getSession().getAttribute("nick"));
+	    request.getSession().setAttribute("nick", nick);
+	    request.getSession().setAttribute("email", email);
+	    request.getSession().setAttribute("role", logined);
+	    
 	    return "redirect:/commision/home";
 	}
 	
@@ -110,12 +112,14 @@ public class LoginController
 		if(ls.EmailCheck(user))
 		{
 			map.put("check", true);
-			return map;
 		}
-		map.put("check", false);
-	    boolean certify = es.sendHTMLMessage(map, session);
-	    
-	    map.put("certify", certify);
+		else
+		{
+			map.put("check", false);
+			boolean certify = es.sendHTMLMessage(map, session);
+		    
+		    map.put("certify", certify);
+		}
 		return map;
 	}
 	

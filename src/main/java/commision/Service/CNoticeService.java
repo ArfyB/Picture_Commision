@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import commision.Mapper.CNoticeMapper;
 import commision.Vo.CNotice;
+import commision.Vo.CQuestion;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Service
@@ -17,17 +18,13 @@ public class CNoticeService
 	{
 		if(request.getSession().getAttribute("nick") != null)
 		{
-		cn.setAuthor((String)request.getSession().getAttribute("nick"));
+			cn.setAuthor((String)request.getSession().getAttribute("email"));
+			cn.setAuthorNick((String)request.getSession().getAttribute("nick"));
 		}
 		
 		java.util.Date utilDate = new java.util.Date(); // 현재시간을 java.util.Date 객체로 가져옴
 	    cn.setRecDate(new java.sql.Date(utilDate.getTime())); 
 	    
-	    if(cn.getAuthor() == null)
-	    {
-	    	cn.setAuthor("Admin");
-	    }
-		
 		return cnm.AddCNotice(cn) > 0;
 	}
 }

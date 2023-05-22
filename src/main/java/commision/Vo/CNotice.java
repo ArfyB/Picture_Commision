@@ -22,5 +22,6 @@ public class CNotice
 	public Clob Contents_C;
 	public java.sql.Date RecDate;
 	public String Author;
+	public String AuthorNick;
 	public int Hits;
 }

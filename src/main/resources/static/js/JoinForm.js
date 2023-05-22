@@ -37,6 +37,7 @@ $(function()
 			{
 				if (!res.check)
 				{
+					EmailCheck.text('');
 					alert(res.certify? '메일이 전송 되었습니다' : '메일 전송에 실패 하였습니다');	
 				}
 				else

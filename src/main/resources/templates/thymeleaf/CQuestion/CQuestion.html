@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<link rel='stylesheet' href='/css/Nav.css'>
+</head>
+<body>
+
+<div th:replace="~{/thymeleaf/Nav/Nav.html :: nav}"></div>
+
+<div>
+	<p>제목 : [[${CQuestion.Title}]]</p>
+	<p>게시일 : [[${CQuestion.RecDate}]]</p>
+	<p>작성자 : [[${CQuestion.AuthorNick}]]</p>
+	
+</div>
+<hr>
+<p th:utext="${CQuestion.Contents}"></p>
+
+<hr>
+
+
+<p th:if=" ${session.role} == 'ADMIN' ">
+	<div>
+		<form id='CReQuestion'>
+		<input type='text' id='Title' name='Title' th:value="'[Re] ' + ${CQuestion.Title}">
+		<input type='hidden' name='CQNum' th:value="${CQuestion.CQNum}">
+		<textarea id='CReQuestion_Contents' name='Contents'></textarea>
+		
+		<button type='button' id='reupload'>답글 작성</button>
+		</form>
+	</div>
+</p>
+
+<script src='/js/Nav.js'></script>
+<script src='/js/CReQuestionAdd.js'></script>
+</body>
+</html>

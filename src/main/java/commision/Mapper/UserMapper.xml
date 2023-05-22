@@ -6,7 +6,7 @@
         <select id='dologin'
         resultType='commision.Vo.CUser'>
         
-        select UserEmail, UserPwd, UserRole, UserNick from CUser where UserEmail=#{UserEmail}
+        select UserEmail, UserPwd, UserRole, UserNick, UserTag from CUser where UserEmail=#{UserEmail}
         
         </select>
         

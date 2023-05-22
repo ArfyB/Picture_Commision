@@ -59,7 +59,7 @@ public UserDetails loadUserByUsername(String username) throws UsernameNotFoundEx
         authorities.add(new SimpleGrantedAuthority(user.getUserRole()));
         
         // CustomUserDetails 클래스의 인스턴스를 생성하여 반환합니다.
-        return new CustomUserDetails(user.getUserEmail(), user.getUserPwd(), authorities, user.getUserNick());
+        return new CustomUserDetails(user.getUserEmail(), user.getUserPwd(), authorities, user.getUserNick(), user.getUserTag());
     } finally {
         sqlSession.close();
     }

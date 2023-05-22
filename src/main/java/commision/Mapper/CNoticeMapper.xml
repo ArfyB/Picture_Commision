@@ -3,18 +3,33 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="commision.Mapper.CNoticeMapper">
         
+        <resultMap id="CNoticeResultMap" type="commision.Vo.CNotice">
+        	<result property="Contents" column="Contents_C" jdbcType="CLOB" javaType="java.lang.String"/>
+        </resultMap>
+        
         <insert id = 'AddCNotice'
         parameterType = 'commision.Vo.CNotice'>
         
-        INSERT INTO CNotice (CNoticeNum, Title, Contents_C, RecDate, Author)
+        INSERT INTO CNotice (CNoticeNum, Title, Contents_C, RecDate, Author, AuthorNick)
         values
         (
         COMMISIONNOTICE_SEQ.NEXTVAL,
         #{Title},
         #{Contents, jdbcType=CLOB, typeHandler=org.apache.ibatis.type.ClobTypeHandler},
         #{RecDate},
-        #{Author}
+        #{Author},
+        #{AuthorNick}
 		)
         </insert>
+        
+        <select id='GetCNotice'
+        resultMap = 'CNoticeResultMap'>
+        SELECT CQNum, Title, Contents_C, RecDate, Author, AuthorNick FROM CNotice WHERE CQNum = 7
+        </select>
+        
+        <select id='AllCNotice'
+        resultMap = 'CNoticeResultMap'>
+        SELECT CNoticeNum, Title, RecDate, Author, AuthorNick, Hits FROM CNotice order by CNoticeNum DESC
+        </select>
         
 </mapper>

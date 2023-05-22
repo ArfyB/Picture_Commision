@@ -1,10 +1,17 @@
 package commision.Service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.sql.Clob;
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import commision.Mapper.CQuestionMapper;
 import commision.Vo.CQuestion;
+import commision.Vo.CReQuestion;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Service
@@ -17,7 +24,8 @@ public class CQuestionService
 	{
 		if(request.getSession().getAttribute("nick") != null)
 		{
-		cq.setAuthor((String)request.getSession().getAttribute("nick"));
+		cq.setAuthor((String)request.getSession().getAttribute("email"));
+		cq.setAuthorNick((String)request.getSession().getAttribute("nick"));
 		}
 		
 		java.util.Date utilDate = new java.util.Date(); // 현재시간을 java.util.Date 객체로 가져옴
@@ -25,9 +33,40 @@ public class CQuestionService
 	    
 	    if(cq.getAuthor() == null)
 	    {
-	    	cq.setAuthor("Admin");
+	    	cq.setAuthor("");
 	    }
 		
 		return cqm.AddCQuestion(cq) > 0;
+	}
+	
+	public boolean CReQuestionAdd(CReQuestion crq, HttpServletRequest request)
+	{
+		if(request.getSession().getAttribute("nick") != null)
+		{
+		crq.setAuthor((String)request.getSession().getAttribute("email"));
+		crq.setAuthorNick((String)request.getSession().getAttribute("nick"));
+		}
+		
+		java.util.Date utilDate = new java.util.Date(); // 현재시간을 java.util.Date 객체로 가져옴
+	    crq.setRecDate(new java.sql.Date(utilDate.getTime())); 
+	    
+	    if(crq.getAuthor() == null)
+	    {
+	    	crq.setAuthor("");
+	    }
+		
+	    System.out.println(crq.getAuthor());
+	    System.out.println(crq.getAuthorNick());
+	    System.out.println(crq.getContents());
+	    System.out.println(crq.getCQNum());
+	    System.out.println(crq.getTitle());
+	    System.out.println(crq.getRecDate());
+	    
+		return cqm.AddCReQuestion(crq) > 0;
+	}
+	
+	public CQuestion GetCQuestion()
+	{
+		return cqm.GetCQuestion();
 	}
 }
