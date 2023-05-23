@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import commision.Service.EmailService;
 import commision.Service.LoginService;
+import commision.Service.UserService;
 import commision.UserDetailService.CustomUserDetails;
 import commision.Vo.CUser;
 import commision.security.SimpleSecurityConfig;
@@ -36,6 +39,10 @@ public class LoginController
 	
 	@Autowired
 	private EmailService es;
+	
+	@Autowired
+	private UserService us;
+	
 	
 	@Autowired
 	private SimpleSecurityConfig ssc;
@@ -100,6 +107,12 @@ public class LoginController
 		return "thymeleaf/User/JoinForm2";
 	}
 	
+	@GetMapping("/join3")
+	public String GetJoin3()
+	{
+		return "thymeleaf/User/JoinForm3";
+	}
+	
 	
 	@PostMapping("/email")
 	@ResponseBody
@@ -150,6 +163,19 @@ public class LoginController
 		user.setUserPwd(ssc.pwdencoding(user.getUserPwd()));
 		map.put("added",ls.UserAdd(user));
 		return map;
+	}
+	
+	@PostMapping("/update")
+	@ResponseBody
+	public Map<String, Object> UserUpdate(@RequestParam("files")MultipartFile[] mfiles, CUser cuser, HttpServletRequest request)
+	{
+		Map<String, Object> map = new HashMap<>();
+		map.put("mfiles", mfiles);
+		map.put("CUser", cuser);
+		
+		Map<String, Object> updated = new HashMap<>();
+		updated.put("updated", us.UserUpdate(map));
+		return updated;
 	}
 	   
 }

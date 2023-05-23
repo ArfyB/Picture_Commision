@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JoinForm</title>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="/js/UserUpdate.js"></script>
+</head>
+<body>
+<div>
+	<div>
+		<div class='title'>
+		회원가입
+		</div>
+		
+		<form id='CUser'>
+			<input type='hidden' name='UserEmail' id='UserEmail' th:value = '${session.email}'required>
+			
+			<div class='sub_title'>
+			 프로필 이미지
+			</div>
+			<input type='file' name='files'>
+			
+			<div class='sub_title'>
+			배경 이미지
+			</div>
+			<input type='file' name='files'>
+			
+			<div class='sub_title'>
+			태그
+			</div>
+			<input type='text' id='UserTag' name='UserTag'>
+			<label id='TagWarning'></label>
+			
+			<div class='sub_title'>
+			설명
+			</div>
+			<textarea id='UserExplain' name='UserExplain' required></textarea>
+			
+			<button type='button' id='save'>저장</button>
+		</form>
+		
+	</div>
+</div>
+</body>
+</html>

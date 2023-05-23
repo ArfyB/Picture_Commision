@@ -21,4 +21,7 @@ public class CUser
 	public String UserCertify;	// 본인인증여부 default 0
 	public String UserRole;		// 커미션주 or 고객 default 0
 	public String UserTag;
+	public String UserProfilePic;
+	public String UserBackgroundPic;
+	public String UserExplain;
 }

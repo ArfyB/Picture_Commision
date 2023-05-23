@@ -100,7 +100,7 @@ $(function()
 			success : function(res)
 			{
 				alert(res.added? '회원가입 성공' : '실패');
-				location.href="/commision/home";
+				location.href="/sec/join3";
 			},
 			error : function(e)
 			{

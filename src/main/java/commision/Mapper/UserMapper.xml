@@ -10,4 +10,17 @@
         
         </select>
         
+        <update id = 'UserUpdate'
+        parameterType='commision.Vo.CUser'>
+        
+        UPDATE CUser
+        SET
+        UserProfilePic = #{UserProfilePic},
+        UserBackgroundPic = #{UserBackgroundPic},
+        UserTag = #{UserTag},
+        UserExplain = #{UserExplain}
+        WHERE
+        UserEmail = #{UserEmail}
+        </update>
+        
 </mapper>
