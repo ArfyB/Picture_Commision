@@ -34,7 +34,7 @@ public class CExplainController
 	public Map<String, Object> upload(@RequestParam("Thumbnail")MultipartFile[] mfiles, CExplain cex, HttpServletRequest request)
 	{
 		cex.setPainter((String)request.getSession().getAttribute("nick"));
-		cex.setPainterEmail((String)request.getSession().getAttribute("email"));
+		cex.setPainterTag((String)request.getSession().getAttribute("tag"));
 		Map<String,Object> map = new HashMap<>();
 		map.put("CExplain", cex);
 		map.put("mfiles", mfiles);

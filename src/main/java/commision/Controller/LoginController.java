@@ -82,6 +82,7 @@ public class LoginController
 	    response.addCookie(loginCookie);
 	    
 	    request.getSession().setAttribute("nick", nick);
+	    request.getSession().setAttribute("tag", tag);
 	    request.getSession().setAttribute("email", email);
 	    request.getSession().setAttribute("role", logined);
 	    

@@ -24,7 +24,7 @@ public class CQuestionService
 	{
 		if(request.getSession().getAttribute("nick") != null)
 		{
-		cq.setAuthor((String)request.getSession().getAttribute("email"));
+		cq.setAuthor((String)request.getSession().getAttribute("tag"));
 		cq.setAuthorNick((String)request.getSession().getAttribute("nick"));
 		}
 		
@@ -43,7 +43,7 @@ public class CQuestionService
 	{
 		if(request.getSession().getAttribute("nick") != null)
 		{
-		crq.setAuthor((String)request.getSession().getAttribute("email"));
+		crq.setAuthor((String)request.getSession().getAttribute("tag"));
 		crq.setAuthorNick((String)request.getSession().getAttribute("nick"));
 		}
 		

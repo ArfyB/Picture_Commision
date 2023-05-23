@@ -6,12 +6,12 @@
         <insert id = 'AddCExplain'
         parameterType = 'commision.Vo.CExplain'>
         
-        INSERT INTO CExplain (CNum, Painter, PainterEmail, Title, Introduce_C, Contents_C, Preview, Price, Slot)
+        INSERT INTO CExplain (CNum, Painter, PainterTag, Title, Introduce_C, Contents_C, Preview, Price, Slot)
         values
         (
         COMMISION_SEQ.NEXTVAL,
         #{Painter},
-        #{PainterEmail},
+        #{PainterTag},
         #{Title},
         #{Introduce, jdbcType=CLOB, typeHandler=org.apache.ibatis.type.ClobTypeHandler},
         #{Contents, jdbcType=CLOB, typeHandler=org.apache.ibatis.type.ClobTypeHandler},

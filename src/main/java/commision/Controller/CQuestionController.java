@@ -36,7 +36,7 @@ public class CQuestionController
 	}
 	
 	@GetMapping("/cq")
-	public String a(Model m)
+	public String cq(Model m)
 	{
 		CQuestion cques = cqs.GetCQuestion();
 		m.addAttribute("CQuestion", cques);

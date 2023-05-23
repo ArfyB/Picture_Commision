@@ -23,12 +23,13 @@
         </insert>
         
         <select id='GetCNotice'
+        parameterType = 'Integer'
         resultMap = 'CNoticeResultMap'>
-        SELECT CQNum, Title, Contents_C, RecDate, Author, AuthorNick FROM CNotice WHERE CQNum = 7
+        SELECT CNoticeNum, Title, Contents_C, RecDate, Author, AuthorNick, Hits FROM CNotice WHERE CNoticeNum = #{CNoticeNum}
         </select>
         
         <select id='AllCNotice'
-        resultMap = 'CNoticeResultMap'>
+        resultType = 'commision.Vo.CNotice'>
         SELECT CNoticeNum, Title, RecDate, Author, AuthorNick, Hits FROM CNotice order by CNoticeNum DESC
         </select>
         

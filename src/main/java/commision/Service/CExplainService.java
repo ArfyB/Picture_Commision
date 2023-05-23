@@ -43,17 +43,6 @@ public class CExplainService
 	      CExplain cex = (CExplain) map.get("CExplain");
 	      CExplainPic cp = new CExplainPic();
 	      
-	      try 
-	      {
-			Clob clob = convert(cex.getContents());
-			cex.setContents_C(clob);
-			
-			clob = convert(cex.getIntroduce());
-			cex.setIntroduce_C(clob);
-	      } catch (SQLException e1) {
-	    	  e1.printStackTrace();
-	      }
-	      
 	      List<String> list = new ArrayList<>();
 	      String absolutePath="";
 

@@ -54,6 +54,7 @@ $(function()
 			success : function(res)
 			{
 				alert(res.updated?'성공':'실패');
+				if(res.updated) location.href='/commision/home'
 			},
 			error : function(e)
 			{

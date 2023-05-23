@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+[[${pageinfo}]]
+<hr>
+<tr th:each="CNotice : ${pageinfo.list}">
+
+<a th:href="@{/cnotice/cnotice(CNoticeNum=${CNotice.CNoticeNum})}"><td th:text="${CNotice}"></td></a>
+</tr>
+</body>
+</html>
