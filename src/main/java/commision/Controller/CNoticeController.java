@@ -38,9 +38,9 @@ public class CNoticeController
 	}
 	
 	@GetMapping("/cnotice")
-	public String CNotice(@RequestParam("CNoticeNum") int CNoticeNum, Model m)
+	public String GetCNoticeHits(@RequestParam("CNoticeNum") int CNoticeNum, Model m)
 	{
-		m.addAttribute("CNotice", cns.GetCNotice(CNoticeNum));
+		m.addAttribute("CNotice", cns.GetCNoticeHits(CNoticeNum));
 		return "thymeleaf/CNotice/CNotice";
 	}
 	
@@ -50,10 +50,10 @@ public class CNoticeController
 		return "thymeleaf/CNotice/CNotice";
 	}
 	
-	@GetMapping("/list/{page}/{row}")
-	public String list(@PathVariable("page")int page, @PathVariable("row")int row, Model m)
+	@GetMapping("/list")
+	public String list(@RequestParam(value = "page", required = false, defaultValue = "1")int page, Model m)
 	{
-		PageHelper.startPage(page,row);
+		PageHelper.startPage(page,10);
 		PageInfo <Map<String,Object>> pageinfo = new PageInfo<>(cnm.AllCNotice());
 		
 		m.addAttribute("pageinfo", pageinfo);

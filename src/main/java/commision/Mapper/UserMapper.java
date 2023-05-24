@@ -11,4 +11,7 @@ public interface UserMapper
 //	public Customer dologin(Customer ui);
 	public CUser dologin(String user);
 	public int UserUpdate(CUser user);
+	public CUser GetUser(String UserTag);
+	public String GetProfile(String tag);
+	public String GetBackground(String tag);
 }

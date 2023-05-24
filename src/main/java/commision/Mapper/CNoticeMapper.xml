@@ -22,6 +22,11 @@
 		)
         </insert>
         
+        <update id='CNoticeHits'
+        parameterType='Integer'>
+        Update CNotice SET Hits = Hits + 1 WHERE CNoticeNum = #{CNoticeNum} 
+        </update>
+        
         <select id='GetCNotice'
         parameterType = 'Integer'
         resultMap = 'CNoticeResultMap'>

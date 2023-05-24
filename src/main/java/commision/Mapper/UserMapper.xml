@@ -23,4 +23,34 @@
         UserEmail = #{UserEmail}
         </update>
         
+        <update id = 'CExplainUpdate'
+        parameterType='commision.Vo.CUser'>
+        
+        UPDATE CExplain
+        SET
+        UserProfilePic = #{UserProfilePic},
+        UserBackgroundPic = #{UserBackgroundPic},
+        UserTag = #{UserTag},
+        UserExplain = #{UserExplain}
+        WHERE
+        UserEmail = #{UserEmail}
+        </update>
+        
+        <select id = 'GetUser'
+        parameterType='String'
+        resultType='commision.Vo.CUser'>
+        SELECT UserNick, UserEmail, UserProfilePic, UserBackgroundPic, UserExplain, UserTag FROM CUser WHERE UserTag = #{UserTag}
+        </select>
+        
+        <select id = 'GetProfile'
+        parameterType='String'
+        resultType='String'>
+		SELECT UserProfilePic FROM CUser WHERE UserTag = #{UserTag}        
+        </select>
+        
+        <select id = 'GetBackground'
+        parameterType='String'
+        resultType='String'>
+		SELECT UserBackgroundPic FROM CUser WHERE UserTag = #{UserTag}        
+        </select>
 </mapper>

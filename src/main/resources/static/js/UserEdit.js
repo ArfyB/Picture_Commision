@@ -1,3 +1,17 @@
+function readImg(input, ImageId, DefaultImg) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		reader.onload = function(e) {
+		$('#'+ImageId).attr('src', e.target.result);
+		};
+		reader.readAsDataURL(input.files[0]);
+		} 
+		else
+		{
+		$('#'+ImageId).attr('src', DefaultImg);
+		}
+	}
+	
 $(function()
 {
 	$('#save').on('click', function(event)
@@ -53,8 +67,17 @@ $(function()
 			cache : false,
 			success : function(res)
 			{
+			if(res.set)
+			{
+				alert(res.set?'성공':'실패');
+				if(res.set) location.href='/commision/home'
+			}
+			else
+			{
 				alert(res.updated?'성공':'실패');
-				if(res.updated) location.href='/commision/home'
+				if(res.updated) location.href='/sec/mypage'
+			}	
+				
 			},
 			error : function(e)
 			{
@@ -62,4 +85,6 @@ $(function()
 			}
 		})
 	})
+	
+	var a = $('#ProfileImage').attr('src');
 })

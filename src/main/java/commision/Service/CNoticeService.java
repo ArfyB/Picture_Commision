@@ -30,6 +30,12 @@ public class CNoticeService
 		return cnm.GetCNotice(CNoticeNum);
 	}
 	
+	public CNotice GetCNoticeHits(int CNoticeNum)
+	{
+		cnm.CNoticeHits(CNoticeNum);
+		return cnm.GetCNotice(CNoticeNum);
+	}
+	
 	public boolean CNoticeAdd(CNotice cn, HttpServletRequest request)
 	{
 		if(request.getSession().getAttribute("nick") != null)

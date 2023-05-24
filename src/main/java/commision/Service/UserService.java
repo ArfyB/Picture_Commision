@@ -61,7 +61,7 @@ public class UserService
 	    		  }
 	    		  if(list.get(0).equals(nowTime))
 	    		  {
-	    			  cuser.setUserProfilePic(defaultimg);
+	    			  cuser.setUserProfilePic(um.GetProfile((String)cuser.getUserTag()));
 	    		  }
 	    		  else
 	    		  {
@@ -70,7 +70,7 @@ public class UserService
 	    		  
 	    		  if(list.get(1).equals(nowTime))
 	    		  {
-	    			  cuser.setUserBackgroundPic(defaultimg);
+	    			  cuser.setUserBackgroundPic(um.GetBackground((String)cuser.getUserTag()));
 	    		  }
 	    		  else
 	    		  {
@@ -86,6 +86,11 @@ public class UserService
 	            return false;
 	         }
 	 
+	}
+	
+	public CUser GetUser(String CUserTag)
+	{
+		return um.GetUser(CUserTag);
 	}
 	
 }

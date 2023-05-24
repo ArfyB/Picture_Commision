@@ -48,20 +48,22 @@ else
 }
 
 /*
-if(cookie.split(';').length === 3 )
+if(cookie.split(';').length === 4 )
 {
-	login_data = cookie.split(';')[2];
+	login_data = cookie.split(';')[3];
 	
 	UserData = login_data.split('=')[1].split('|');
 	const Login = UserData[0];
 	const Email = UserData[1];
 	const Nick = UserData[2];
 	const Role = UserData[3];
+	const Tag = UserData[4];
 	
 	console.log(Login);
 	console.log(Email);
 	console.log(Nick);
 	console.log(Role);
+	console.log(Tag);
 	
 	$(function()
 	{

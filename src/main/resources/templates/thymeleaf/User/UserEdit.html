@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>JoinForm</title>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<script src="/js/JoinForm3.js"></script>
+<link href='/css/UserEdit.css'>
 </head>
 <body>
 <div>
@@ -15,7 +15,6 @@
 		
 		<form id='CUser'>
 			<input type='hidden' name='UserEmail' id='UserEmail' th:value = '${session.email}'required>
-			<input type='hidden' name='UserNick' id='UserNick' th:value = '${session.nick}'required>
 			
 			<div class='sub_title'>
 			 프로필 이미지
@@ -34,20 +33,27 @@
 			</label>
 			
 			<div class='sub_title'>
+			닉네임
+			</div>
+			<input type='text' name='UserNick' id='UserNick' th:value='${CUser.UserNick}'>
+						
+			<div class='sub_title'>
 			태그
 			</div>
-			<input type='text' id='UserTag' name='UserTag'>
+			<input type='text' id='UserTag' name='UserTag' th:value='${CUser.UserTag}'>
 			<label id='TagWarning'></label>
 			
 			<div class='sub_title'>
 			설명
 			</div>
-			<textarea id='UserExplain' name='UserExplain' required></textarea>
+			<textarea id='UserExplain' name='UserExplain' th:value='${CUser.UserExplain}'></textarea>
 			
 			<button type='button' id='save'>저장</button>
 		</form>
 		
 	</div>
 </div>
+
+<script src="/js/UserEdit.js"></script>
 </body>
 </html>

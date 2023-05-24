@@ -12,5 +12,6 @@ public interface CNoticeMapper
 {
 	public int AddCNotice(CNotice cn);
 	public CNotice GetCNotice(int CNoticeNum);
+	public int CNoticeHits(int CNoticeNum);
 	public List<Map<String, Object>> AllCNotice();
 }

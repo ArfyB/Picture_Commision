@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -175,8 +176,54 @@ public class LoginController
 		map.put("CUser", cuser);
 		
 		Map<String, Object> updated = new HashMap<>();
-		updated.put("updated", us.UserUpdate(map));
+		
+		boolean update = us.UserUpdate(map);
+		
+		updated.put("updated", update);
+		if(update)
+		{
+			// tag만 새로 설정하는 이유는 
+			request.getSession().setAttribute("tag", cuser.getUserTag());
+			request.getSession().setAttribute("nick", cuser.getUserNick());
+		}
 		return updated;
 	}
-	   
+	
+	@PostMapping("/set")
+	@ResponseBody
+	public Map<String, Object> UserSet(@RequestParam("files")MultipartFile[] mfiles, CUser cuser, HttpServletRequest request)
+	{
+		Map<String, Object> map = new HashMap<>();
+		map.put("mfiles", mfiles);
+		map.put("CUser", cuser);
+		
+		Map<String, Object> updated = new HashMap<>();
+		
+		boolean set = us.UserUpdate(map);
+		
+		updated.put("set", set);
+		if(set)
+		{
+			// tag만 새로 설정하는 이유는 
+			request.getSession().setAttribute("tag", cuser.getUserTag());
+			request.getSession().setAttribute("nick", cuser.getUserNick());
+		}
+		return updated;
+	}
+	
+	@GetMapping("/mypage")
+	public String MyPage(HttpServletRequest request, Model m)
+	{
+		Map<String, Object> map = new HashMap<>();
+		m.addAttribute("CUser", us.GetUser((String)request.getSession().getAttribute("tag")));
+		return "thymeleaf/User/MyPage";
+	}
+	
+	@GetMapping("/edit")
+	public String UserEdit(HttpServletRequest request, Model m)
+	{
+		Map<String, Object> map = new HashMap<>();
+		m.addAttribute("CUser", us.GetUser((String)request.getSession().getAttribute("tag")));
+		return "thymeleaf/User/UserEdit";
+	}
 }

@@ -8,8 +8,13 @@
 [[${pageinfo}]]
 <hr>
 <tr th:each="CNotice : ${pageinfo.list}">
-
-<a th:href="@{/cnotice/cnotice(CNoticeNum=${CNotice.CNoticeNum})}"><td th:text="${CNotice}"></td></a>
+<div>
+[[${CNotice.CNoticeNum}]]
+<a th:href="@{/cnotice/cnotice(CNoticeNum=${CNotice.CNoticeNum})}"><td th:text="${CNotice.Title}"></td></a>
+[[${CNotice.RecDate}]]
+[[${CNotice.AuthorNick}]]
+[[${CNotice.Hits}]]
+</div>
 </tr>
 </body>
 </html>
