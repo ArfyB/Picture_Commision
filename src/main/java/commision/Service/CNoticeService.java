@@ -49,29 +49,4 @@ public class CNoticeService
 	    
 		return cnm.AddCNotice(cn) > 0;
 	}
-	
-	public Map<String,Object> pages(PageInfo pageinfo)
-	{
-		Map<String,Object> map = new HashMap<>();
-		
-		 System.out.println();
-		
-		int begin = pageinfo.getPageNum()-2;
-		
-		if(begin<=0)
-		{
-			begin = 1;
-		}
-		
-		int end = pageinfo.getPageNum()+2;
-		if(end>=pageinfo.getNavigateLastPage())
-		{
-			end = pageinfo.getNavigateLastPage();
-		}
-		
-		
-		map.put("begin", begin);
-		map.put("end", end);
-		return map;
-	}
 }

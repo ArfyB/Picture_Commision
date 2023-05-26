@@ -3,6 +3,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="commision.Mapper.CExplainMapper">
         
+        <resultMap id="CExplainResultMap" type="commision.Vo.CExplain">
+        	<result property="Contents" column="Contents_C" jdbcType="CLOB" javaType="java.lang.String"/>
+        	<result property="Introduce" column="Introduce_C" jdbcType="CLOB" javaType="java.lang.String"/>
+        </resultMap>
+        
         <insert id = 'AddCExplain'
         parameterType = 'commision.Vo.CExplain'>
         
@@ -60,5 +65,22 @@
         resultType='commision.Vo.CExplain'>
         	SELECT CNum, Painter, PainterEmail, Title, Preview, Price, Tags
         </select>
+        
+        <select id='GetCExplain'
+        parameterType = 'Integer'
+        resultMap = 'CExplainResultMap'>
+        SELECT CNum, Title, Introduce_C, Contents_C, Painter, PainterTag, Preview, Price, Slot FROM CExplain WHERE CNum = #{CNum}
+        </select>
+        
+        <select id='AllCExplain'
+        resultType = 'commision.Vo.CExplain'>
+        SELECT CNum, Title, Painter, PainterTag, Preview FROM CExplain order by CNum DESC
+        </select>
+        
+        <select id = 'HomePageCExplain'
+        resultType='com.tp.Vo.CExplain'>
+        SELECT * FROM (SELECT CNum, Title, Painter, PainterTag, Preview FROM CExplain order by CNum DESC) WHERE <![CDATA[ ROWNUM <= 5 ]]>
+        </select>
+        
         
 </mapper>

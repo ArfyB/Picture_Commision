@@ -90,6 +90,15 @@ public class CExplainService
 	            e.printStackTrace();
 	            return false;
 	         }
-	 
 	  }
+	
+	public CExplain GetCExplain(int CNum)
+	{
+		return cm.GetCExplain(CNum);
+	}
+	
+	public List<Map<String, Object>> AllCExplain()
+	{
+		return cm.AllCExplain();
+	}
 }

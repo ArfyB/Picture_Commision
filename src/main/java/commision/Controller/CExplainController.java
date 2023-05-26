@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 import commision.Service.CExplainService;
+import commision.Service.PageService;
 import commision.Vo.CExplain;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -23,11 +28,34 @@ public class CExplainController
 	@Autowired
 	public CExplainService cs;
 	
+	@Autowired
+	PageService ps;
+	
 	@GetMapping("/add")
 	public String CExplainAdd()
 	{
 		return "thymeleaf/CExplain/CExplainAdd";
 	}
+	
+	@GetMapping("/cexplain")
+	public String GetCExplain(@RequestParam("CNum")int CNum, Model m)
+	{
+		m.addAttribute("CExplain", cs.GetCExplain(CNum));
+		return "thymeleaf/CExplain/CExplain";
+	}
+	
+	@GetMapping("/list")
+	public String list(@RequestParam(value="page", required = false, defaultValue="1")int page, Model m)
+	{
+		PageHelper.startPage(page,25);
+		PageInfo <Map<String,Object>> pageinfo = new PageInfo<>(cs.AllCExplain());
+		
+		m.addAttribute("pageinfo", pageinfo);
+		m.addAttribute("pages", ps.pages(pageinfo));  // 페이지이동
+		
+		return "thymeleaf/ CExplain/CExplainList";
+	}
+	
 	
 	@PostMapping("/upload")
 	@ResponseBody

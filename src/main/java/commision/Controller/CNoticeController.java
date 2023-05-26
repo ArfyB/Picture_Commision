@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +17,7 @@ import com.github.pagehelper.PageInfo;
 
 import commision.Mapper.CNoticeMapper;
 import commision.Service.CNoticeService;
+import commision.Service.PageService;
 import commision.Vo.CNotice;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -30,6 +30,9 @@ public class CNoticeController
 	
 	@Autowired
 	CNoticeMapper cnm;
+	
+	@Autowired
+	PageService ps;
 	
 	@GetMapping("/add")
 	public String CNoticeAddForm()
@@ -44,12 +47,6 @@ public class CNoticeController
 		return "thymeleaf/CNotice/CNotice";
 	}
 	
-	@GetMapping("/cnlist")
-	public String CNoticeList()
-	{
-		return "thymeleaf/CNotice/CNotice";
-	}
-	
 	@GetMapping("/list")
 	public String list(@RequestParam(value = "page", required = false, defaultValue = "1")int page, Model m)
 	{
@@ -57,7 +54,7 @@ public class CNoticeController
 		PageInfo <Map<String,Object>> pageinfo = new PageInfo<>(cnm.AllCNotice());
 		
 		m.addAttribute("pageinfo", pageinfo);
-		m.addAttribute("pages", cns.pages(pageinfo));  // 페이지이동
+		m.addAttribute("pages", ps.pages(pageinfo));  // 페이지이동
 		
 		return "thymeleaf/CNotice/CNoticeList";
 	}
