@@ -53,7 +53,7 @@ public class CExplainController
 		m.addAttribute("pageinfo", pageinfo);
 		m.addAttribute("pages", ps.pages(pageinfo));  // 페이지이동
 		
-		return "thymeleaf/ CExplain/CExplainList";
+		return "thymeleaf/CExplain/CExplainList";
 	}
 	
 	

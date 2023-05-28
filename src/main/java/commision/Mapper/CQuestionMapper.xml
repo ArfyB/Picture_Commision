@@ -39,12 +39,15 @@
         </insert>
         
         <select id='GetCQuestion'
+        parameterType = 'Integer'
         resultMap = 'CQuestionResultMap'>
-        SELECT CQNum, Title, Contents_C, RecDate, Author, AuthorNick FROM CQuestion WHERE CQNum = 7
+        SELECT CQNum, Title, Contents_C, RecDate, Author, AuthorNick FROM CQuestion WHERE CQNum = #{CQNum}
         </select>
         
         <select id='AllCQuestion'
-        resultType='commision.Vo.CQuestion'>
-        SELECT * FROM recipe  order by rnum DESC
+        parameterType = 'Integer'
+        resultMap = 'CQuestionResultMap'>
+        SELECT CQNum, Title, RecDate, Author, AuthorNick FROM CQuestion WHERE CQNum = #{CQNum} 
         </select>
+        
 </mapper>

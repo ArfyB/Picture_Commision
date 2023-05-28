@@ -1,10 +1,7 @@
 package commision.Service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.Reader;
-import java.sql.Clob;
-import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,8 +62,13 @@ public class CQuestionService
 		return cqm.AddCReQuestion(crq) > 0;
 	}
 	
-	public CQuestion GetCQuestion()
+	public CQuestion GetCQuestion(int CQNum)
 	{
-		return cqm.GetCQuestion();
+		return cqm.GetCQuestion(CQNum);
+	}
+	
+	public List<Map<String, Object>> AllCQuestion()
+	{
+		return cqm.AllCQuestion();
 	}
 }

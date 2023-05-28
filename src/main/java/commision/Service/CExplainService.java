@@ -101,4 +101,14 @@ public class CExplainService
 	{
 		return cm.AllCExplain();
 	}
+	
+	public List<CExplain> HomePageCExplain()
+	{
+		return cm.HomePageCExplain();
+	}
+	
+	public List<CExplain> PermitCExplain()
+	{
+		return cm.PermitCExplain();
+	}
 }

@@ -9,9 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 import commision.Service.CQuestionService;
+import commision.Service.PageService;
 import commision.Vo.CQuestion;
 import commision.Vo.CReQuestion;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +27,9 @@ public class CQuestionController
 {
 	@Autowired
 	CQuestionService cqs;
+	
+	@Autowired
+	PageService ps;
 	
 	@GetMapping("/add")
 	public String CQuestionAddForm()
@@ -36,12 +44,24 @@ public class CQuestionController
 	}
 	
 	@GetMapping("/cq")
-	public String cq(Model m)
+	public String cq(@RequestParam("CQNum")int CQNum, Model m)
 	{
-		CQuestion cques = cqs.GetCQuestion();
+		CQuestion cques = cqs.GetCQuestion(CQNum);
 		m.addAttribute("CQuestion", cques);
 		
 		return "thymeleaf/CQuestion/CQuestion";
+	}
+	
+	@GetMapping("/list")
+	public String list(@RequestParam(value="page", required = false, defaultValue="1")int page, Model m)
+	{
+		PageHelper.startPage(page,25);
+		PageInfo <Map<String,Object>> pageinfo = new PageInfo<>(cqs.AllCQuestion());
+		
+		m.addAttribute("pageinfo", pageinfo);
+		m.addAttribute("pages", ps.pages(pageinfo));  // 페이지이동
+		
+		return "thymeleaf/CQuestion/CQuesiontList";
 	}
 	
 	@PostMapping("/upload")

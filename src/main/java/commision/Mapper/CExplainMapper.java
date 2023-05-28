@@ -15,4 +15,6 @@ public interface CExplainMapper
 	public int AddCTags(CExplain cex);
 	public CExplain GetCExplain(int CNum);
 	public List<Map<String, Object>> AllCExplain();
+	public List<CExplain> HomePageCExplain();
+	public List<CExplain> PermitCExplain();
 }
