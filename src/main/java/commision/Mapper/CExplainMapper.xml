@@ -78,12 +78,12 @@
         </select>
         
         <select id = 'HomePageCExplain'
-        resultType='com.tp.Vo.CExplain'>
+        resultType='commision.Vo.CExplain'>
         SELECT * FROM (SELECT CNum, Title, Painter, PainterTag, Preview FROM CExplain WHERE permit = 1 order by CNum DESC) WHERE <![CDATA[ ROWNUM <= 5 ]]>
         </select>
         
         <select id = 'PermitZeroCExplain'
-        resultType='com.tp.Vo.CExplain'>
+        resultType='commision.Vo.CExplain'>
         SELECT * FROM (SELECT CNum, Title, Painter, PainterTag, Preview FROM CExplain WHERE permit = 0 order by CNum DESC) WHERE <![CDATA[ ROWNUM <= 5 ]]>
         </select>
         

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+[[${pageinfo}]]
+<hr>
+<tr th:each="CExplain : ${pageinfo.list}">
+<div>
+
+[[${CExplain.CNum}]]
+<img th:src="@{'/pics/' + ${CExplain.Preview} }">
+<a th:href="@{/cexplain/cexplain(CNum=${CExplain.CNum})}"><td th:text="${CExplain.Title}"></td></a>
+[[${CExplain.Painter}]]
+<span th:text="@{'@'+ ${CExplain.PainterTag}}"></span>
+</div>
+</tr>
+</body>
+</html>
