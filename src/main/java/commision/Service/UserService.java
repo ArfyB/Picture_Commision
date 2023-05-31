@@ -93,4 +93,9 @@ public class UserService
 		return um.GetUser(CUserTag);
 	}
 	
+	public CUser GetUserEmail(String CUserEmail)
+	{
+		return um.GetUser(CUserEmail);
+	}
+	
 }

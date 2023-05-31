@@ -45,9 +45,8 @@
         </select>
         
         <select id='AllCQuestion'
-        parameterType = 'Integer'
         resultMap = 'CQuestionResultMap'>
-        SELECT CQNum, Title, RecDate, Author, AuthorNick FROM CQuestion WHERE CQNum = #{CQNum} 
+        SELECT CQNum, Title, RecDate, Author, AuthorNick FROM CQuestion 
         </select>
         
 </mapper>

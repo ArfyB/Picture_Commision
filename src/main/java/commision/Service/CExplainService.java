@@ -111,4 +111,9 @@ public class CExplainService
 	{
 		return cm.PermitCExplain();
 	}
+	
+	public List<Map<String, Object>> PermitZeroCExplain()
+	{
+		return cm.PermitZeroCExplain();
+	}
 }

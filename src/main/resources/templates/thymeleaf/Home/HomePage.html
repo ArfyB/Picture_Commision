@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>HomePage</title>
@@ -10,7 +10,9 @@
 <body>
 <div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
 
+<button type='button' id='CExplain'>CExplain</button>
 <button type='button' id='CNotice'>CNotice</button>
+<button type='button' id='CQuestion'>CQuestion</button>
 
 <div class = 'back_'>
 	<!-- 화면 넘어가면서 추천해줄 화면 -->
@@ -21,8 +23,17 @@
 	[[${CExplain}]]
 	
 	<!-- 최신 등록 ~개중에 랜덤으로 15개 뽑아서  -->
+	<!-- th:each로 15개를 반복문으로 돌리면 될것 -->
 	<div class='grid-back'>
 		<div class = 'grid1'>
+		<tr th:each='CExplain : ${CExplain}'>
+		<div class = 'grid-item'>
+		<img th:src="@{ '/pics/' + CExplain.Preview}">
+		[[${CExplain.Title}]]
+		[[${CExplain.Painter}]]
+		</div>
+		</tr>
+		<!-- 
 			<div class = 'grid-item'>2</div>
 			<div class = 'grid-item'>3</div>
 			<div class = 'grid-item'>4</div>
@@ -38,6 +49,7 @@
 			<div class = 'grid-item'>14</div>
 			<div class = 'grid-item'>15</div>
 			<div class = 'grid-item'>16</div>
+		-->
 		</div>
 	</div>
 	

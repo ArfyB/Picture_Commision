@@ -76,12 +76,15 @@ public class CExplainController
 		return added;
 	}
 	
-	@PostMapping("/test")
-	public Map<String,Object> CExplainTest(CExplain cex)
+	@GetMapping("/permit")
+	public String CExplainPermit(@RequestParam(value="page", required = false, defaultValue="1")int page, Model m)
 	{
-		Map<String,Object> map = new HashMap<>();
-		System.out.println(cex.getContents());
-		System.out.println(cex.getTitle());
-		return null;
+		PageHelper.startPage(page,20);
+		PageInfo <Map<String,Object>> pageinfo = new PageInfo<>(cs.PermitZeroCExplain());
+		
+		m.addAttribute("pageinfo", pageinfo);
+		m.addAttribute("pages", ps.pages(pageinfo));
+		
+		return "thymeleaf/CExplain/PermitCExplain";
 	}
 }

@@ -110,8 +110,9 @@ public class LoginController
 	}
 	
 	@GetMapping("/join3")
-	public String GetJoin3()
+	public String GetJoin3(Model m, HttpServletRequest request)
 	{
+		m.addAttribute("CUser", us.GetUserEmail((String)request.getSession().getAttribute("email")));
 		return "thymeleaf/User/JoinForm3";
 	}
 	

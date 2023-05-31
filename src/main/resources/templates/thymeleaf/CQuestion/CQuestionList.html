@@ -11,19 +11,7 @@
 <body>
 [[${pageinfo}]]
 <hr>
-<a th:if="${session.role=='ADMIN'}">
-<button type='button' id='add'>공지작성</button>
-</a> 
-<tr th:each="CNotice : ${pageinfo.list}">
-<div>
-[[${CNotice.CNoticeNum}]]
-<a th:href="@{/cnotice/cnotice(CNoticeNum=${CNotice.CNoticeNum})}"><td th:text="${CNotice.Title}"></td></a>
-[[${CNotice.RecDate}]]
-[[${CNotice.AuthorNick}]]
-[[${CNotice.Hits}]]
-</div>
-</tr>
-
-<script src='/js/CNoticeList.js'></script>
+<button type='button' id='add'>질문작성</button>
+<script src='/js/CQuestionList.js'></script>
 </body>
 </html>

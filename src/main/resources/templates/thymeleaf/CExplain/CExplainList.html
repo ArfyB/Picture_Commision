@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel='stylesheet' href='/css/Nav.css'>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 <body>
+<div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
 [[${pageinfo}]]
 <hr>
+<button type='button' id='add'>추가</button>
+
 <tr th:each="CExplain : ${pageinfo.list}">
 <div>
 
@@ -17,5 +22,8 @@
 <span th:text="@{'@'+ ${CExplain.PainterTag}}"></span>
 </div>
 </tr>
+
+<script src="/js/Nav.js"></script>
+<script src='/js/CExplainList.js'></script>
 </body>
 </html>

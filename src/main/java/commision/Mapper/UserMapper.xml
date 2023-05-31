@@ -42,6 +42,12 @@
         SELECT UserNick, UserEmail, UserProfilePic, UserBackgroundPic, UserExplain, UserTag FROM CUser WHERE UserTag = #{UserTag}
         </select>
         
+        <select id = 'GetUserEmail'
+        parameterType='String'
+        resultType='commision.Vo.CUser'>
+        SELECT UserNick, UserEmail, UserProfilePic, UserBackgroundPic, UserExplain, UserTag FROM CUser WHERE UserEmail = #{UserEmail}
+        </select>
+        
         <select id = 'GetProfile'
         parameterType='String'
         resultType='String'>

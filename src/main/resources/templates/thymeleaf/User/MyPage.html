@@ -26,6 +26,10 @@
 <!-- 자신의 설명 -->
 <span th:text="${CUser.UserExplain}"></span>
 
+<a th:if="${session.role == 'ADMIN'}">
+
+<button type='button' id='permit'>승인</button>
+</a>
 
 <button type='button' id='update'>수정</button>
 

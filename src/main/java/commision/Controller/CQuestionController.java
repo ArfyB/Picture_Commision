@@ -61,7 +61,7 @@ public class CQuestionController
 		m.addAttribute("pageinfo", pageinfo);
 		m.addAttribute("pages", ps.pages(pageinfo));  // 페이지이동
 		
-		return "thymeleaf/CQuestion/CQuesiontList";
+		return "thymeleaf/CQuestion/CQuestionList";
 	}
 	
 	@PostMapping("/upload")

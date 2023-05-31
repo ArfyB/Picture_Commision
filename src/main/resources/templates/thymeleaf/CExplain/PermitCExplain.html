@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div>
+<a th:each='CExplain : ${pageinfo.list}'>
+	<div>
+		<span>[[${CExplain.CNum}]]</span>
+		<span>[[${CExplain.Title}]]</span>
+	</div>
+</a>
+</div>
+<div>
+<span id='title'></span>
+<span id='painter'></span>
+<span th:text=''></span>
+<img src=''>
+</div>
+
+</body>
+</html>
