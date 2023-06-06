@@ -67,8 +67,23 @@ public class CQuestionService
 		return cqm.GetCQuestion(CQNum);
 	}
 	
+	public CReQuestion GetCReQuestion(int CRQNum)
+	{
+		return cqm.GetCReQuestion(CRQNum);
+	}
+	
 	public List<Map<String, Object>> AllCQuestion()
 	{
 		return cqm.AllCQuestion();
+	}
+
+	public List<Map<String, Object>> AllCReQuestion()
+	{
+		return cqm.AllCReQuestion();
+	}
+	
+	public List<Map<String, Object>> AllData()
+	{
+		return cqm.AllData();
 	}
 }

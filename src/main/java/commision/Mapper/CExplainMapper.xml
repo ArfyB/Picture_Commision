@@ -102,4 +102,10 @@
         UPDATE CExplain SET Permit = 2 WHERE CNum = #{CNum}
         </update>
         
+        <select id = 'GetTags'
+        parameterType='Integer'
+        resultType='String'>
+        SELECT CTag FROM CTags WHERE CNum = #{CNum}
+        </select>
+        
 </mapper>

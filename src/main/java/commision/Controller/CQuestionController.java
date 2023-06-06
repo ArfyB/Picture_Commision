@@ -52,14 +52,24 @@ public class CQuestionController
 		return "thymeleaf/CQuestion/CQuestion";
 	}
 	
+	@GetMapping("/crequestion")
+	public String creq(@RequestParam("CRQNum")int CRQNum, Model m)
+	{
+		CReQuestion crques = cqs.GetCReQuestion(CRQNum);
+		m.addAttribute("CReQuestion", crques);
+		
+		return "thymeleaf/CQuestion/CReQuestion";
+	}
+	
 	@GetMapping("/list")
 	public String list(@RequestParam(value="page", required = false, defaultValue="1")int page, Model m)
 	{
 		PageHelper.startPage(page,25);
-		PageInfo <Map<String,Object>> pageinfo = new PageInfo<>(cqs.AllCQuestion());
+		PageInfo <Map<String,Object>> AllData = new PageInfo<>(cqs.AllData());
 		
-		m.addAttribute("pageinfo", pageinfo);
-		m.addAttribute("pages", ps.pages(pageinfo));  // 페이지이동
+		m.addAttribute("AllData", AllData);
+		m.addAttribute("AllDataPages", ps.pages(AllData));  // 페이지이동
+		
 		
 		return "thymeleaf/CQuestion/CQuestionList";
 	}

@@ -17,7 +17,7 @@ import lombok.ToString;
 public class CReQuestion 
 {
 	public int CQNum;
-	public int CReQNum;
+	public int CRQNum;
 	public String Title;
 	public String Contents;
 	public Clob Contents_C;

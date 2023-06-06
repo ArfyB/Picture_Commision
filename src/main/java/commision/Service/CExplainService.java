@@ -126,4 +126,9 @@ public class CExplainService
 	{
 		return cm.PermitTwoCExplain();
 	}
+	
+	public List<String> GetTags(int CNum)
+	{
+		return cm.GetTags(CNum);
+	}
 }

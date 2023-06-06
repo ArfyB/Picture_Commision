@@ -7,6 +7,10 @@
         	<result property="Contents" column="Contents_C" jdbcType="CLOB" javaType="java.lang.String"/>
         </resultMap>
         
+        <resultMap id="CReQuestionResultMap" type="commision.Vo.CReQuestion">
+        	<result property="Contents" column="Contents_C" jdbcType="CLOB" javaType="java.lang.String"/>
+        </resultMap>
+        
         <insert id = 'AddCQuestion'
         parameterType = 'commision.Vo.CQuestion'>
         
@@ -44,9 +48,30 @@
         SELECT CQNum, Title, Contents_C, RecDate, Author, AuthorNick FROM CQuestion WHERE CQNum = #{CQNum}
         </select>
         
+        <select id='GetCReQuestion'
+        parameterType = 'Integer'
+        resultMap = 'CReQuestionResultMap'>
+        SELECT CRQNum, Title, Contents_C, RecDate, Author, AuthorNick FROM CReQuestion WHERE CRQNum = #{CRQNum}
+        </select>
+        
         <select id='AllCQuestion'
         resultMap = 'CQuestionResultMap'>
         SELECT CQNum, Title, RecDate, Author, AuthorNick FROM CQuestion 
         </select>
+        
+        <select id='AllCReQuestion'
+        resultMap = 'CReQuestionResultMap'>
+        SELECT CQNum, CRQNum, Title, RecDate, Author, AuthorNick FROM CReQuestion 
+        </select>
+        
+        <select id='AllData'
+        resultMap = 'CReQuestionResultMap'>
+        SELECT CQNum, Title, Recdate, Author, Authornick, NULL AS CRQNum FROM CQuestion
+		UNION ALL
+		SELECT CQNum, Title, Recdate, Author, Authornick, CRQNum FROM CREQuestion
+		ORDER BY CQNum desc, CRQNum desc
+        </select>
+        
+        
         
 </mapper>

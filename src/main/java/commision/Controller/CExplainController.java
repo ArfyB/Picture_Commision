@@ -41,7 +41,10 @@ public class CExplainController
 	@GetMapping("/cexplain")
 	public String GetCExplain(@RequestParam("CNum")int CNum, Model m)
 	{
-		m.addAttribute("CExplain", cs.GetCExplain(CNum));
+		CExplain cex = cs.GetCExplain(CNum);
+		cex.setTags(cs.GetTags(CNum));
+		
+		m.addAttribute("CExplain", cex);
 		return "thymeleaf/CExplain/CExplain";
 	}
 	

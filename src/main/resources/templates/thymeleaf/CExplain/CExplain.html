@@ -10,9 +10,40 @@
 <div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
 [[${CExplain}]]
 <hr>
-[[${CExplain.CNum}]]
+글번호
 <br>
-<img th:src="@{ '/pics/' + ${CExplain.Preview} }" >
+[[${CExplain.CNum}]]
+<hr>
+작성자
+<br>
+[[${CExplain.Painter}]]
+@[[${CExplain.PainterTag}]]
+<hr>
+제목
+<br>
+[[${CExplain.Title}]]
+<br>
+태그
+<br>
+<span th:each="tags : ${CExplain.Tags} ">
+#[[${tags}]]
+</span>
+<hr>
+간단한설명
+<br>
+<span th:utext='${CExplain.Introduce}'></span>
+<hr>
+가격 : [[${CExplain.Price}]]
+<br>
+잔여 슬롯 : [[${CExplain.Slot}]]
+<br>
+<span th:if="${session.tag == CExplain.painterTag}">
+현재 신청갯수 : [[${CExplain.Orders}]]
+</span>
+<hr>
+<img th:src="@{ '/pics/' + ${CExplain.Preview} }" width='200px' height='200px'>
+<br>
+자세한 설명
 <span th:utext ='${CExplain.Contents}'></span>
 
 <a th:if="${session.role == 'ROLE_ADMIN'}">

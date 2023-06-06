@@ -109,7 +109,7 @@ $(function()
 			cache : false,
 			success : function(res)
 			{
-				console.log(res.added?'성공':'실패');
+				alert(res.added?'성공':'실패');
 			},
 			error : function(e)
 			{
