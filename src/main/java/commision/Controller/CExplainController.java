@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -80,11 +81,34 @@ public class CExplainController
 	public String CExplainPermit(@RequestParam(value="page", required = false, defaultValue="1")int page, Model m)
 	{
 		PageHelper.startPage(page,20);
-		PageInfo <Map<String,Object>> pageinfo = new PageInfo<>(cs.PermitZeroCExplain());
+		PageInfo <Map<String,Object>> permitpageinfo = new PageInfo<>(cs.PermitZeroCExplain());
 		
-		m.addAttribute("pageinfo", pageinfo);
-		m.addAttribute("pages", ps.pages(pageinfo));
+		m.addAttribute("permit", permitpageinfo);
+		m.addAttribute("permitpages", ps.pages(permitpageinfo));
+		
+		PageInfo <Map<String,Object>> denypageinfo = new PageInfo<>(cs.PermitTwoCExplain());
+		
+		m.addAttribute("deny", denypageinfo);
+		m.addAttribute("denypages", ps.pages(denypageinfo));
 		
 		return "thymeleaf/CExplain/PermitCExplain";
+	}
+	
+	@PostMapping("/permit")
+	@ResponseBody
+	public Map<String, Object> PermitData(@RequestParam("cnum")int cnum)
+	{
+		Map<String, Object> map = new HashMap<>();
+		map.put("permit", cs.PermitCExplain(cnum));
+		return map;
+	}
+	
+	@PostMapping("/deny")
+	@ResponseBody
+	public Map<String, Object> DenyData(@RequestParam("cnum")int cnum)
+	{
+		Map<String, Object> map = new HashMap<>();
+		map.put("deny", cs.DenyCExplain(cnum));
+		return map;
 	}
 }

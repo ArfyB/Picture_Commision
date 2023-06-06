@@ -27,11 +27,15 @@
 	<div class='grid-back'>
 		<div class = 'grid1'>
 		<tr th:each='CExplain : ${CExplain}'>
-		<div class = 'grid-item'>
-		<img th:src="@{ '/pics/' + CExplain.Preview}">
-		[[${CExplain.Title}]]
-		[[${CExplain.Painter}]]
-		</div>
+			<a th:href='@{/cexplain/cexplain(CNum = ${CExplain.CNum} )}'>
+				<div class = 'grid-item'>
+					<img th:src="@{ '/pics/' + ${CExplain.Preview} }" width='150' height='150'>
+					<br>
+					<span th:text='${CExplain.Title}'></span>
+					<br>
+					<span th:text='${CExplain.Painter}'></span>
+				</div>
+			</a>
 		</tr>
 		<!-- 
 			<div class = 'grid-item'>2</div>

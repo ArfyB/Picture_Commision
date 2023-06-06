@@ -69,7 +69,7 @@
         <select id='GetCExplain'
         parameterType = 'Integer'
         resultMap = 'CExplainResultMap'>
-        SELECT CNum, Title, Introduce_C, Contents_C, Painter, PainterTag, Preview, Price, Slot FROM CExplain WHERE CNum = #{CNum}
+        SELECT CNum, Title, Introduce_C, Contents_C, Painter, PainterTag, Preview, Price, Slot, Permit FROM CExplain WHERE CNum = #{CNum}
         </select>
         
         <select id='AllCExplain'
@@ -84,18 +84,22 @@
         
         <select id = 'PermitZeroCExplain'
         resultMap = 'CExplainResultMap'>
-        SELECE CNum, Painter, PainterTag, Title, Introduce_C, Contents_C, Preview FROM CExplain WHERE permit = 0 order by CNum DESC
+        SELECT CNum, Painter, PainterTag, Title, Introduce_C, Contents_C, Preview FROM CExplain WHERE permit = 0 order by CNum DESC
+        </select>
+        
+        <select id = 'PermitTwoCExplain'
+        resultMap = 'CExplainResultMap'>
+        SELECT CNum, Painter, PainterTag, Title, Introduce_C, Contents_C, Preview FROM CExplain WHERE permit = 2 order by CNum DESC
         </select>
         
         <update id = 'PermitCExplain'
-        parameterType='java.util.List'>
-        UPDATE CExplain SET Permit = 1 WHERE CNum IN
-        (
-        <foreach collection='list' item = 'CNum' separator = ','>
-        	#{CNum}
-        </foreach>
-        )
+        parameterType='Integer'>
+        UPDATE CExplain SET Permit = 1 WHERE CNum = #{CNum}
         </update>
         
+        <update id = 'DenyCExplain'
+        parameterType='Integer'>
+        UPDATE CExplain SET Permit = 2 WHERE CNum = #{CNum}
+        </update>
         
 </mapper>

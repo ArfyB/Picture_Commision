@@ -43,7 +43,7 @@ public class CQuestionController
 		return "thymeleaf/CQuestion/CReQuestionAdd";
 	}
 	
-	@GetMapping("/cq")
+	@GetMapping("/cquestion")
 	public String cq(@RequestParam("CQNum")int CQNum, Model m)
 	{
 		CQuestion cques = cqs.GetCQuestion(CQNum);

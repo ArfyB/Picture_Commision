@@ -107,13 +107,23 @@ public class CExplainService
 		return cm.HomePageCExplain();
 	}
 	
-	public List<CExplain> PermitCExplain()
+	public boolean PermitCExplain(int cnum)
 	{
-		return cm.PermitCExplain();
+		return 0 < cm.PermitCExplain(cnum);
+	}
+	
+	public boolean DenyCExplain(int cnum)
+	{
+		return 0 < cm.DenyCExplain(cnum);
 	}
 	
 	public List<Map<String, Object>> PermitZeroCExplain()
 	{
 		return cm.PermitZeroCExplain();
+	}
+	
+	public List<Map<String, Object>> PermitTwoCExplain()
+	{
+		return cm.PermitTwoCExplain();
 	}
 }

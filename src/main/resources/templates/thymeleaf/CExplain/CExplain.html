@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel='stylesheet' href='/css/Nav.css'>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 <body>
+<div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
+[[${CExplain}]]
+<hr>
+[[${CExplain.CNum}]]
+<br>
+<img th:src="@{ '/pics/' + ${CExplain.Preview} }" >
+<span th:utext ='${CExplain.Contents}'></span>
 
+<a th:if="${session.role == 'ROLE_ADMIN'}">
+	<span id='pd' th:data-value='${CExplain.CNum}'>
+		<button type='button' id='permit'>승인</button>
+		<button type='button' id='deny'>보류 / 거부</button>
+	</span>
+</a>
+<script src='/js/CExplain.js'></script>
+<script src='/js/Nav.js'></script>
 </body>
 </html>

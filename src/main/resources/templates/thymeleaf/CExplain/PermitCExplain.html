@@ -3,23 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 <body>
 
 <div>
 <a th:each='CExplain : ${pageinfo.list}'>
 	<div>
-		<span>[[${CExplain.CNum}]]</span>
-		<span>[[${CExplain.Title}]]</span>
+		<span th:text = '${CExplain.CNum}'></span>
+		<a th:href="@{/cexplain/cexplain(CNum=${CExplain.CNum})}" th:text='${CExplain.Title}'></a>
 	</div>
 </a>
 </div>
 <div>
-<span id='title'></span>
-<span id='painter'></span>
-<span th:text=''></span>
-<img src=''>
 </div>
 
+<script src='/js/PermitCExplain.js'></script>
 </body>
 </html>

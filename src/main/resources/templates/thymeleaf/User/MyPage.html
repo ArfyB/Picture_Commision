@@ -26,10 +26,32 @@
 <!-- 자신의 설명 -->
 <span th:text="${CUser.UserExplain}"></span>
 
-<a th:if="${session.role == 'ADMIN'}">
+<span th:if="${session.role == 'ROLE_ADMIN'}">
 
-<button type='button' id='permit'>승인</button>
-</a>
+<br>
+승인목록
+<br>
+
+<span th:each='Permit : ${permit.list}'>
+	<div>
+		<span th:text = '${Permit.CNum}'></span>
+		<a th:href="@{/cexplain/cexplain(CNum=${Permit.CNum})}" th:text='${Permit.Title}'></a>
+	</div>
+</span>
+</span>
+
+<br>
+보류/거부 목록
+<br>
+
+<span th:each='Deny : ${deny.list}'>
+	<div>
+		<span th:text = '${Deny.CNum}'></span>
+		<a th:href="@{/cexplain/cexplain(CNum=${Deny.CNum})}" th:text='${Deny.Title}'></a>
+	</div>
+</span>
+</span>
+
 
 <button type='button' id='update'>수정</button>
 

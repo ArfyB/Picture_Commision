@@ -28,5 +28,7 @@ public class CExplain
 	public String Preview;		// 메인 사진 
 	public int Price;
 	public int Slot;
+	public int Orders;
 	public List<String> Tags;
+	public int Permit;
 }

@@ -16,6 +16,8 @@ public interface CExplainMapper
 	public CExplain GetCExplain(int CNum);
 	public List<Map<String, Object>> AllCExplain();
 	public List<CExplain> HomePageCExplain();
-	public List<CExplain> PermitCExplain();
+	public int PermitCExplain(int CNum);
+	public int DenyCExplain(int CNum);
 	public List<Map<String, Object>> PermitZeroCExplain();
+	public List<Map<String, Object>> PermitTwoCExplain();
 }

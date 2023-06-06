@@ -18,8 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
+import commision.Service.CExplainService;
 import commision.Service.EmailService;
 import commision.Service.LoginService;
+import commision.Service.PageService;
 import commision.Service.UserService;
 import commision.UserDetailService.CustomUserDetails;
 import commision.Vo.CUser;
@@ -44,6 +49,11 @@ public class LoginController
 	@Autowired
 	private UserService us;
 	
+	@Autowired
+	private CExplainService cs;
+	
+	@Autowired
+	private PageService ps;
 	
 	@Autowired
 	private SimpleSecurityConfig ssc;
@@ -213,10 +223,22 @@ public class LoginController
 	}
 	
 	@GetMapping("/mypage")
-	public String MyPage(HttpServletRequest request, Model m)
+	public String MyPage(@RequestParam(value="page", required = false, defaultValue="1")int page, HttpServletRequest request, Model m)
 	{
 		Map<String, Object> map = new HashMap<>();
 		m.addAttribute("CUser", us.GetUser((String)request.getSession().getAttribute("tag")));
+		
+		PageHelper.startPage(page,20);
+		PageInfo <Map<String,Object>> permitpageinfo = new PageInfo<>(cs.PermitZeroCExplain());
+		
+		m.addAttribute("permit", permitpageinfo);
+		m.addAttribute("permitpages", ps.pages(permitpageinfo));
+		
+		PageInfo <Map<String,Object>> denypageinfo = new PageInfo<>(cs.PermitTwoCExplain());
+		
+		m.addAttribute("deny", denypageinfo);
+		m.addAttribute("denypages", ps.pages(denypageinfo));
+		
 		return "thymeleaf/User/MyPage";
 	}
 	

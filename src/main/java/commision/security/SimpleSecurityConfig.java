@@ -44,8 +44,8 @@ public class SimpleSecurityConfig
     {
       System.out.println("접근제한 설정");
       return http.authorizeHttpRequests()/* 권한에 따른 인가(Authorization) */
-            .requestMatchers("/", "/commision/home", "/sec", "/sec/**").permitAll()
-              .requestMatchers("/sec/hello").hasAnyRole("USER", "ADMIN")
+            .requestMatchers("/", "/commision/home", "/sec/loginForm").permitAll()
+              .requestMatchers("/cexplain/add").hasAnyRole("USER", "ADMIN")
                .requestMatchers("/sec/getemps").hasAnyRole("USER", "ADMIN")
                .requestMatchers("/sec/addemp").hasAnyRole("ADMIN")
                .requestMatchers("/sec/menu").hasAnyRole("USER","GUEST","ADMIN")
@@ -61,7 +61,7 @@ public class SimpleSecurityConfig
 
             .formLogin().loginPage("/sec/login")   // 지정된 위치에 로그인 폼이 준비되어야 함
                .loginProcessingUrl("/doLogin")            // 컨트롤러 메소드 불필요, 폼 action과 일치해야 함
-               .failureUrl("/sec/login")      // 로그인 실패시 다시 로그인 폼으로
+               .failureUrl("/cexplain/list")      // 로그인 실패시 다시 로그인 폼으로
                //.failureForwardUrl("/login?error=Y")  //실패시 다른 곳으로 forward
                .defaultSuccessUrl("/sec/loginsuccess", true)
                .usernameParameter("UserEmail")  // 로그인 폼에서 이용자 ID 필드 이름, 디폴트는 username
@@ -80,11 +80,12 @@ public class SimpleSecurityConfig
              .exceptionHandling().accessDeniedPage("/sec/denied")
              .and().build();
     }
-/*
+
+    /*
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationMgr) throws Exception 
     {
-        authenticationMgr.inMemoryAuthentication() /* 메모리 기반 인증(Authentication) */ /*
+        authenticationMgr.inMemoryAuthentication() // 메모리 기반 인증(Authentication)
         .withUser("employee").password("$2a$10$MZ2ANCUXIj5mrAVbytojruvzrPv9B3v9CXh8qI9qP13kU8E.mq7yO")
             .authorities("ROLE_USER")
         .and()
@@ -94,7 +95,8 @@ public class SimpleSecurityConfig
         .withUser("guest").password("$2a$10$ABxeHaOiDbdnLaWLPZuAVuPzU3rpZ30fl3IKfNXybkOG2uZM4fCPq")
             .authorities("ROLE_GUEST");
     }
-*/  
+    */
+ 
     public String pwdencoding(String pwd)
     {
     	BCryptPasswordEncoder enc = new BCryptPasswordEncoder();

@@ -154,6 +154,11 @@ $(function()
 			cache : false,
 			success : function(res)
 			{
+				if(res.added)
+				{
+					alert('등록성공 관리자의 승인이후 업로드 됩니다');
+					location.href='/cexplain/list';
+				}
 				console.log(res.added?'a':'b');
 			},
 			error : function(e)
