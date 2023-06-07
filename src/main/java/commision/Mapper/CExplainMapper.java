@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import commision.Vo.ApplyCExplain;
 import commision.Vo.CExplain;
 
 @Mapper
@@ -22,4 +23,9 @@ public interface CExplainMapper
 	public List<Map<String, Object>> PermitZeroCExplain();
 	public List<Map<String, Object>> PermitTwoCExplain();
 	public List<Map<String, Object>> MyPageCExplain(String PainterTag);
+	public ApplyCExplain DataForOrder(int CNum);
+	public int DoOrder(ApplyCExplain apc);
+	public List<Map<String, Object>> MyOrder(String AuthorTag);
+	public List<Map<String, Object>> TakeOrder(String PainterTag);
+	public ApplyCExplain OrderData();
 }

@@ -44,6 +44,13 @@
 	<span th:if = '@{${CExplain.Permit} == 2}'>승인 거부</span>
 <br>
 </span>
+<hr>
+내가 신청한 목록
+[[${MyOrder.list}]]
+<hr>
+신청받은 목록
+[[${TakeOrder.list}]]
+<hr>
 
 <span th:if="${session.role == 'ROLE_ADMIN'}">
 <br>

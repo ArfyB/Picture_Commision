@@ -8,6 +8,11 @@
         	<result property="Introduce" column="Introduce_C" jdbcType="CLOB" javaType="java.lang.String"/>
         </resultMap>
         
+        <resultMap id="ApplyCExplainResultMap" type="commision.Vo.ApplyCExplain">
+        	<result property="Contents" column="Contents_C" jdbcType="CLOB" javaType="java.lang.String"/>
+        	<result property="Introduce" column="Introduce_C" jdbcType="CLOB" javaType="java.lang.String"/>
+        </resultMap>
+        
         <insert id = 'AddCExplain'
         parameterType = 'commision.Vo.CExplain'>
         
@@ -114,4 +119,43 @@
         SELECT CNum, Preview, Title, Permit	 FROM CExplain WHERE PainterTag = #{PainterTag}
         </select>
         
+        <select id = 'DataForOrder'
+        parameterType='Integer'
+        resultType='commision.Vo.ApplyCExplain'>
+        SELECT * FROM (SELECT Painter, PainterTag, CNum FROM CExplain WHERE CNum=#{CNum}) WHERE <![CDATA[ ROWNUM <= 1 ]]>
+        </select>
+        
+        <insert id = 'DoOrder'
+        parameterType='commision.Vo.ApplyCExplain'>
+        INSERT INTO ApplyCExplain (ACNum, CNum, Painter, PainterTag, Author, AuthorTag, Title, Contents_C)
+        values
+        (
+        ApplyCExplain_SEQ.NEXTVAL,
+        #{CNum},
+        #{Painter},
+        #{PainterTag},
+        #{Author},
+        #{AuthorTag},
+        #{Title},
+        #{Contents, jdbcType=CLOB, typeHandler=org.apache.ibatis.type.ClobTypeHandler}
+		)
+        </insert>
+        
+        <select id = 'MyOrder'
+        parameterType='String'
+        resultType='commision.Vo.ApplyCExplain'>
+        SELECT ACNum, CNum, Title, Permit, Painter, PainterTag FROM ApplyCExplain WHERE  AuthorTag = #{AuthorTag}
+        </select>
+        
+        <select id = 'TakeOrder'
+        parameterType='String'
+        resultType='commision.Vo.ApplyCExplain'>
+        SELECT ACNum, CNum, Title, Permit, Author, AuthorTag FROM ApplyCExplain WHERE  PainterTag = #{PainterTag}
+        </select>
+        
+        <select id = 'OrderData'
+        parameterType='Integer'
+        resultMap='ApplyCExplainResultMap'>
+        SELECT ACNum, CNum, Title, Author, AuthorTag, Painter, PainterTag, Permit, Contents_C WHERE ACNum = #{ACNum} 
+        </select>
 </mapper>

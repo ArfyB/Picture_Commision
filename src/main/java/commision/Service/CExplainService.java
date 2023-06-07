@@ -1,7 +1,6 @@
 package commision.Service;
 
 import java.io.File;
-import java.sql.Clob;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,9 +17,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import commision.Mapper.CExplainMapper;
+import commision.Vo.ApplyCExplain;
 import commision.Vo.CExplain;
 import commision.Vo.CExplainPic;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Service
@@ -135,5 +134,36 @@ public class CExplainService
 	public List<Map<String, Object>> MyPageCExplain(String PainterTag)
 	{
 		return cm.MyPageCExplain(PainterTag);
+	}
+	
+	public ApplyCExplain DataForOrder(int CNum)
+	{
+		return cm.DataForOrder(CNum);
+	}
+	
+	public boolean DoOrder(ApplyCExplain apc, HttpServletRequest request)
+	{
+		ApplyCExplain DataForOrder = cm.DataForOrder(apc.getCNum());
+		apc.setPainter(DataForOrder.getPainter());
+		apc.setPainterTag(DataForOrder.getPainterTag());
+		apc.setAuthor((String)request.getSession().getAttribute("nick"));
+		apc.setAuthorTag((String)request.getSession().getAttribute("tag"));
+		
+		return 0 < cm.DoOrder(apc);
+	}
+	
+	public List<Map<String, Object>> MyOrder(String AuthorTag)
+	{
+		return cm.MyOrder(AuthorTag);
+	}
+	
+	public List<Map<String, Object>> TakeOrder(String PainterTag)
+	{
+		return cm.TakeOrder(PainterTag);
+	}
+	
+	public ApplyCExplain OrderData()
+	{
+		return cm.OrderData();
 	}
 }

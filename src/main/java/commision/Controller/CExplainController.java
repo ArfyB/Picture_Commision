@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +18,7 @@ import com.github.pagehelper.PageInfo;
 
 import commision.Service.CExplainService;
 import commision.Service.PageService;
+import commision.Vo.ApplyCExplain;
 import commision.Vo.CExplain;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -46,6 +46,24 @@ public class CExplainController
 		
 		m.addAttribute("CExplain", cex);
 		return "thymeleaf/CExplain/CExplain";
+	}
+	
+	@GetMapping("/order")
+	public String DoOrder(@RequestParam("CNum")int CNum, Model m)
+	{
+		m.addAttribute("CNum", CNum);
+		return "thymeleaf/CExplain/ApplyCExplain";
+	}
+	
+	@PostMapping("/order")
+	@ResponseBody
+	public Map<String, Object> UploadOrder(ApplyCExplain apc, HttpServletRequest request)
+	{
+		// title, contents, cnum를 가지고 apc생성
+		Map<String, Object> map = new HashMap<>();
+		map.put("added", cs.DoOrder(apc, request));
+		
+		return map;
 	}
 	
 	@GetMapping("/list")

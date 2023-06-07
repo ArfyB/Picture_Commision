@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CNotice Add</title>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<link rel='stylesheet' href='/css/Nav.css'>
+</head>
+<body>
+
+<div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
+
+<div>
+
+<form id='CExplainOrderData'>
+
+<input type='text' id='Title' name='Title' placeholder='Title'>
+<input type='hidden' name='CNum' th:value='${CNum}'>
+<textarea id="CExplainOrder_Contents" name='Contents'></textarea>
+
+<button type='button' id='apply'>신청</button>
+</form>
+
+</div>
+
+<script src="/js/Nav.js"></script>
+<script src="/js/ApplyCExplain.js"></script>
+</body>
+</html>

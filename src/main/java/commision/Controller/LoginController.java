@@ -250,6 +250,16 @@ public class LoginController
 		m.addAttribute("MyCExplain", MyCExplainpageinfo);
 		m.addAttribute("MyCExplainpages", ps.pages(MyCExplainpageinfo));
 		
+		PageInfo <Map<String,Object>> MyOrderpageinfo = new PageInfo<>(cs.MyOrder((String)request.getSession().getAttribute("tag")));
+		
+		m.addAttribute("MyOrder", MyOrderpageinfo);
+		m.addAttribute("MyOrderpages", ps.pages(MyOrderpageinfo));
+		
+		PageInfo <Map<String,Object>> TakeOrderpageinfo = new PageInfo<>(cs.TakeOrder((String)request.getSession().getAttribute("tag")));
+		
+		m.addAttribute("TakeOrder", TakeOrderpageinfo);
+		m.addAttribute("TakeOrderpages", ps.pages(TakeOrderpageinfo));
+		
 		return "thymeleaf/User/MyPage";
 	}
 	

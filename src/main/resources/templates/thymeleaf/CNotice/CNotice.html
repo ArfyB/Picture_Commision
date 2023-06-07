@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel='stylesheet' href='/css/Nav.css'>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 <body>
+<div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
 [[${CNotice}]]
+<hr>
+<span th:text = '${CNotice.CNoticeNum}'></span>
+<span th:text = '${CNotice.Title}'></span>
+<span th:text = '${CNotice.RecDate}'></span>
+<span th:text = '${CNotice.AuthorNick}'></span>
+<span th:text = '${CNotice.Hits}'></span>
+<span th:utext = '${CNotice.Contents}'></span>
+
+<script src='/js/Nav.js'></script>
 </body>
 </html>

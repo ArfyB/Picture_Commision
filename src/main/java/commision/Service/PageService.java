@@ -20,8 +20,6 @@ public class PageService
 	{
 		Map<String,Object> map = new HashMap<>();
 		
-		 System.out.println();
-		
 		int begin = pageinfo.getPageNum()-2;
 		
 		if(begin<=0)
