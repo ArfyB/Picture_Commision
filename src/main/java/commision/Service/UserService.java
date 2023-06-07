@@ -23,7 +23,7 @@ public class UserService
 	ResourceLoader resourceLoader;
 	
 	@Autowired
-	public UserMapper um;
+	UserMapper um;
 	
 	public boolean UserUpdate(Map map)
 	{
@@ -95,7 +95,7 @@ public class UserService
 	
 	public CUser GetUserEmail(String CUserEmail)
 	{
-		return um.GetUser(CUserEmail);
+		return um.GetUserEmail(CUserEmail);
 	}
 	
 }

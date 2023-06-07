@@ -24,17 +24,18 @@
 <hr>
 
 
-<p th:if=" ${session.role} == 'ADMIN' ">
+<span th:if=" ${session.role} == 'ROLE_ADMIN' ">
 	<div>
 		<form id='CReQuestion'>
 		<input type='text' id='Title' name='Title' th:value="'[Re] ' + ${CQuestion.Title}">
+		<input type='hidden' name='CQNum' th:value="${CQuestion.CQNum}">
 		<input type='hidden' name='CQNum' th:value="${CQuestion.CQNum}">
 		<textarea id='CReQuestion_Contents' name='Contents'></textarea>
 		
 		<button type='button' id='reupload'>답글 작성</button>
 		</form>
 	</div>
-</p>
+</span>
 
 <script src='/js/Nav.js'></script>
 <script src='/js/CReQuestionAdd.js'></script>

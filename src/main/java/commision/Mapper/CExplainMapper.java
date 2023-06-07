@@ -21,4 +21,5 @@ public interface CExplainMapper
 	public List<String> GetTags(int CNum);
 	public List<Map<String, Object>> PermitZeroCExplain();
 	public List<Map<String, Object>> PermitTwoCExplain();
+	public List<Map<String, Object>> MyPageCExplain(String PainterTag);
 }

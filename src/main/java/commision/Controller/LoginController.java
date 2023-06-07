@@ -122,7 +122,13 @@ public class LoginController
 	@GetMapping("/join3")
 	public String GetJoin3(Model m, HttpServletRequest request)
 	{
-		m.addAttribute("CUser", us.GetUserEmail((String)request.getSession().getAttribute("email")));
+		CUser user = us.GetUserEmail( (String)request.getSession().getAttribute("email") );
+		System.out.println(user.getUserBackgroundPic());
+		System.out.println(user.getUserProfilePic());
+		System.out.println(user.getUserEmail());
+		System.out.println(user.getUserNick());
+		m.addAttribute("CUser", user);
+		
 		return "thymeleaf/User/JoinForm3";
 	}
 	
@@ -238,6 +244,11 @@ public class LoginController
 		
 		m.addAttribute("deny", denypageinfo);
 		m.addAttribute("denypages", ps.pages(denypageinfo));
+		
+		PageInfo <Map<String,Object>> MyCExplainpageinfo = new PageInfo<>(cs.MyPageCExplain((String)request.getSession().getAttribute("tag")));
+		
+		m.addAttribute("MyCExplain", MyCExplainpageinfo);
+		m.addAttribute("MyCExplainpages", ps.pages(MyCExplainpageinfo));
 		
 		return "thymeleaf/User/MyPage";
 	}

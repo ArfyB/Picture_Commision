@@ -18,4 +18,5 @@ public interface CQuestionMapper
 	public List<Map<String, Object>> AllCQuestion();
 	public List<Map<String, Object>> AllCReQuestion();
 	public List<Map<String, Object>> AllData();
+	public List<CReQuestion> HomePageCQuestion();
 }

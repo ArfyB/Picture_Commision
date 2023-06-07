@@ -131,4 +131,9 @@ public class CExplainService
 	{
 		return cm.GetTags(CNum);
 	}
+	
+	public List<Map<String, Object>> MyPageCExplain(String PainterTag)
+	{
+		return cm.MyPageCExplain(PainterTag);
+	}
 }

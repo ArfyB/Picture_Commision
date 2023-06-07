@@ -20,7 +20,7 @@
 			<div class='sub_title'>
 			 프로필 이미지
 			</div>
-			<input type='file' name='files' id='ProfilePic' th:onchange='readImg( this, "ProfileImage", "/pics/"+[[${CUser.UserProfilePic}]] );'>
+			<input type='file' name='files' id='ProfilePic' th:onchange='readImg( this, "ProfileImage", "/pics/" + [[${CUser.UserProfilePic}]] );'>
 			<label for='ProfilePic'>
 			<img id='ProfileImage' th:src="@{'/pics/' + ${CUser.UserProfilePic} }" width='100px'>
 			</label>

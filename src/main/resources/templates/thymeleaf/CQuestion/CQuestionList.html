@@ -10,14 +10,10 @@
 <div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
 <body>
 [[${AllData}]]
-<hr>
 
 <tr th:each='CQuestion : ${AllData.list}'>
 <hr>
-[[${CQuestion}]]
-<hr>
 [[${CQuestion.CQNum}]]
-[[${CQuestion.CRQNum}]]
 <span th:if="@{ ${CQuestion.CRQNum == 0} }">
 <a th:href="@{/cquestion/cquestion(CQNum=${CQuestion.CQNum})}"><td th:text="${CQuestion.Title}"></td></a>
 </span>
@@ -26,10 +22,11 @@
 <a th:href="@{/cquestion/crequestion(CRQNum=${CQuestion.CRQNum})}"><td th:text="${CQuestion.Title}"></td></a>
 </span>
 
+<span>[[${CQuestion.AuthorNick}]]</span>
 <br>
-[[${CQuestion.Title}]]
 </tr>
 <button type='button' id='add'>질문작성</button>
 <script src='/js/CQuestionList.js'></script>
+<script src='/js/Nav.js'></script>
 </body>
 </html>

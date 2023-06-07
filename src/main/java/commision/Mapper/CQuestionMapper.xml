@@ -72,6 +72,14 @@
 		ORDER BY CQNum desc, CRQNum desc
         </select>
         
-        
+        <select id='HomePageCQuestion'
+        resultType='commision.Vo.CReQuestion'>
+        SELECT * FROM (
+    	SELECT CQNum, Title, Recdate, Author, Authornick, NULL AS CRQNum FROM CQuestion
+    	UNION ALL
+    	SELECT CQNum, Title, Recdate, Author, Authornick, CRQNum FROM CREQuestion
+    	ORDER BY CQNum DESC, CRQNum DESC
+		) WHERE <![CDATA[ ROWNUM <= 5 ]]>
+        </select>
         
 </mapper>

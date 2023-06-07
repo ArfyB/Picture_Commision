@@ -38,4 +38,9 @@
         SELECT CNoticeNum, Title, RecDate, Author, AuthorNick, Hits FROM CNotice order by CNoticeNum DESC
         </select>
         
+        <select id = 'HomePageCNotice'
+        resultType='commision.Vo.CNotice'>
+        SELECT CNoticeNum, Title, RecDate, Author, AuthorNick, Hits FROM CNotice WHERE <![CDATA[ ROWNUM <= 5 ]]> ORDER BY CNoticeNum DESC
+        </select>
+        
 </mapper>

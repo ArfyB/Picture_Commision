@@ -86,4 +86,9 @@ public class CQuestionService
 	{
 		return cqm.AllData();
 	}
+	
+	public List<CReQuestion> HomePageCQuestion()
+	{
+		return cqm.HomePageCQuestion();
+	}
 }

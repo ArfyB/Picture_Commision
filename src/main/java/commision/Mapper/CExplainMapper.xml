@@ -108,4 +108,10 @@
         SELECT CTag FROM CTags WHERE CNum = #{CNum}
         </select>
         
+        <select id = 'MyPageCExplain'
+        parameterType='String'
+        resultType='commision.Vo.CExplain'>
+        SELECT CNum, Preview, Title, Permit	 FROM CExplain WHERE PainterTag = #{PainterTag}
+        </select>
+        
 </mapper>

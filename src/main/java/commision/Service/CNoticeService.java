@@ -49,4 +49,9 @@ public class CNoticeService
 	    
 		return cnm.AddCNotice(cn) > 0;
 	}
+	
+	public List<CNotice> HomePageCNotice()
+	{
+		return cnm.HomePageCNotice();
+	}
 }

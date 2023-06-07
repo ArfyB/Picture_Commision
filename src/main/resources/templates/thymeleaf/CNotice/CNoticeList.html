@@ -11,7 +11,7 @@
 <body>
 [[${pageinfo}]]
 <hr>
-<a th:if="${session.role=='ADMIN'}">
+<a th:if="${session.role=='ROLE_ADMIN'}">
 <button type='button' id='add'>공지작성</button>
 </a> 
 <tr th:each="CNotice : ${pageinfo.list}">
@@ -25,7 +25,6 @@
 </tr>
 
 <hr>
-<button type='button' id='add'>공지작성</button>
 
 <script src='/js/CNoticeList.js'></script>
 <script src='/js/Nav.js'></script>

@@ -11,8 +11,7 @@
 <div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
 
 <button type='button' id='CExplain'>CExplain</button>
-<button type='button' id='CNotice'>CNotice</button>
-<button type='button' id='CQuestion'>CQuestion</button>
+
 
 <div class = 'back_'>
 	<!-- 화면 넘어가면서 추천해줄 화면 -->
@@ -26,6 +25,7 @@
 	<!-- th:each로 15개를 반복문으로 돌리면 될것 -->
 	<div class='grid-back'>
 		<div class = 'grid1'>
+		
 		<tr th:each='CExplain : ${CExplain}'>
 			<a th:href='@{/cexplain/cexplain(CNum = ${CExplain.CNum} )}'>
 				<div class = 'grid-item'>
@@ -37,24 +37,45 @@
 				</div>
 			</a>
 		</tr>
-		<!-- 
-			<div class = 'grid-item'>2</div>
-			<div class = 'grid-item'>3</div>
-			<div class = 'grid-item'>4</div>
-			<div class = 'grid-item'>5</div>
-			<div class = 'grid-item'>6</div>
-			<div class = 'grid-item'>7</div>
-			<div class = 'grid-item'>8</div>
-			<div class = 'grid-item'>9</div>
-			<div class = 'grid-item'>10</div>
-			<div class = 'grid-item'>11</div>
-			<div class = 'grid-item'>12</div>
-			<div class = 'grid-item'>13</div>
-			<div class = 'grid-item'>14</div>
-			<div class = 'grid-item'>15</div>
-			<div class = 'grid-item'>16</div>
-		-->
 		</div>
+	</div>
+	
+	<hr>
+	<div class = notice>
+	<button type='button' id='CNotice'>CNotice</button>
+	<br>
+	<tr th:each = 'CNotice : ${CNotice}'>
+		<span th:text = '${CNotice.CNoticeNum}'></span>
+		<a th:href = '@{/cnotice/cnotice(CNoticeNum = ${CNotice.CNoticeNum} )}'>
+		<span th:text = '${CNotice.Title}'></span>
+		</a>
+		<span th:text = '${CNotice.RecDate}'></span>
+		<span th:text = '${CNotice.AuthorNick}'></span>
+		<span th:text = '${CNotice.Hits}'></span>
+		<br>
+	</tr>
+	
+	</div>
+	<hr>
+	
+	<div class = question>
+	<button type='button' id='CQuestion'>CQuestion</button>
+	<tr th:each = 'CQuestion : ${CQuestion}'>
+		<span th:text = '${CQuestion.CQNum}'></span>
+		
+		<span th:if="@{ ${CQuestion.CRQNum == 0} }">
+		<a th:href="@{/cquestion/cquestion(CQNum=${CQuestion.CQNum})}"><td th:text="${CQuestion.Title}"></td></a>
+		</span>
+
+		<span th:if="@{ !${CQuestion.CRQNum == 0} }">
+		<a th:href="@{/cquestion/crequestion(CRQNum=${CQuestion.CRQNum})}"><td th:text="${CQuestion.Title}"></td></a>
+		</span>
+		
+		<span th:text = '${CQuestion.RecDate}'></span>
+		<span th:text = '${CQuestion.AuthorNick}'></span>
+		<br>
+	</tr>
+	
 	</div>
 	
 </div>

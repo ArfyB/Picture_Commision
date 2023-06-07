@@ -10,6 +10,7 @@
 </head>
 <body>
 
+
 <div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
 
 [[${CUser}]]
@@ -26,7 +27,29 @@
 <!-- 자신의 설명 -->
 <span th:text="${CUser.UserExplain}"></span>
 
+<hr>
+내 커미션 게시글
+<br>
+<span th:each='CExplain : ${MyCExplain.list}'>
+	<span th:text = '${CExplain.CNum}'></span>
+	
+	
+	<a th:href="@{/cexplain/cexplain(CNum=${CExplain.CNum})}">
+	<span th:text = '${CExplain.Title}'></span>
+	<img th:src="@{'/pics/' + ${CExplain.Preview} }" width='50px'>
+	</a>
+	
+	<span th:if = '@{${CExplain.Permit} == 0}'>승인 대기중</span>
+	<span th:if = '@{${CExplain.Permit} == 1}'>승인 완료</span>
+	<span th:if = '@{${CExplain.Permit} == 2}'>승인 거부</span>
+<br>
+</span>
+
 <span th:if="${session.role == 'ROLE_ADMIN'}">
+<br>
+<button type='button' id='update'>수정</button>
+
+<hr>
 
 <br>
 승인목록
@@ -38,7 +61,7 @@
 		<a th:href="@{/cexplain/cexplain(CNum=${Permit.CNum})}" th:text='${Permit.Title}'></a>
 	</div>
 </span>
-</span>
+
 
 <br>
 보류/거부 목록
@@ -52,8 +75,6 @@
 </span>
 </span>
 
-
-<button type='button' id='update'>수정</button>
 
 <script src="/js/Nav.js"></script>
 <script src='/js/MyPage.js'></script>
