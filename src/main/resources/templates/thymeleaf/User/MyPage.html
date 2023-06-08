@@ -26,7 +26,7 @@
 <span th:text="${'@' + CUser.UserTag}"></span>
 <!-- 자신의 설명 -->
 <span th:text="${CUser.UserExplain}"></span>
-
+<button type='button' id='update'>수정</button>
 <hr>
 내 커미션 게시글
 <br>
@@ -46,35 +46,61 @@
 </span>
 <hr>
 내가 신청한 목록
-[[${MyOrder.list}]]
+<br>
+<span th:each='MyOrder : ${MyOrder}'>
+	<span th:text = "${MyOrder.CNum}+' | '"></span>
+	
+	<a th:href="@{/cexplain/orderdata(ACNum=${MyOrder.ACNum})}">
+	<span th:text = "${MyOrder.Title}"></span>
+	</a>
+	
+	<span th:text = "' | ' + ${MyOrder.Painter}+' | '"></span>
+	<span th:text = "'@'+${MyOrder.PainterTag}"></span>
+	
+	<span th:if='@{ ${MyOrder.Permit} == 0}'>승인 대기중</span>
+	<span th:if='@{ ${MyOrder.Permit} == 1}'>수락!</span>
+	<span th:if='@{ ${MyOrder.Permit} == 2}'>거부</span>
+	<span th:if='@{ ${MyOrder.Permit} == 3}'>작품 전달완료</span>
+</span>
 <hr>
 신청받은 목록
-[[${TakeOrder.list}]]
+<br>
+<span th:each='TakeOrder : ${TakeOrder}'>
+	<span th:text = "${TakeOrder.CNum}+' | '"></span>
+	
+	<a th:href="@{/cexplain/orderdata(ACNum=${TakeOrder.ACNum})}">
+	<span th:text = "${TakeOrder.Title}"></span>
+	</a>
+	
+	<span th:text = "' | ' + ${TakeOrder.Author}+' | '"></span>
+	<span th:text = "'@'+${TakeOrder.AuthorTag}"></span>
+	
+	<span th:if='@{ ${TakeOrder.Permit} == 0}'>승인 대기중</span>
+	<span th:if='@{ ${TakeOrder.Permit} == 1}'>수락!</span>
+	<span th:if='@{ ${TakeOrder.Permit} == 2}'>거부</span>
+	<span th:if='@{ ${TakeOrder.Permit} == 3}'>작품 전달완료</span>
+</span>
 <hr>
 
 <span th:if="${session.role == 'ROLE_ADMIN'}">
-<br>
-<button type='button' id='update'>수정</button>
-
-<hr>
-
-<br>
 승인목록
 <br>
 
-<span th:each='Permit : ${permit.list}'>
+<span th:each='Permit : ${permit}'>
 	<div>
 		<span th:text = '${Permit.CNum}'></span>
 		<a th:href="@{/cexplain/cexplain(CNum=${Permit.CNum})}" th:text='${Permit.Title}'></a>
 	</div>
 </span>
+<hr>
 
 
-<br>
+
+
 보류/거부 목록
 <br>
 
-<span th:each='Deny : ${deny.list}'>
+<span th:each='Deny : ${deny}'>
 	<div>
 		<span th:text = '${Deny.CNum}'></span>
 		<a th:href="@{/cexplain/cexplain(CNum=${Deny.CNum})}" th:text='${Deny.Title}'></a>

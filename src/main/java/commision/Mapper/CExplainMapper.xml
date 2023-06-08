@@ -88,13 +88,23 @@
         </select>
         
         <select id = 'PermitZeroCExplain'
-        resultMap = 'CExplainResultMap'>
-        SELECT CNum, Painter, PainterTag, Title, Introduce_C, Contents_C, Preview FROM CExplain WHERE permit = 0 order by CNum DESC
+        resultType = 'commision.Vo.CExplain'>
+        SELECT CNum, Painter, PainterTag, Title, Preview FROM CExplain WHERE permit = 0 order by CNum DESC
+        </select>
+        
+        <select id = 'PermitZeroCExplain_MyPage'
+        resultType = 'commision.Vo.CExplain'>
+        SELECT * FROM (SELECT CNum, Painter, PainterTag, Title, Preview FROM CExplain WHERE permit = 0 order by CNum DESC) WHERE <![CDATA[ ROWNUM <=5 ]]>
         </select>
         
         <select id = 'PermitTwoCExplain'
-        resultMap = 'CExplainResultMap'>
-        SELECT CNum, Painter, PainterTag, Title, Introduce_C, Contents_C, Preview FROM CExplain WHERE permit = 2 order by CNum DESC
+        resultType = 'commision.Vo.CExplain'>
+        SELECT CNum, Painter, PainterTag, Title, Preview FROM CExplain WHERE permit = 2 order by CNum DESC
+        </select>
+        
+        <select id = 'PermitTwoCExplain_MyPage'
+        resultType = 'commision.Vo.CExplain'>
+        SELECT * FROM (SELECT CNum, Painter, PainterTag, Title, Preview FROM CExplain WHERE permit = 2 order by CNum DESC) WHERE <![CDATA[ ROWNUM <= 5]]>
         </select>
         
         <update id = 'PermitCExplain'
@@ -141,21 +151,40 @@
 		)
         </insert>
         
-        <select id = 'MyOrder'
+        <select id = 'MyOrder_MyPage'
         parameterType='String'
         resultType='commision.Vo.ApplyCExplain'>
-        SELECT ACNum, CNum, Title, Permit, Painter, PainterTag FROM ApplyCExplain WHERE  AuthorTag = #{AuthorTag}
+        SELECT * FROM 
+        (SELECT ACNum, CNum, Title, Permit, Painter, PainterTag FROM ApplyCExplain WHERE  AuthorTag = #{AuthorTag})
+        WHERE <![CDATA[ ROWNUM <=5 ]]>
         </select>
         
-        <select id = 'TakeOrder'
+        <select id = 'TakeOrder_MyPage'
         parameterType='String'
         resultType='commision.Vo.ApplyCExplain'>
-        SELECT ACNum, CNum, Title, Permit, Author, AuthorTag FROM ApplyCExplain WHERE  PainterTag = #{PainterTag}
+        SELECT * FROM 
+        (SELECT ACNum, CNum, Title, Permit, Author, AuthorTag FROM ApplyCExplain WHERE  PainterTag = #{PainterTag})
+        WHERE <![CDATA[ ROWNUM <=5 ]]>
         </select>
         
         <select id = 'OrderData'
         parameterType='Integer'
         resultMap='ApplyCExplainResultMap'>
-        SELECT ACNum, CNum, Title, Author, AuthorTag, Painter, PainterTag, Permit, Contents_C WHERE ACNum = #{ACNum} 
+        SELECT ACNum, CNum, Title, Author, AuthorTag, Painter, PainterTag, Permit, Contents_C FROM ApplyCExplain WHERE ACNum = #{ACNum} 
         </select>
+        
+        <update id = 'PermitOrder'
+        parameterType='Integer'>
+        UPDATE ApplyCExplain SET Permit = 1 WHERE ACNum = #{ACNum}
+        </update>
+        
+        <update id = 'PermitOrder2'
+        parameterType='Integer'>
+        UPDATE CExplain SET Orders = Orders + 1 WHERE CNUM = #{CNum}
+        </update>
+        
+        <update id = 'DenyOrder'
+        parameterType='Integer'>
+        UPDATE ApplyCExplain SET Permit = 2 WHERE ACNum = #{ACNum}
+        </update>
 </mapper>

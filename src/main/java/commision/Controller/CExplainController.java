@@ -1,5 +1,7 @@
 package commision.Controller;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -130,6 +132,56 @@ public class CExplainController
 	{
 		Map<String, Object> map = new HashMap<>();
 		map.put("deny", cs.DenyCExplain(cnum));
+		return map;
+	}
+	
+	@GetMapping("/myorderlist")
+	public String myorderlist()
+	{
+		return "thymeleaf/CExplain/MyOrderList";
+	}
+	
+	@GetMapping("/takeorderlist")
+	public String takeorderlist()
+	{
+		return "thymeleaf/CExplain/TakeOrderList";
+	}
+	
+	@GetMapping("/orderdata")
+	public String myorderpage(@RequestParam("ACNum")int ACNum, Model m)
+	{
+		m.addAttribute("OrderData", cs.OrderData(ACNum));
+		return "thymeleaf/CExplain/OrderData";
+	}
+	
+	@PostMapping("/apply_order")
+	@ResponseBody
+	public Map<String, Object> ApplyData(@RequestParam("acnum")int acnum)
+	{
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("permit", cs.PermitOrder(acnum));
+		
+		return map;
+	}
+	
+	@PostMapping("/apply_order2")
+	@ResponseBody
+	public Map<String, Object> ApplyData2(@RequestParam("cnum")int cnum)
+	{
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("permit", cs.PermitOrder2(cnum));
+		
+		return map;
+	}
+	
+	@PostMapping("/deny_order")
+	@ResponseBody
+	public Map<String, Object> NopeCExplain(@RequestParam("acnum")int acnum)
+	{
+		Map<String, Object> map = new HashMap<>();
+		map.put("deny", cs.DenyOrder(acnum));
 		return map;
 	}
 }

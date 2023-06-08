@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel='stylesheet' href='/css/Nav.css'>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
+[[${OrderData}]]
+<hr>
+<span th:text="'주문번호 ' + ${OrderData.ACNum}"></span>
+<br>
+<a th:href='@{/cexplain/cexplain(CNum=${OrderData.CNum})}'>
+<span th:text="'커미션 번호 ' + ${OrderData.CNum}"></span>
+</a>
+<br>
+<span th:text="'커미션주 ' + ${OrderData.Painter}"></span>
+<span th:text="'@' + ${OrderData.PainterTag}"></span>
+<br>
+<span th:text="'신청인 ' + ${OrderData.Author}"></span>
+<span th:text="'@' + ${OrderData.AuthorTag}"></span>
+<br>
+<span th:text="'제목' + ${OrderData.Title}"></span>
+<br>
+<span th:utext="${OrderData.Contents}"></span>
+
+<span th:if='@{ ${OrderData.Permit} == 0}'>승인 대기중</span>
+<span th:if='@{ ${OrderData.Permit} == 1}'>수락!</span>
+<span th:if='@{ ${OrderData.Permit} == 2}'>거부</span>
+<span th:if='@{ ${OrderData.Permit} == 3}'>작품 전달완료</span>
+
+<span th:if='@{ ${session.tag} == ${OrderData.PainterTag} }'>
+<span th:data-value='${OrderData.ACNum}' id='acnum'></span>
+<span th:data-value='${OrderData.CNum}' id='cnum'></span>
+<button type='button' id='permit'>수락</button>
+<button type='button' id='deny'>거부</button>
+</span>
+<script src='/js/OrderData.js'></script>
+<script src='/js/Nav.js'></script>
+</body>
+</html>

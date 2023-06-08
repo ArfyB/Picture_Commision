@@ -121,9 +121,19 @@ public class CExplainService
 		return cm.PermitZeroCExplain();
 	}
 	
+	public List<CExplain> PermitZeroCExplain_MyPage()
+	{
+		return cm.PermitZeroCExplain_MyPage();
+	}
+	
 	public List<Map<String, Object>> PermitTwoCExplain()
 	{
 		return cm.PermitTwoCExplain();
+	}
+	
+	public List<CExplain> PermitTwoCExplain_MyPage()
+	{
+		return cm.PermitTwoCExplain_MyPage();
 	}
 	
 	public List<String> GetTags(int CNum)
@@ -152,18 +162,33 @@ public class CExplainService
 		return 0 < cm.DoOrder(apc);
 	}
 	
-	public List<Map<String, Object>> MyOrder(String AuthorTag)
+	public List<ApplyCExplain> MyOrder_MyPage(String AuthorTag)
 	{
-		return cm.MyOrder(AuthorTag);
+		return cm.MyOrder_MyPage(AuthorTag);
 	}
 	
-	public List<Map<String, Object>> TakeOrder(String PainterTag)
+	public List<ApplyCExplain> TakeOrder_MyPage(String PainterTag)
 	{
-		return cm.TakeOrder(PainterTag);
+		return cm.TakeOrder_MyPage(PainterTag);
 	}
 	
-	public ApplyCExplain OrderData()
+	public ApplyCExplain OrderData(int ACNum)
 	{
-		return cm.OrderData();
+		return cm.OrderData(ACNum);
+	}
+	
+	public boolean PermitOrder(int acnum)
+	{
+		return 0 < cm.PermitOrder(acnum);
+	}
+	
+	public boolean PermitOrder2(int cnum)
+	{
+		return 0 < cm.PermitOrder2(cnum);
+	}
+	
+	public boolean DenyOrder(int acnum)
+	{
+		return 0 < cm.DenyOrder(acnum);
 	}
 }

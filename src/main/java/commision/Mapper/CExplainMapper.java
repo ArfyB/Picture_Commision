@@ -22,10 +22,15 @@ public interface CExplainMapper
 	public List<String> GetTags(int CNum);
 	public List<Map<String, Object>> PermitZeroCExplain();
 	public List<Map<String, Object>> PermitTwoCExplain();
+	public List<CExplain> PermitZeroCExplain_MyPage();
+	public List<CExplain> PermitTwoCExplain_MyPage();
 	public List<Map<String, Object>> MyPageCExplain(String PainterTag);
 	public ApplyCExplain DataForOrder(int CNum);
 	public int DoOrder(ApplyCExplain apc);
-	public List<Map<String, Object>> MyOrder(String AuthorTag);
-	public List<Map<String, Object>> TakeOrder(String PainterTag);
-	public ApplyCExplain OrderData();
+	public List<ApplyCExplain> MyOrder_MyPage(String AuthorTag);
+	public List<ApplyCExplain> TakeOrder_MyPage(String PainterTag);
+	public ApplyCExplain OrderData(int ACNum);
+	public int PermitOrder(int ACNum);
+	public int PermitOrder2(int CNum);
+	public int DenyOrder(int ACNum);
 }

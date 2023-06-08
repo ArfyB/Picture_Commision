@@ -234,31 +234,18 @@ public class LoginController
 		Map<String, Object> map = new HashMap<>();
 		m.addAttribute("CUser", us.GetUser((String)request.getSession().getAttribute("tag")));
 		
-		PageHelper.startPage(page,20);
-		PageInfo <Map<String,Object>> permitpageinfo = new PageInfo<>(cs.PermitZeroCExplain());
-		
-		m.addAttribute("permit", permitpageinfo);
-		m.addAttribute("permitpages", ps.pages(permitpageinfo));
-		
-		PageInfo <Map<String,Object>> denypageinfo = new PageInfo<>(cs.PermitTwoCExplain());
-		
-		m.addAttribute("deny", denypageinfo);
-		m.addAttribute("denypages", ps.pages(denypageinfo));
+		PageHelper.startPage(page,5);
 		
 		PageInfo <Map<String,Object>> MyCExplainpageinfo = new PageInfo<>(cs.MyPageCExplain((String)request.getSession().getAttribute("tag")));
 		
 		m.addAttribute("MyCExplain", MyCExplainpageinfo);
 		m.addAttribute("MyCExplainpages", ps.pages(MyCExplainpageinfo));
+
 		
-		PageInfo <Map<String,Object>> MyOrderpageinfo = new PageInfo<>(cs.MyOrder((String)request.getSession().getAttribute("tag")));
-		
-		m.addAttribute("MyOrder", MyOrderpageinfo);
-		m.addAttribute("MyOrderpages", ps.pages(MyOrderpageinfo));
-		
-		PageInfo <Map<String,Object>> TakeOrderpageinfo = new PageInfo<>(cs.TakeOrder((String)request.getSession().getAttribute("tag")));
-		
-		m.addAttribute("TakeOrder", TakeOrderpageinfo);
-		m.addAttribute("TakeOrderpages", ps.pages(TakeOrderpageinfo));
+		m.addAttribute("permit", cs.PermitZeroCExplain_MyPage());
+		m.addAttribute("deny", cs.PermitTwoCExplain_MyPage());
+		m.addAttribute("MyOrder", cs.MyOrder_MyPage((String)request.getSession().getAttribute("tag")));
+		m.addAttribute("TakeOrder", cs.TakeOrder_MyPage((String)request.getSession().getAttribute("tag")));
 		
 		return "thymeleaf/User/MyPage";
 	}
