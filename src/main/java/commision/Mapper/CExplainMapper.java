@@ -31,6 +31,7 @@ public interface CExplainMapper
 	public List<ApplyCExplain> TakeOrder_MyPage(String PainterTag);
 	public ApplyCExplain OrderData(int ACNum);
 	public int PermitOrder(int ACNum);
-	public int PermitOrder2(int CNum);
+	public int UpdateOrder(int CNum);
 	public int DenyOrder(int ACNum);
+	public int FinishOrder(int ACNum);
 }

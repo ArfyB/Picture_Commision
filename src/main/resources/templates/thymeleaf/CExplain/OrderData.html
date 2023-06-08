@@ -31,12 +31,20 @@
 <span th:if='@{ ${OrderData.Permit} == 2}'>거부</span>
 <span th:if='@{ ${OrderData.Permit} == 3}'>작품 전달완료</span>
 
-<span th:if='@{ ${session.tag} == ${OrderData.PainterTag} }'>
+<span th:if='@{ ${session.tag} == ${OrderData.PainterTag} and ${OrderData.Permit} == 0}'>
 <span th:data-value='${OrderData.ACNum}' id='acnum'></span>
 <span th:data-value='${OrderData.CNum}' id='cnum'></span>
 <button type='button' id='permit'>수락</button>
 <button type='button' id='deny'>거부</button>
 </span>
+
+<span th:if='@{ ${session.tag} == ${OrderData.PainterTag} and ${OrderData.Permit} == 1}'>
+<span th:data-value='${OrderData.ACNum}' id='acnum'></span>
+<span th:data-value='${OrderData.CNum}' id='cnum'></span>
+<button type='button' id='finish'>신청자에게 전달 완료</button>
+<button type='button' id='deny'>취소 및 거부</button>
+</span>
+
 <script src='/js/OrderData.js'></script>
 <script src='/js/Nav.js'></script>
 </body>

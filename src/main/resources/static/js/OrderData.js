@@ -1,22 +1,15 @@
 $(function()
 {
+	
+	var acnum = ($('#acnum').data('value'));
+	var cnum = ($('#cnum').data('value'));
+		
 	$('#permit').on('click', function(event)
 	{
-		var acnum = ($('#acnum').data('value'));
-		var cnum = ($('#cnum').data('value'));
-		
 		$.ajax({
 	      url: '/cexplain/apply_order',
 	      type: 'post',
-	      data: {'acnum' : acnum},
-	      cache: false,
-	      success: function(response) {
-		alert(response.permit ? '승인' : '오류');
-		
-		$.ajax({
-	      url: '/cexplain/apply_order2',
-	      type: 'post',
-	      data: {'cnum' : cnum},
+	      data: {'acnum' : acnum, 'cnum' : cnum},
 	      cache: false,
 	      success: function(response) {
 		alert(response.permit ? '승인' : '오류');
@@ -26,18 +19,10 @@ $(function()
 		
 	      }
 	    });
-	    
-	      },
-	      error: function(e) {
-		
-	      }
-	    });
 	})
 	
 	$('#deny').on('click', function(event)
 	{
-		var acnum = ($('#pd').data('value'));
-		
 		$.ajax({
 	      url: '/cexplain/deny_order',
 	      type: 'post',
@@ -45,6 +30,23 @@ $(function()
 	      cache: false,
 	      success: function(response) {
 		alert(response.deny ? '거부' : '오류');
+	      },
+	      error: function(e) {
+		
+	      }
+	    });
+	})
+	
+	$('#finish').on('click', function(event)
+	{
+		$.ajax({
+	      url: '/cexplain/finish_order',
+	      type: 'post',
+	      data: {'acnum' : acnum, 'cnum' : cnum},
+	      cache: false,
+	      success: function(response) {
+		alert(response.finish ? '완료' : '오류');
+		location.href='/cexplain/orderdata?ACNum='+acnum;
 	      },
 	      error: function(e) {
 		

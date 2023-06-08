@@ -156,22 +156,12 @@ public class CExplainController
 	
 	@PostMapping("/apply_order")
 	@ResponseBody
-	public Map<String, Object> ApplyData(@RequestParam("acnum")int acnum)
+	public Map<String, Object> ApplyData(@RequestParam("acnum")int acnum, @RequestParam("cnum")int cnum)
 	{
 		Map<String, Object> map = new HashMap<>();
 		
 		map.put("permit", cs.PermitOrder(acnum));
-		
-		return map;
-	}
-	
-	@PostMapping("/apply_order2")
-	@ResponseBody
-	public Map<String, Object> ApplyData2(@RequestParam("cnum")int cnum)
-	{
-		Map<String, Object> map = new HashMap<>();
-		
-		map.put("permit", cs.PermitOrder2(cnum));
+		cs.UpdateOrder(cnum);
 		
 		return map;
 	}
@@ -182,6 +172,18 @@ public class CExplainController
 	{
 		Map<String, Object> map = new HashMap<>();
 		map.put("deny", cs.DenyOrder(acnum));
+		return map;
+	}
+	
+	@PostMapping("/finish_order")
+	@ResponseBody
+	public Map<String, Object> FinishData(@RequestParam("acnum")int acnum, @RequestParam("cnum")int cnum)
+	{
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("finish", cs.FinishOrder(acnum));
+		cs.UpdateOrder(cnum);
+		
 		return map;
 	}
 }

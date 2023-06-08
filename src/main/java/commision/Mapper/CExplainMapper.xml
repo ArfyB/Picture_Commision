@@ -178,13 +178,18 @@
         UPDATE ApplyCExplain SET Permit = 1 WHERE ACNum = #{ACNum}
         </update>
         
-        <update id = 'PermitOrder2'
+        <update id = 'UpdateOrder'
         parameterType='Integer'>
-        UPDATE CExplain SET Orders = Orders + 1 WHERE CNUM = #{CNum}
+        UPDATE CExplain SET Orders = (SELECT SUM(CASE WHEN Permit = 1 THEN 1 ELSE 0 END) FROM ApplyCExplain WHERE CNUM = #{CNum}) WHERE CNUM = #{CNnm}
         </update>
         
         <update id = 'DenyOrder'
         parameterType='Integer'>
         UPDATE ApplyCExplain SET Permit = 2 WHERE ACNum = #{ACNum}
+        </update>
+        
+        <update id = 'FinishOrder'
+        parameterType='Integer'>
+        UPDATE ApplyCExplain SET Permit = 3 WHERE ACNum = #{ACNum}
         </update>
 </mapper>

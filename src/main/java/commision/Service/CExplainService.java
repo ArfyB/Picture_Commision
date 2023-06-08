@@ -182,13 +182,18 @@ public class CExplainService
 		return 0 < cm.PermitOrder(acnum);
 	}
 	
-	public boolean PermitOrder2(int cnum)
+	public boolean UpdateOrder(int cnum)
 	{
-		return 0 < cm.PermitOrder2(cnum);
+		return 0 < cm.UpdateOrder(cnum);
 	}
 	
 	public boolean DenyOrder(int acnum)
 	{
 		return 0 < cm.DenyOrder(acnum);
+	}
+	
+	public boolean FinishOrder(int acnum)
+	{
+		return 0 < cm.FinishOrder(acnum);
 	}
 }
