@@ -8,8 +8,6 @@
 </head>
 <body>
 <div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
-[[${pageinfo}]]
-<hr>
 <button type='button' id='add'>추가</button>
 
 <tr th:each="CExplain : ${cexplain.list}">
@@ -20,6 +18,11 @@
 <a th:href="@{/cexplain/cexplain(CNum=${CExplain.CNum})}"><td th:text="${CExplain.Title}"></td></a>
 [[${CExplain.Painter}]]
 <span th:text="@{'@'+ ${CExplain.PainterTag}}"></span>
+
+<span th:if = '@{${CExplain.Permit} == 0}'>승인 대기중</span>
+	<span th:if = '@{${CExplain.Permit} == 1}'>승인 완료</span>
+	<span th:if = '@{${CExplain.Permit} == 2}'>승인 거부</span>
+	
 </div>
 </tr>
 

@@ -101,6 +101,11 @@ public class CExplainService
 		return cm.AllCExplain();
 	}
 	
+	public List<Map<String, Object>> MyCExplain(String PainterTag)
+	{
+		return cm.MyCExplain(PainterTag);
+	}
+	
 	public List<CExplain> HomePageCExplain()
 	{
 		return cm.HomePageCExplain();
@@ -170,6 +175,16 @@ public class CExplainService
 	public List<ApplyCExplain> TakeOrder_MyPage(String PainterTag)
 	{
 		return cm.TakeOrder_MyPage(PainterTag);
+	}
+	
+	public List<Map<String, Object>> MyOrder(String AuthorTag)
+	{
+		return cm.MyOrder(AuthorTag);
+	}
+	
+	public List<Map<String, Object>> TakeOrder(String PainterTag)
+	{
+		return cm.TakeOrder(PainterTag);
 	}
 	
 	public ApplyCExplain OrderData(int ACNum)

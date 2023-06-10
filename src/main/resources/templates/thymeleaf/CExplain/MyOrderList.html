@@ -8,23 +8,25 @@
 </head>
 <body>
 <div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
-[[${pageinfo}]]
-<hr>
-<button type='button' id='add'>추가</button>
 
-<tr th:each="CExplain : ${cexplain.list}">
-<div>
-
-[[${CExplain.CNum}]]
-<img th:src="@{'/pics/' + ${CExplain.Preview} }" width='100px'>
-<a th:href="@{/cexplain/cexplain(CNum=${CExplain.CNum})}"><td th:text="${CExplain.Title}"></td></a>
-[[${CExplain.Painter}]]
-<span th:text="@{'@'+ ${CExplain.PainterTag}}"></span>
-</div>
-</tr>
+<span th:each='MyOrder : ${myorder.list}'>
+	<span th:text = "${MyOrder.CNum}+' | '"></span>
+	
+	<a th:href="@{/cexplain/orderdata(ACNum=${MyOrder.ACNum})}">
+	<span th:text = "${MyOrder.Title}"></span>
+	</a>
+	
+	<span th:text = "' | ' + ${MyOrder.Painter}+' | '"></span>
+	<span th:text = "'@'+${MyOrder.PainterTag}"></span>
+	
+	<span th:if='@{ ${MyOrder.Permit} == 0}'>승인 대기중</span>
+	<span th:if='@{ ${MyOrder.Permit} == 1}'>수락!</span>
+	<span th:if='@{ ${MyOrder.Permit} == 2}'>거부</span>
+	<span th:if='@{ ${MyOrder.Permit} == 3}'>작품 전달완료</span>
+	<br>
+</span>
 
 <br>
-
 <a href = '/cexplain/list'>
 <button type='button'>First</button>
 </a>

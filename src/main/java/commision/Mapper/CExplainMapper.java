@@ -16,6 +16,7 @@ public interface CExplainMapper
 	public int AddCTags(CExplain cex);
 	public CExplain GetCExplain(int CNum);
 	public List<Map<String, Object>> AllCExplain();
+	public List<Map<String, Object>> MyCExplain(String PainterTag);
 	public List<CExplain> HomePageCExplain();
 	public int PermitCExplain(int CNum);
 	public int DenyCExplain(int CNum);
@@ -29,6 +30,8 @@ public interface CExplainMapper
 	public int DoOrder(ApplyCExplain apc);
 	public List<ApplyCExplain> MyOrder_MyPage(String AuthorTag);
 	public List<ApplyCExplain> TakeOrder_MyPage(String PainterTag);
+	public List<Map<String, Object>> MyOrder(String AuthorTag);
+	public List<Map<String, Object>> TakeOrder(String PainterTag);
 	public ApplyCExplain OrderData(int ACNum);
 	public int PermitOrder(int ACNum);
 	public int UpdateOrder(int CNum);

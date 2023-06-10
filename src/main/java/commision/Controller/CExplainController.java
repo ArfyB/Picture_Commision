@@ -71,13 +71,25 @@ public class CExplainController
 	@GetMapping("/list")
 	public String list(@RequestParam(value="page", required = false, defaultValue="1")int page, Model m)
 	{
-		PageHelper.startPage(page,25);
+		PageHelper.startPage(page,20);
 		PageInfo <Map<String,Object>> pageinfo = new PageInfo<>(cs.AllCExplain());
 		
-		m.addAttribute("pageinfo", pageinfo);
+		m.addAttribute("cexplain", pageinfo);
 		m.addAttribute("pages", ps.pages(pageinfo));  // 페이지이동
 		
 		return "thymeleaf/CExplain/CExplainList";
+	}
+	
+	@GetMapping("/mycommisionlist")
+	public String mycommisionlist(@RequestParam(value="page", required = false, defaultValue="1")int page, Model m, HttpServletRequest request)
+	{
+		PageHelper.startPage(page,20);
+		PageInfo <Map<String,Object>> pageinfo = new PageInfo<>(cs.MyCExplain((String)request.getSession().getAttribute("tag")));
+		
+		m.addAttribute("cexplain", pageinfo);
+		m.addAttribute("pages", ps.pages(pageinfo));  // 페이지이동
+		
+		return "thymeleaf/CExplain/MyCExplainList";
 	}
 	
 	
@@ -107,7 +119,7 @@ public class CExplainController
 		PageInfo <Map<String,Object>> permitpageinfo = new PageInfo<>(cs.PermitZeroCExplain());
 		
 		m.addAttribute("permit", permitpageinfo);
-		m.addAttribute("permitpages", ps.pages(permitpageinfo));
+		m.addAttribute("pages", ps.pages(permitpageinfo));
 		
 		PageInfo <Map<String,Object>> denypageinfo = new PageInfo<>(cs.PermitTwoCExplain());
 		
@@ -126,6 +138,18 @@ public class CExplainController
 		return map;
 	}
 	
+	@GetMapping("/deny")
+	public String CExplainDeny(@RequestParam(value="page", required = false, defaultValue="1")int page, Model m)
+	{
+		PageHelper.startPage(page,20);
+		PageInfo <Map<String,Object>> denypageinfo = new PageInfo<>(cs.PermitTwoCExplain());
+		
+		m.addAttribute("deny", denypageinfo);
+		m.addAttribute("denypages", ps.pages(denypageinfo));
+		
+		return "thymeleaf/CExplain/PermitCExplain";
+	}
+	
 	@PostMapping("/deny")
 	@ResponseBody
 	public Map<String, Object> DenyData(@RequestParam("cnum")int cnum)
@@ -136,14 +160,25 @@ public class CExplainController
 	}
 	
 	@GetMapping("/myorderlist")
-	public String myorderlist()
+	public String myorderlist(@RequestParam(value="page", required = false, defaultValue="1")int page, Model m, HttpServletRequest request)
 	{
+		PageHelper.startPage(page,20);
+		PageInfo <Map<String,Object>> MyOrder = new PageInfo<>(cs.MyOrder((String)request.getSession().getAttribute("tag")));
+		
+		m.addAttribute("myorder", MyOrder);
+		m.addAttribute("pages", ps.pages(MyOrder));
+		
 		return "thymeleaf/CExplain/MyOrderList";
 	}
 	
 	@GetMapping("/takeorderlist")
-	public String takeorderlist()
+	public String takeorderlist(@RequestParam(value="page", required = false, defaultValue="1")int page, Model m, HttpServletRequest request)
 	{
+		PageHelper.startPage(page,20);
+		PageInfo <Map<String,Object>> TakeOrder = new PageInfo<>(cs.TakeOrder((String)request.getSession().getAttribute("tag")));
+		
+		m.addAttribute("takeorder", TakeOrder);
+		m.addAttribute("pages", ps.pages(TakeOrder));
 		return "thymeleaf/CExplain/TakeOrderList";
 	}
 	

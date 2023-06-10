@@ -74,7 +74,7 @@
         <select id='GetCExplain'
         parameterType = 'Integer'
         resultMap = 'CExplainResultMap'>
-        SELECT CNum, Title, Introduce_C, Contents_C, Painter, PainterTag, Preview, Price, Slot, Permit FROM CExplain WHERE CNum = #{CNum}
+        SELECT CNum, Title, Introduce_C, Contents_C, Painter, PainterTag, Preview, Price, Slot, Permit, Orders FROM CExplain WHERE CNum = #{CNum}
         </select>
         
         <select id='AllCExplain'
@@ -82,9 +82,15 @@
         SELECT CNum, Title, Painter, PainterTag, Preview FROM CExplain WHERE permit = 1 order by CNum DESC
         </select>
         
+        <select id='MyCExplain'
+        parameterType='String'
+        resultType = 'commision.Vo.CExplain'>
+        SELECT CNum, Title, Painter, PainterTag, Preview, Permit FROM CExplain WHERE PainterTag = #{PainterTag} order by CNum DESC
+        </select>
+        
         <select id = 'HomePageCExplain'
         resultType='commision.Vo.CExplain'>
-        SELECT * FROM (SELECT CNum, Title, Painter, PainterTag, Preview FROM CExplain WHERE permit = 1 order by CNum DESC) WHERE <![CDATA[ ROWNUM <= 15 ]]>
+        SELECT * FROM (SELECT CNum, Title, Painter, PainterTag, Preview FROM CExplain WHERE permit = 1 ORDER BY dbms_random.value() ) WHERE <![CDATA[ ROWNUM <= 20 ]]>
         </select>
         
         <select id = 'PermitZeroCExplain'
@@ -165,6 +171,18 @@
         SELECT * FROM 
         (SELECT ACNum, CNum, Title, Permit, Author, AuthorTag FROM ApplyCExplain WHERE  PainterTag = #{PainterTag})
         WHERE <![CDATA[ ROWNUM <=5 ]]>
+        </select>
+        
+        <select id = 'MyOrder'
+        parameterType='String'
+        resultType='commision.Vo.ApplyCExplain'>
+        SELECT ACNum, CNum, Title, Permit, Painter, PainterTag FROM ApplyCExplain WHERE  AuthorTag = #{AuthorTag}
+        </select>
+        
+        <select id = 'TakeOrder'
+        parameterType='String'
+        resultType='commision.Vo.ApplyCExplain'>
+        SELECT ACNum, CNum, Title, Permit, Author, AuthorTag FROM ApplyCExplain WHERE  PainterTag = #{PainterTag}
         </select>
         
         <select id = 'OrderData'

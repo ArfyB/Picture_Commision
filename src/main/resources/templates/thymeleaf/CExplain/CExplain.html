@@ -35,11 +35,8 @@
 <hr>
 가격 : [[${CExplain.Price}]]
 <br>
-잔여 슬롯 : [[${CExplain.Slot}]]
+슬롯 : [[${CExplain.Orders}]] / [[${CExplain.Slot}]]
 <br>
-<span th:if="${session.tag == CExplain.painterTag}">
-현재 신청갯수 : [[${CExplain.Orders}]]
-</span>
 <hr>
 <img th:src="@{ '/pics/' + ${CExplain.Preview} }" width='200px' height='200px'>
 <br>
@@ -53,6 +50,8 @@
 	</span>
 </a>
 
+<span th:if="${session.tag != CExplain.PainterTag}">
+
 <a th:href="@{/cexplain/order(CNum=${CExplain.CNum})}">
 	<div>
 		<span>
@@ -60,6 +59,7 @@
 		</span>
 	</div>
 </a>
+</span>
 
 <script src='/js/CExplain.js'></script>
 <script src='/js/Nav.js'></script>

@@ -61,7 +61,7 @@ public class SimpleSecurityConfig
 
             .formLogin().loginPage("/sec/login")   // 지정된 위치에 로그인 폼이 준비되어야 함
                .loginProcessingUrl("/doLogin")            // 컨트롤러 메소드 불필요, 폼 action과 일치해야 함
-               .failureUrl("/cexplain/list")      // 로그인 실패시 다시 로그인 폼으로
+               .failureUrl("/sec/login")      // 로그인 실패시 다시 로그인 폼으로
                //.failureForwardUrl("/login?error=Y")  //실패시 다른 곳으로 forward
                .defaultSuccessUrl("/sec/loginsuccess", true)
                .usernameParameter("UserEmail")  // 로그인 폼에서 이용자 ID 필드 이름, 디폴트는 username

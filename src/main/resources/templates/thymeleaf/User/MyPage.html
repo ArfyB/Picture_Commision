@@ -13,7 +13,6 @@
 
 <div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
 
-[[${CUser}]]
 <br>
 <!-- 프로필 이미지 -->
 <img th:src="@{'/pics/' + ${CUser.UserProfilePic} }" width='100px'>
@@ -28,7 +27,9 @@
 <span th:text="${CUser.UserExplain}"></span>
 <button type='button' id='update'>수정</button>
 <hr>
+<a href='/cexplain/mycommisionlist'>
 내 커미션 게시글
+</a>
 <br>
 <span th:each='CExplain : ${MyCExplain.list}'>
 	<span th:text = '${CExplain.CNum}'></span>
@@ -45,7 +46,9 @@
 <br>
 </span>
 <hr>
+<a href='/cexplain/myorderlist'>
 내가 신청한 목록
+</a>
 <br>
 <span th:each='MyOrder : ${MyOrder}'>
 	<span th:text = "${MyOrder.CNum}+' | '"></span>
@@ -61,9 +64,12 @@
 	<span th:if='@{ ${MyOrder.Permit} == 1}'>수락!</span>
 	<span th:if='@{ ${MyOrder.Permit} == 2}'>거부</span>
 	<span th:if='@{ ${MyOrder.Permit} == 3}'>작품 전달완료</span>
+	<br>
 </span>
 <hr>
+<a href='/cexplain/takeorderlist'>
 신청받은 목록
+</a>
 <br>
 <span th:each='TakeOrder : ${TakeOrder}'>
 	<span th:text = "${TakeOrder.CNum}+' | '"></span>
@@ -78,7 +84,8 @@
 	<span th:if='@{ ${TakeOrder.Permit} == 0}'>승인 대기중</span>
 	<span th:if='@{ ${TakeOrder.Permit} == 1}'>수락!</span>
 	<span th:if='@{ ${TakeOrder.Permit} == 2}'>거부</span>
-	<span th:if='@{ ${TakeOrder.Permit} == 3}'>작품 전달완료</span>
+	<span th:if='@{ ${TakeOrder.Permit} == 3}'>작품 전달완료</span><a>
+	<br>
 </span>
 <hr>
 

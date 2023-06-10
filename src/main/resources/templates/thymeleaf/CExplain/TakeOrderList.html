@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel='stylesheet' href='/css/Nav.css'>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div th:include="/thymeleaf/Nav/Nav.html :: nav"></div>
+
+[[${takeorder}]]
+<tr th:each="TakeOrder : ${takeorder.list}">
+<div>
+<a th:href="@{/cexplain/orderdata(ACNum=${TakeOrder.ACNum})}"><td th:text="${TakeOrder.Title}"></td></a>
+<span th:text="@{'@'+ ${TakeOrder.PainterTag}}"></span>
+</div>
+</tr>
+
+<br>
+
+<span th:each='TakeOrder : ${takeorder.list}'>
+	<span th:text = "${TakeOrder.CNum}+' | '"></span>
+	
+	<a th:href="@{/cexplain/orderdata(ACNum=${TakeOrder.ACNum})}">
+	<span th:text = "${TakeOrder.Title}"></span>
+	</a>
+	
+	<span th:text = "' | ' + ${TakeOrder.Author}+' | '"></span>
+	<span th:text = "'@'+${TakeOrder.AuthorTag}"></span>
+	
+	<span th:if='@{ ${TakeOrder.Permit} == 0}'>승인 대기중</span>
+	<span th:if='@{ ${TakeOrder.Permit} == 1}'>수락!</span>
+	<span th:if='@{ ${TakeOrder.Permit} == 2}'>거부</span>
+	<span th:if='@{ ${TakeOrder.Permit} == 3}'>작품 전달완료</span>
+	<br>
+</span>
+
+<br>
+
+<a href = '/cexplain/list'>
+<button type='button'>First</button>
+</a>
+ㆍ
+<span th:each="page: ${pages.pages}">
+<a th:href = "@{/cexplain/list(page=${page})}" th:text='${page}'></a>
+</span>
+ㆍ
+<a th:href="@{/cexplain/list(page=${pages.end})}">
+<button type='button'>Last</button>
+</a>
+<script src="/js/Nav.js"></script>
+<script src='/js/CExplainList.js'></script>
+</body>
+</html>

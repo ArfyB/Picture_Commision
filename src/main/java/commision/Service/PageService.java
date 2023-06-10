@@ -1,17 +1,13 @@
 package commision.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageInfo;
-
-import commision.Mapper.CNoticeMapper;
-import commision.Vo.CNotice;
-import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class PageService 
@@ -32,10 +28,16 @@ public class PageService
 		{
 			end = pageinfo.getNavigateLastPage();
 		}
+		List<Integer> pages = new ArrayList<>();
 		
+		for(int i = begin; i <= end; i++)
+		{
+			pages.add(i);
+		}
 		
 		map.put("begin", begin);
 		map.put("end", end);
+		map.put("pages", pages);
 		return map;
 	}
 }

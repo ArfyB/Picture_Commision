@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div>
+<a th:each='CExplain : ${pageinfo.list}'>
+	<div>
+		<span th:text = '${CExplain.CNum}'></span>
+		<a th:href="@{/cexplain/cexplain(CNum=${CExplain.CNum})}" th:text='${CExplain.Title}'></a>
+	</div>
+</a>
+</div>
+<div>
+</div>
+
+<script src='/js/PermitCExplain.js'></script>
+</body>
+</html>
